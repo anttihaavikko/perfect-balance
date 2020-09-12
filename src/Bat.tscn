@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/pulse-circle.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/wing.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 122.104
+
+[sub_resource type="Animation" id=2]
+resource_name = "Bat"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Wing Right:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 30.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Wing Left:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -30.0, 0.0 ]
+}
+
+[node name="Bat" type="Node2D"]
+modulate = Color( 0.945098, 0.909804, 0.721569, 1 )
+position = Vector2( -4.3689, 0 )
+script = ExtResource( 1 )
+max_speed = 300.0
+hitbox_radius = 150
+
+[node name="Torso" type="RigidBody2D" parent="."]
+collision_layer = 4
+collision_mask = 5
+gravity_scale = 0.0
+
+[node name="Sprite" type="Sprite" parent="Torso"]
+position = Vector2( -2.18433, 0 )
+rotation = 1.5708
+texture = ExtResource( 2 )
+
+[node name="Wing Right" type="Node2D" parent="Torso/Sprite"]
+position = Vector2( 100.099, -58.2207 )
+rotation = 0.0391394
+
+[node name="Sprite" type="Sprite" parent="Torso/Sprite/Wing Right"]
+position = Vector2( 63.5601, -57.1549 )
+texture = ExtResource( 3 )
+
+[node name="Wing Left" type="Node2D" parent="Torso/Sprite"]
+position = Vector2( -98.2394, -58.2207 )
+rotation = -0.0391394
+
+[node name="Sprite" type="Sprite" parent="Torso/Sprite/Wing Left"]
+position = Vector2( -63.3459, -57.1549 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Torso"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Torso")
+autoplay = "Bat"
+anims/Bat = SubResource( 2 )
+
+[node name="ShotTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+[connection signal="timeout" from="ShotTimer" to="." method="_on_ShotTimer_timeout"]
