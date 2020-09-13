@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/sprites/pulse-circle.png" type="Texture" id=1]
 [ext_resource path="res://src/Boss.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/icon.png" type="Texture" id=3]
 [ext_resource path="res://assets/shaders/Blobify.shader" type="Shader" id=4]
+[ext_resource path="res://src/Face.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 4 )
@@ -35,3 +36,5 @@ shape = SubResource( 1 )
 visible = false
 position = Vector2( 2.31616, -275.305 )
 texture = ExtResource( 3 )
+
+[node name="Face" parent="Torso" instance=ExtResource( 5 )]

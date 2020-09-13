@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/sprites/mouth-block.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/limb.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/pulse-circle.png" type="Texture" id=3]
+[ext_resource path="res://src/Pulsate.gd" type="Script" id=4]
+
+[node name="Face" type="Node2D"]
+position = Vector2( -25.2881, 4.8631 )
+
+[node name="EyeRight" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 554.892, -20.2408 )
+scale = Vector2( 0.216441, 0.216441 )
+texture = ExtResource( 3 )
+offset = Vector2( -2234.32, -230.818 )
+
+[node name="EyeLeft" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 417.451, -21.338 )
+scale = Vector2( 0.216441, 0.216441 )
+texture = ExtResource( 3 )
+offset = Vector2( -2234.32, -230.818 )
+
+[node name="BlushLeft" type="Sprite" parent="."]
+modulate = Color( 0.964706, 0.580392, 0.756863, 1 )
+position = Vector2( 380.962, 2.21042 )
+scale = Vector2( 0.216, 0.15 )
+texture = ExtResource( 3 )
+offset = Vector2( -2234.32, -230.818 )
+
+[node name="BlushRight" type="Sprite" parent="."]
+modulate = Color( 0.964706, 0.580392, 0.756863, 1 )
+position = Vector2( 592.105, 1.47935 )
+scale = Vector2( 0.216, 0.15 )
+texture = ExtResource( 3 )
+offset = Vector2( -2234.32, -230.818 )
+
+[node name="Mouth" type="Sprite" parent="."]
+position = Vector2( 2.33171, -17.4496 )
+scale = Vector2( 0.656067, 0.656067 )
+texture = ExtResource( 1 )
+script = ExtResource( 4 )
+speed = 0.3
+amount = 0.2
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 3.65533, -97.2321 )
+rotation = 1.5604
+scale = Vector2( -1.94478, 3.80563 )
+texture = ExtResource( 2 )

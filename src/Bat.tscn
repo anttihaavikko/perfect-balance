@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/pulse-circle.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/wing.png" type="Texture" id=3]
 [ext_resource path="res://src/Trail.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/shaders/Blobify.shader" type="Shader" id=5]
+[ext_resource path="res://src/Face.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 5 )
@@ -59,27 +60,33 @@ rotation = 1.5708
 texture = ExtResource( 2 )
 
 [node name="Wing Right" type="Node2D" parent="Torso/Sprite"]
-position = Vector2( 100.099, -58.2207 )
-rotation = 0.479551
+position = Vector2( 86.9407, -59.2328 )
+rotation = 0.0765765
 
 [node name="Sprite" type="Sprite" parent="Torso/Sprite/Wing Right"]
 position = Vector2( 63.5601, -57.1549 )
 texture = ExtResource( 3 )
 
 [node name="Wing Left" type="Node2D" parent="Torso/Sprite"]
-position = Vector2( -98.2394, -58.2207 )
-rotation = -0.479551
+position = Vector2( -110.891, -61.2571 )
+rotation = -0.0765765
 
 [node name="Sprite" type="Sprite" parent="Torso/Sprite/Wing Left"]
 position = Vector2( -63.3459, -57.1549 )
 scale = Vector2( -1, 1 )
 texture = ExtResource( 3 )
 
+[node name="Face" parent="Torso/Sprite" instance=ExtResource( 6 )]
+position = Vector2( -11.1607, -44.7101 )
+scale = Vector2( 0.489438, 0.489438 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Torso"]
 visible = false
+position = Vector2( 8.96921, -9.71666 )
 shape = SubResource( 1 )
 
 [node name="Trail" parent="Torso" instance=ExtResource( 4 )]
+visible = false
 position = Vector2( 0, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
