@@ -40,7 +40,7 @@ tracks/1/keys = {
 modulate = Color( 0.945098, 0.909804, 0.721569, 1 )
 position = Vector2( -4.3689, 0 )
 script = ExtResource( 1 )
-max_speed = 300.0
+max_speed = 100.0
 hitbox_radius = 150
 
 [node name="Torso" type="RigidBody2D" parent="."]
@@ -55,7 +55,7 @@ texture = ExtResource( 2 )
 
 [node name="Wing Right" type="Node2D" parent="Torso/Sprite"]
 position = Vector2( 100.099, -58.2207 )
-rotation = 0.297754
+rotation = 0.202062
 
 [node name="Sprite" type="Sprite" parent="Torso/Sprite/Wing Right"]
 position = Vector2( 63.5601, -57.1549 )
@@ -63,7 +63,7 @@ texture = ExtResource( 3 )
 
 [node name="Wing Left" type="Node2D" parent="Torso/Sprite"]
 position = Vector2( -98.2394, -58.2207 )
-rotation = -0.297754
+rotation = -0.202062
 
 [node name="Sprite" type="Sprite" parent="Torso/Sprite/Wing Left"]
 position = Vector2( -63.3459, -57.1549 )

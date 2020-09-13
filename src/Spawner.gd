@@ -32,5 +32,4 @@ func _on_Timer_timeout() -> void:
 func pick_angle():
 	print(position, " vs ", plr.body.position)
 	angle = position.angle_to_point(plr.body.position) + PI
-	print("picked angle ", angle)
 	picked = true

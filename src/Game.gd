@@ -39,6 +39,9 @@ func _process(delta):
 		for i in dead:
 			characters[i].die()
 			characters.remove(i)
+			
+	if Input.get_action_strength("restart"):
+		get_tree().reload_current_scene()
 
 func add_character(character):
 	characters.append(character)

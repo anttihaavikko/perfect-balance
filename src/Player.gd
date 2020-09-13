@@ -17,7 +17,9 @@ func _process(delta):
 	velocity = direction * max_speed * speed_mod
 	
 	var mouse = get_viewport().get_mouse_position() * 5 - 2.5 * get_viewport().size
-	var angle_to_mouse = body.position.angle_to_point(mouse) - PI * 0.5
+	var pos = body.position - cam.position
+	var angle_to_mouse = pos.angle_to_point(mouse) - PI * 0.5
+	var distance_to_mouse = min(body.position.distance_to(mouse), 100.0)
 	
 	reticule.position = mouse
 	
@@ -33,9 +35,15 @@ func _process(delta):
 		angle = 0
 		
 	if shooting && shot_cooldown <= 0:
-		shoot(body.position.angle_to_point(mouse) + PI)
+		shoot(pos.angle_to_point(mouse) + PI)
 		
 	_move(delta)
+	
+	var dir = Vector2(cos(angle_to_mouse), sin(angle_to_mouse))
+	var repos = body.position + dir * distance_to_mouse - cam.position
+	var repos_velo = repos * 10.0 * delta
+	
+	cam.position += repos_velo
 
 func shoot(angle):
 	shot_cooldown = shot_cooldown_max
