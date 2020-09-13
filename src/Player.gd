@@ -3,13 +3,22 @@ class_name Player
 
 onready var reticule: Node2D = $Reticule
 onready var shoot_point: Node2D = $Torso/ShootPoint
+onready var trail: Particles2D = $Torso/Trail
+
+var noise: OpenSimplexNoise
+var noise_offset := 0
 
 func _init() -> void:
 	self.hp_max = 3
 	self.hp = 3
+	noise = OpenSimplexNoise.new()
+	noise.seed = 123
+	noise.octaves = 5
+	noise.period = 30000.0
+	noise.persistence = 0.5
 
 func _process(delta):	
-	var shooting = Input.get_action_strength("shoot") > 0.5
+	var shooting = Input.get_action_strength("shoot") > 0.5 && !picking_bonus
 	var speed_mod = 0.5 if shooting else 1.0
 	
 	var x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -22,7 +31,10 @@ func _process(delta):
 	velocity = direction * max_speed * speed_mod
 	
 	if picking_bonus:
-		velocity = Vector2(0, -1) * max_speed
+		noise_offset += delta * 100
+		velocity = Vector2(noise.get_noise_1d(noise_offset) * 2, -1) * max_speed
+		
+	trail.emitting = velocity.length() > 0.5
 	
 	var res = Vector2(1024, 600)
 	var mouse = get_viewport().get_mouse_position() * 5 - 2.5 * res

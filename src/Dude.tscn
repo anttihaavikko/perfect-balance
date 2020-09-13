@@ -16,7 +16,7 @@ height = 23.6066
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 24.9256
-height = 36.1895
+height = 28.9861
 
 [sub_resource type="CapsuleShape2D" id=3]
 radius = 31.2342
@@ -60,12 +60,12 @@ speed = 3.0
 amount = 0.3
 
 [node name="Head Joint" type="PinJoint2D" parent="."]
-position = Vector2( 0.167938, -50.7438 )
+position = Vector2( -0.327652, -49.5048 )
 node_a = NodePath("../Torso")
 node_b = NodePath("../Head")
 
 [node name="Head Spring" type="DampedSpringJoint2D" parent="."]
-position = Vector2( 0.0738678, -104.663 )
+position = Vector2( 0.321655, -97.4766 )
 rotation = -3.14159
 node_a = NodePath("../Torso")
 node_b = NodePath("../Head")
@@ -73,7 +73,7 @@ length = 100.0
 stiffness = 64.0
 
 [node name="Head" type="RigidBody2D" parent="."]
-position = Vector2( 0, -65.2082 )
+position = Vector2( 0.495575, -92.2172 )
 collision_layer = 2
 collision_mask = 3
 gravity_scale = 0.0
@@ -85,7 +85,7 @@ position = Vector2( 0.853546, -0.746857 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
-visible = false
+position = Vector2( 0.247803, -3.77927 )
 shape = SubResource( 2 )
 
 [node name="Pelvis Joint" type="PinJoint2D" parent="."]
@@ -147,18 +147,18 @@ position = Vector2( 0.861267, -0.710163 )
 shape = SubResource( 4 )
 
 [node name="Limb Lower  Joint" type="PinJoint2D" parent="."]
-position = Vector2( -19.1203, 151.184 )
+position = Vector2( -18.4836, 159.249 )
 node_a = NodePath("../Limb Upper")
 node_b = NodePath("../Limb Lower")
 
 [node name="Limb Lower Spring" type="DampedSpringJoint2D" parent="."]
-position = Vector2( -18.0738, 225.365 )
+position = Vector2( -17.4371, 233.43 )
 node_a = NodePath("../Limb Upper")
 node_b = NodePath("../Limb Lower")
 stiffness = 40.0
 
 [node name="Limb Lower" type="RigidBody2D" parent="."]
-position = Vector2( -19.7854, 188.027 )
+position = Vector2( -19.7854, 196.516 )
 collision_layer = 2
 collision_mask = 3
 gravity_scale = 0.0
@@ -204,18 +204,18 @@ position = Vector2( 0.861267, -0.710163 )
 shape = SubResource( 4 )
 
 [node name="Limb Lower  Joint2" type="PinJoint2D" parent="."]
-position = Vector2( 14.5684, 151.184 )
+position = Vector2( 15.2051, 159.249 )
 node_a = NodePath("../Limb Upper2")
 node_b = NodePath("../Limb Lower2")
 
 [node name="Limb Lower Spring2" type="DampedSpringJoint2D" parent="."]
-position = Vector2( 15.1086, 225.365 )
+position = Vector2( 15.7453, 233.43 )
 node_a = NodePath("../Limb Upper2")
 node_b = NodePath("../Limb Lower2")
 stiffness = 40.0
 
 [node name="Limb Lower2" type="RigidBody2D" parent="."]
-position = Vector2( 13.9034, 188.027 )
+position = Vector2( 14.1156, 197.365 )
 collision_layer = 2
 collision_mask = 3
 gravity_scale = 0.0

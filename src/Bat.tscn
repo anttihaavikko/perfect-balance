@@ -50,7 +50,7 @@ hitbox_radius = 150
 
 [node name="Torso" type="RigidBody2D" parent="."]
 collision_layer = 4
-collision_mask = 5
+collision_mask = 7
 gravity_scale = 0.0
 
 [node name="Sprite" type="Sprite" parent="Torso"]
