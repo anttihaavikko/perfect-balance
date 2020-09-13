@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/misc/Amatic-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/sprites/placeholder.png" type="Texture" id=2]
+[ext_resource path="res://src/BonusTile.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 60
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=4]
+default_font = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=6]
+default_font = SubResource( 5 )
+
+[node name="BonusTile" type="ColorRect"]
+anchor_top = -0.266
+margin_right = 924.0
+margin_bottom = 148.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 0.976471, 0.976471, 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+theme = SubResource( 2 )
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="ColorRect"]
+anchor_top = 0.054
+anchor_right = 1.0
+anchor_bottom = 0.074
+margin_right = 6.10352e-05
+margin_bottom = 14.206
+theme = SubResource( 4 )
+text = "TILE TEST"
+align = 1
+
+[node name="Desc" type="Label" parent="ColorRect"]
+anchor_top = 0.9
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -65.0
+theme = SubResource( 6 )
+text = "TILE TEST"
+align = 1
+valign = 1
+
+[node name="Icon" type="TextureRect" parent="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 2 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="gui_input" from="." to="." method="_on_BonusTile_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_BonusTile_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_BonusTile_mouse_exited"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

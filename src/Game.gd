@@ -11,6 +11,8 @@ var characters := []
 onready var bits = preload("res://src/Bits.tscn")
 onready var parts = preload("res://src/Parts.tscn")
 onready var player = $Player
+onready var bonuses = get_node("Canvas/BonusView/BonusSelection")
+onready var spawner = $Spawner
 
 var emitted := false
 
@@ -82,3 +84,12 @@ func parts(pos: Vector2):
 	var eff = parts.instance()
 	add_child(eff)
 	eff.position = pos
+	
+func show_bonuses():
+	bonuses.show_bonuses()
+	
+func pick_bonus(index: int):
+	print("Picked bonus => ", index)
+	bonuses.hide_bonuses()
+	player.picking_bonus = false
+	spawner.next_level()

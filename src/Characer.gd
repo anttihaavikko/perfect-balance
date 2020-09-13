@@ -21,6 +21,8 @@ var color_reset: Timer
 var hp_max = 2
 var hp
 
+var picking_bonus := false
+
 func _ready() -> void:
 	hp = hp_max * 15 if boss else hp_max
 	tween = Tween.new()
@@ -42,7 +44,9 @@ func recoil():
 	shaker.start(0.1, 20, 3)
 	
 func take_hit(bullet: Bullet):
-	hp -= bullet.damage
+	if !picking_bonus:
+		hp -= bullet.damage
+		
 	flash()
 	
 func is_alive() -> bool:

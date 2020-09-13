@@ -10,6 +10,7 @@ onready var start_timer = $StartTimer
 onready var timer = $Timer
 onready var wave_timer = $WaveTimer
 onready var appearer := $Appearer
+onready var game = get_node("..")
 
 var noise_seed := 0
 var angle := 0.0
@@ -20,7 +21,7 @@ var wave := 1
 var level := 1
 var boss_encountered := false
 
-const spawn_boss_on_wave = 6
+const spawn_boss_on_wave = 2
 
 func _init() -> void:
 	randomize()
@@ -93,6 +94,13 @@ func _on_Game_no_enemies() -> void:
 			started = false
 			start_timer.start()
 		else:
-			level += 1
-			print("boss killed!")
+			game.show_bonuses()
+			
+func next_level():
+	level += 1
+	wave = 1
+	spawns = 0
+	boss_encountered = false
+	started = false
+	start_timer.start()
 		

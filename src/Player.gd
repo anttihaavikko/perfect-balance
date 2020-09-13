@@ -8,7 +8,7 @@ func _init() -> void:
 	self.hp_max = 3
 	self.hp = 3
 
-func _process(delta):
+func _process(delta):	
 	var shooting = Input.get_action_strength("shoot") > 0.5
 	var speed_mod = 0.5 if shooting else 1.0
 	
@@ -20,6 +20,9 @@ func _process(delta):
 		direction = direction.normalized()
 	
 	velocity = direction * max_speed * speed_mod
+	
+	if picking_bonus:
+		velocity = Vector2(0, -1) * max_speed
 	
 	var res = Vector2(1024, 600)
 	var mouse = get_viewport().get_mouse_position() * 5 - 2.5 * res

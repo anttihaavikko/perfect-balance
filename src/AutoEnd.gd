@@ -1,5 +1,7 @@
 extends Particles2D
 
+onready var game = get_node("../");
+
 func _ready() -> void:
 	emitting = true
 	one_shot = true
