@@ -12,7 +12,6 @@ shader = ExtResource( 4 )
 radius = 365.09
 
 [node name="SlimeBoss" type="Node2D"]
-modulate = Color( 0.945098, 0.909804, 0.721569, 1 )
 script = ExtResource( 2 )
 max_speed = 100.0
 hitbox_radius = 400

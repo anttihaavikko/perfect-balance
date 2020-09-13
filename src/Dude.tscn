@@ -38,7 +38,7 @@ custom_defines = ""
 shader = SubResource( 5 )
 
 [node name="Dude" type="Node2D"]
-modulate = Color( 0.945098, 0.909804, 0.721569, 1 )
+position = Vector2( -0.365295, 0 )
 script = ExtResource( 3 )
 hitbox_radius = 50
 
@@ -61,7 +61,7 @@ position = Vector2( 0, -152.016 )
 [node name="Trail" parent="Torso" instance=ExtResource( 7 )]
 
 [node name="Heart" type="Sprite" parent="Torso"]
-self_modulate = Color( 0.815686, 0.32549, 0.32549, 1 )
+self_modulate = Color( 0.964706, 0.580392, 0.756863, 1 )
 position = Vector2( -0.365295, 0 )
 scale = Vector2( 0.424042, 0.424042 )
 z_index = 1

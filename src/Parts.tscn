@@ -2,14 +2,14 @@
 
 [ext_resource path="res://src/AutoEnd.gd" type="Script" id=1]
 
-[sub_resource type="Curve" id=2]
+[sub_resource type="Curve" id=1]
 max_value = 2.0
 _data = [ Vector2( 0.522989, 1 ), 0.0, 11.3874, 0, 0, Vector2( 1, 0.00930154 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=3]
-curve = SubResource( 2 )
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
 
-[sub_resource type="ParticlesMaterial" id=1]
+[sub_resource type="ParticlesMaterial" id=3]
 lifetime_randomness = 0.5
 flag_disable_z = true
 spread = 180.0
@@ -25,15 +25,14 @@ angle = 720.0
 angle_random = 1.0
 scale = 20.0
 scale_random = 0.42
-scale_curve = SubResource( 3 )
-color = Color( 0.945098, 0.909804, 0.721569, 1 )
+scale_curve = SubResource( 2 )
 
 [node name="Parts" type="Particles2D"]
-position = Vector2( 470.343, 22.0818 )
+position = Vector2( 467.666, 22.0818 )
 amount = 30
 lifetime = 2.0
 speed_scale = 5.0
 explosiveness = 0.58
 randomness = 0.5
-process_material = SubResource( 1 )
+process_material = SubResource( 3 )
 script = ExtResource( 1 )

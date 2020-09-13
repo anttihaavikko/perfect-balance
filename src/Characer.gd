@@ -56,8 +56,8 @@ func die():
 
 func flash():
 	shaker.start(0.15, 20, 3 if is_enemy else 10)
-	modulate = Color.white
-	yield(get_tree().create_timer(0.2), "timeout")
+	modulate = game.colors[0]
+	yield(get_tree().create_timer(0.1), "timeout")
 	modulate = base_color
 	#tween.interpolate_property(self, "modulate", Color.white, base_color, 0.5, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
 	#tween.start()
