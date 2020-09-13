@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Bullets.gd"
 }, {
+"base": "Attack",
+"class": "Burst",
+"language": "GDScript",
+"path": "res://src/Burst.gd"
+}, {
 "base": "Node2D",
 "class": "Character",
 "language": "GDScript",
@@ -53,6 +58,7 @@ _global_script_class_icons={
 "Attack": "",
 "Bullet": "",
 "Bullets": "",
+"Burst": "",
 "Character": "",
 "Enemy": "",
 "Game": "",

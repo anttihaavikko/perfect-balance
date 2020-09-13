@@ -3,6 +3,8 @@ class_name Enemy
 
 var noise: OpenSimplexNoise
 var color: Color
+var attack: Attack
+var forks := 1
 
 onready var player = get_node("../Player")
 
@@ -12,6 +14,17 @@ func _init() -> void:
 	noise.octaves = 5
 	noise.period = 30000.0
 	noise.persistence = 0.5
+	attack = pick_attack()
+	
+func pick_attack() -> Attack:
+	var attacks = [
+		Burst.new(Bullet.Type.CURVE_LEFT, rand_range(-0.1, 0.1)),
+		Burst.new(Bullet.Type.CURVE_RIGHT, rand_range(-0.1, 0.1)),
+		Burst.new(Bullet.Type.NORMAL, 0.0, 10, 1.5),
+		Burst.new(Bullet.Type.NORMAL, 0.0, 7, 1)
+	]
+	
+	return attacks[randi() % attacks.size()]
 	
 func colorize(color: Color):
 	self.color = color
@@ -23,17 +36,16 @@ func seed_noise(s: int):
 func _process(delta):
 	var direction = Vector2(cos(body.rotation), sin(body.rotation))
 	velocity = max_speed * direction
-	angle = noise.get_noise_2d(body.position.x, body.position.y) * 0.03
+	angle = noise.get_noise_2d(body.position.x, body.position.y) * 0.015
 	_move(delta)
 	
 	if player && body:
 		var diff = player.body.position - body.position
 		if abs(diff.length()) > 4000:
 			hp = 0
-
-func shoot():
-	var b = Bullet.new(body.position, body.rotation, 2000, color)
-	game.add_bullet(b)
+			
+	if attack:
+		attack._update(game, self, delta)
 
 func _on_ShotTimer_timeout():
-	shoot()
+	pass

@@ -17,6 +17,7 @@ var angle := 0.0
 var spawns := 0
 var picked := false
 var started := false
+var wave := 1
 
 func _init() -> void:
 	randomize()
@@ -34,8 +35,10 @@ func spawn():
 		enemy.seed_noise(noise_seed)
 		enemy.body.rotation = angle
 		enemy.colorize(colors[randi() % colors.size()])
+		enemy.forks = wave
 		spawns += 1
 	else:
+		wave += 1
 		wave_timer.start()
 		timer.stop()
 		appearer.disappear()
