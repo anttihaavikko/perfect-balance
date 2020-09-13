@@ -22,3 +22,11 @@ func slide(delay: float):
 	tween.interpolate_property(self, "modulate", Color.transparent, Color.white, 0.1, Tween.TRANS_BOUNCE)
 	tween.interpolate_property(self, "margin_top", 300, 0, 0.3, Tween.TRANS_BOUNCE)
 	tween.start()
+	
+func slide_and_free(delay: float):
+	yield(get_tree().create_timer(delay), "timeout")
+	tween.interpolate_property(self, "modulate", Color.white, Color.transparent, 0.3, Tween.TRANS_BOUNCE)
+	tween.interpolate_property(self, "margin_top", 0, 400, 0.3, Tween.TRANS_BOUNCE)
+	tween.start()
+	yield(get_tree().create_timer(5), "timeout")
+	queue_free()

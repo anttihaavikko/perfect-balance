@@ -17,6 +17,9 @@ func show_bonuses():
 		bonus.slide(index * 0.15)
 
 func hide_bonuses():
+	var delay = 0.0
 	for bonus in bonuses:
-		bonus.hide()
-		bonus.queue_free()
+		bonus.slide_and_free(delay)
+		delay += 0.15
+		
+	bonuses.clear()
