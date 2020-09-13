@@ -17,7 +17,7 @@ func _draw():
 			var pos = b.position / 5 + 0.5 * res + cam.offset - cam.position / 5.0
 			
 			if b.is_enemy:
-				draw_circle(pos, 10, color)
+				draw_circle(pos, 10, b.color)
 				
 			draw_circle(pos, 7, Color.white)
 	

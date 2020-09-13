@@ -31,7 +31,7 @@ float fbm(vec2 x, float freq, float amp) {
 
 void fragment() {
 	COLOR.rgb = color.rgb;
-	float disp_x = fbm(SCREEN_UV + vec2(seed + TIME * 0.01), 20.0, 0.05);
-	float disp_y = fbm(SCREEN_UV + + vec2(-seed - TIME * 0.01), 20.0, 0.05);
+	float disp_x = fbm(SCREEN_UV + vec2(seed + TIME * 0.01), 10.0, 0.1);
+	float disp_y = fbm(SCREEN_UV + + vec2(-seed - TIME * 0.01), 10.0, 0.1);
 	COLOR.a = step(0.6, fbm(SCREEN_UV + vec2(disp_x, disp_y) + offset, 5.0, 0.5)) * alpha;
 }

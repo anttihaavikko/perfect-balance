@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/sprites/torso.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/head.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://assets/sprites/limb.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/reticule.png" type="Texture" id=6]
 [ext_resource path="res://src/Trail.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/sprites/heart.png" type="Texture" id=8]
+[ext_resource path="res://src/Pulsate.gd" type="Script" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 43.0255
@@ -57,6 +59,16 @@ texture = ExtResource( 1 )
 position = Vector2( 0, -152.016 )
 
 [node name="Trail" parent="Torso" instance=ExtResource( 7 )]
+
+[node name="Heart" type="Sprite" parent="Torso"]
+self_modulate = Color( 0.815686, 0.32549, 0.32549, 1 )
+position = Vector2( -0.365295, 0 )
+scale = Vector2( 0.424042, 0.424042 )
+z_index = 1
+texture = ExtResource( 8 )
+script = ExtResource( 9 )
+speed = 3.0
+amount = 0.3
 
 [node name="Head Joint" type="PinJoint2D" parent="."]
 position = Vector2( 0.167938, -50.7438 )

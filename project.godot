@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "Attack",
+"language": "GDScript",
+"path": "res://src/Attack.gd"
+}, {
+"base": "Reference",
 "class": "Bullet",
 "language": "GDScript",
 "path": "res://src/Bullet.gd"
@@ -45,6 +50,7 @@ _global_script_classes=[ {
 "path": "res://src/Spawner.gd"
 } ]
 _global_script_class_icons={
+"Attack": "",
 "Bullet": "",
 "Bullets": "",
 "Character": "",

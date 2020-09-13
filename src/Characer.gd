@@ -17,7 +17,7 @@ var shot_cooldown_max := 0.3
 var tween: Tween
 var base_color: Color
 var color_reset: Timer
-var hp_max = 5
+var hp_max = 2
 var hp
 
 func _ready() -> void:
@@ -48,6 +48,7 @@ func is_alive() -> bool:
 	return hp > 0
 	
 func die():
+	hp = 0
 	get_node("../Canvas/Shockwave").boom(body.position)
 	shaker.start(0.4, 20, 15)
 	queue_free()

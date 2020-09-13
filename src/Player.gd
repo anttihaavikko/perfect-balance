@@ -4,6 +4,10 @@ class_name Player
 onready var reticule: Node2D = $Reticule
 onready var shoot_point: Node2D = $Torso/ShootPoint
 
+func _init() -> void:
+	self.hp_max = 3
+	self.hp = 3
+
 func _process(delta):
 	var shooting = Input.get_action_strength("shoot") > 0.5
 	var speed_mod = 0.5 if shooting else 1.0
@@ -49,7 +53,7 @@ func _process(delta):
 
 func shoot(angle):
 	shot_cooldown = shot_cooldown_max
-	var b = Bullet.new(shoot_point.get_global_transform().get_origin(), angle, 5000)
+	var b = Bullet.new(shoot_point.get_global_transform().get_origin(), angle, 5000, Color.white)
 	b.is_enemy = false
 	game.add_bullet(b)
 	recoil()
