@@ -5,6 +5,7 @@ enum Type {
 	CURVE_LEFT,
 	CURVE_RIGHT,
 	SNAKE,
+	SNAKE_WIDE,
 	ZIGZAG,
 	HOMING
 }
@@ -18,6 +19,7 @@ var damage := 1
 var color: Color
 var curve := 0.1
 var type;
+var phase := 0.0
 
 func _init(position: Vector2, angle: float, speed: float, color: Color):
 	self.position = position
@@ -28,11 +30,18 @@ func _init(position: Vector2, angle: float, speed: float, color: Color):
 func update(delta) -> bool:
 	position += Vector2(cos(angle), sin(angle)) * speed * delta;
 	lifetime -= delta
+	phase += delta * 10
 	
 	if(type == Type.CURVE_LEFT):
 		angle -= curve;
 		
 	if(type == Type.CURVE_RIGHT):
 		angle += curve;
+		
+	if(type == Type.SNAKE):
+		angle += curve * sign(sin(phase));
+		
+	if(type == Type.SNAKE_WIDE):
+		angle += curve * sign(sin(phase)) * 0.5;
 	
 	return lifetime > 0

@@ -4,6 +4,7 @@ class_name Character
 export var max_speed = 1000.0
 export var is_enemy = true
 export var hitbox_radius = 100
+export var boss := false
 
 onready var body: RigidBody2D = $Torso
 onready var cam := get_node("../Camera")
@@ -21,7 +22,7 @@ var hp_max = 2
 var hp
 
 func _ready() -> void:
-	hp = hp_max
+	hp = hp_max * 10 if boss else hp_max
 	tween = Tween.new()
 	add_child(tween)
 	base_color = modulate

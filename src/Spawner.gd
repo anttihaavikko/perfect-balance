@@ -2,6 +2,7 @@ extends Node2D
 class_name Spawner
 
 onready var bat = preload("res://src/Bat.tscn")
+onready var slime = preload("res://src/SlimeBoss.tscn")
 onready var root = get_node("..")
 onready var plr = get_node("../Player")
 onready var shockwave = get_node("../Canvas/Shockwave")
@@ -18,6 +19,8 @@ var spawns := 0
 var picked := false
 var started := false
 var wave := 1
+var level := 1
+var boss_encountered := false
 
 func _init() -> void:
 	randomize()
@@ -27,7 +30,23 @@ func _init() -> void:
 func spawn():
 	if spawns == 0:
 		pick_angle()
-	if spawns < 7:
+	if wave == 3:
+		var enemy = slime.instance()
+		root.add_child(enemy)
+		enemy.body.position = position
+		shockwave.boom(position)
+		enemy.seed_noise(noise_seed)
+		enemy.body.rotation = angle
+		enemy.colorize(colors[randi() % colors.size()])
+		enemy.forks = level  + 2
+		spawns += 1
+		start_timer.stop()
+		timer.stop()
+		wave_timer.stop()
+		appearer.disappear()
+		wave += 1
+		boss_encountered = true
+	elif spawns < clamp(2 + wave, 3, 10):
 		var enemy = bat.instance()
 		root.add_child(enemy)
 		enemy.body.position = position
@@ -35,7 +54,7 @@ func spawn():
 		enemy.seed_noise(noise_seed)
 		enemy.body.rotation = angle
 		enemy.colorize(colors[randi() % colors.size()])
-		enemy.forks = wave
+		enemy.forks = level
 		spawns += 1
 	else:
 		wave += 1
@@ -72,7 +91,11 @@ func reposition():
 
 func _on_Game_no_enemies() -> void:
 	if timer.is_stopped() && start_timer.is_stopped():
-		spawns = 0
-		started = false
-		start_timer.start()
+		if !boss_encountered:
+			spawns = 0
+			started = false
+			start_timer.start()
+		else:
+			level += 1
+			print("boss killed!")
 		

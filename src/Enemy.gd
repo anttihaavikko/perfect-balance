@@ -21,7 +21,9 @@ func pick_attack() -> Attack:
 		Burst.new(Bullet.Type.CURVE_LEFT, rand_range(-0.1, 0.1)),
 		Burst.new(Bullet.Type.CURVE_RIGHT, rand_range(-0.1, 0.1)),
 		Burst.new(Bullet.Type.NORMAL, 0.0, 10, 1.5),
-		Burst.new(Bullet.Type.NORMAL, 0.0, 7, 1)
+		Burst.new(Bullet.Type.NORMAL, 0.0, 7, 1),
+		Burst.new(Bullet.Type.SNAKE, rand_range(-0.1, 0.1), 5, 1.5),
+		Burst.new(Bullet.Type.SNAKE_WIDE, rand_range(-0.1, 0.1), 10, 3.0)
 	]
 	
 	return attacks[randi() % attacks.size()]
@@ -36,16 +38,15 @@ func seed_noise(s: int):
 func _process(delta):
 	var direction = Vector2(cos(body.rotation), sin(body.rotation))
 	velocity = max_speed * direction
-	angle = noise.get_noise_2d(body.position.x, body.position.y) * 0.015
-	_move(delta)
+	
+	if !boss:
+		angle = noise.get_noise_2d(body.position.x, body.position.y) * 0.015
+		_move(delta)
 	
 	if player && body:
 		var diff = player.body.position - body.position
-		if abs(diff.length()) > 4000:
+		if !boss && abs(diff.length()) > 4000:
 			hp = 0
 			
 	if attack:
 		attack._update(game, self, delta)
-
-func _on_ShotTimer_timeout():
-	pass
