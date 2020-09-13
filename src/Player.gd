@@ -2,6 +2,7 @@ extends Character
 class_name Player
 
 onready var reticule: Node2D = $Reticule
+onready var shoot_point: Node2D = $Torso/ShootPoint
 
 func _process(delta):
 	var shooting = Input.get_action_strength("shoot") > 0.5
@@ -21,7 +22,7 @@ func _process(delta):
 	var angle_to_mouse = pos.angle_to_point(mouse) - PI * 0.5
 	var distance_to_mouse = min(body.position.distance_to(mouse), 100.0)
 	
-	reticule.position = mouse
+	reticule.position = mouse + cam.position
 	
 	while body.rotation - angle_to_mouse > PI:
 		angle_to_mouse += PI
@@ -47,7 +48,8 @@ func _process(delta):
 
 func shoot(angle):
 	shot_cooldown = shot_cooldown_max
-	var b = Bullet.new(body.position, angle, 5000)
+	print(body.position + shoot_point.position)
+	var b = Bullet.new(shoot_point.get_global_transform().get_origin(), angle, 5000)
 	b.is_enemy = false
 	game.add_bullet(b)
 	recoil()
