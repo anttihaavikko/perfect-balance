@@ -88,6 +88,15 @@ func move_face(pos: Vector2):
 		face_tween.start()
 
 func _process(delta: float) -> void:
+	if player && player.body && body:
+		var distance = (body.position - player.body.position).length()
+		var angle = body.position.angle_to_point(player.body.position) + PI
+		var direction = Vector2(cos(angle), sin(angle))
+		if distance > 0:
+			velocity = max_speed * direction
+		else:
+			velocity = Vector2()
+		_move(delta)
 	if attack:
 		if attack.is_done():
 			move_face(mid)
