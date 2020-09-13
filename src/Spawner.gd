@@ -4,6 +4,7 @@ class_name Spawner
 onready var bat = preload("res://src/Bat.tscn")
 onready var root = get_node("..")
 onready var plr = get_node("../Player")
+onready var shockwave = get_node("../Canvas/Shockwave")
 
 var noise_seed := 0
 var angle := 0.0
@@ -22,6 +23,7 @@ func spawn():
 		var enemy = bat.instance()
 		root.add_child(enemy)
 		enemy.body.position = position
+		shockwave.boom(position)
 		enemy.seed_noise(noise_seed)
 		enemy.body.rotation = angle
 		spawns += 1

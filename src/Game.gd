@@ -1,12 +1,11 @@
 extends Node2D
 class_name Game
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 var bullets := []
 var characters := []
+
+onready var bits = preload("res://src/Bits.tscn")
+onready var parts = preload("res://src/Parts.tscn")
 
 func add_bullet(bullet: Bullet):
 	bullets.append(bullet)
@@ -25,8 +24,10 @@ func _process(delta):
 				var c = characters[k]
 				var diff = c.body.position - bullet.position;
 				if c.is_enemy != bullet.is_enemy && abs(diff.length()) < c.hitbox_radius:
+					bits(bullet.position)
 					c.take_hit(bullet)
 					if !c.is_alive():
+						parts(c.body.position)
 						dead.push_front(k)
 					if used.find(i) == -1:
 						used.push_front(i)
@@ -45,3 +46,13 @@ func _process(delta):
 
 func add_character(character):
 	characters.append(character)
+
+func bits(pos: Vector2):
+	var eff = bits.instance()
+	add_child(eff)
+	eff.position = pos
+	
+func parts(pos: Vector2):
+	var eff = parts.instance()
+	add_child(eff)
+	eff.position = pos

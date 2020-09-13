@@ -55,7 +55,7 @@ texture = ExtResource( 2 )
 
 [node name="Wing Right" type="Node2D" parent="Torso/Sprite"]
 position = Vector2( 100.099, -58.2207 )
-rotation = 0.202062
+rotation = 0.160369
 
 [node name="Sprite" type="Sprite" parent="Torso/Sprite/Wing Right"]
 position = Vector2( 63.5601, -57.1549 )
@@ -63,7 +63,7 @@ texture = ExtResource( 3 )
 
 [node name="Wing Left" type="Node2D" parent="Torso/Sprite"]
 position = Vector2( -98.2394, -58.2207 )
-rotation = -0.202062
+rotation = -0.160369
 
 [node name="Sprite" type="Sprite" parent="Torso/Sprite/Wing Left"]
 position = Vector2( -63.3459, -57.1549 )

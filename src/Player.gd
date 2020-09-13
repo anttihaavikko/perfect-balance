@@ -48,7 +48,6 @@ func _process(delta):
 
 func shoot(angle):
 	shot_cooldown = shot_cooldown_max
-	print(body.position + shoot_point.position)
 	var b = Bullet.new(shoot_point.get_global_transform().get_origin(), angle, 5000)
 	b.is_enemy = false
 	game.add_bullet(b)

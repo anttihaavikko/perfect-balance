@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/AutoEnd.gd" type="Script" id=1]
+
+[sub_resource type="ParticlesMaterial" id=1]
+lifetime_randomness = 0.5
+flag_disable_z = true
+spread = 180.0
+flatness = 0.51
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle_random = 1.0
+scale = 10.0
+scale_random = 0.42
+
+[node name="Bits" type="Particles2D"]
+position = Vector2( 470.343, 22.0818 )
+amount = 30
+lifetime = 1.5
+speed_scale = 3.0
+explosiveness = 1.0
+randomness = 0.5
+process_material = SubResource( 1 )
+script = ExtResource( 1 )
