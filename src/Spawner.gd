@@ -19,8 +19,10 @@ var spawns := 0
 var picked := false
 var started := false
 var wave := 1
-var level := 1
+var level := 5
 var boss_encountered := false
+
+const spawn_boss_on_wave = 1
 
 func _init() -> void:
 	randomize()
@@ -30,13 +32,12 @@ func _init() -> void:
 func spawn():
 	if spawns == 0:
 		pick_angle()
-	if wave == 3:
+	if wave == spawn_boss_on_wave:
 		var enemy = slime.instance()
 		root.add_child(enemy)
 		enemy.body.position = position
 		shockwave.boom(position)
 		enemy.seed_noise(noise_seed)
-		enemy.body.rotation = angle
 		enemy.colorize(colors[randi() % colors.size()])
 		enemy.forks = level  + 2
 		spawns += 1

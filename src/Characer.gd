@@ -22,7 +22,7 @@ var hp_max = 2
 var hp
 
 func _ready() -> void:
-	hp = hp_max * 10 if boss else hp_max
+	hp = hp_max * 15 if boss else hp_max
 	tween = Tween.new()
 	add_child(tween)
 	base_color = modulate

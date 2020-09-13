@@ -34,6 +34,9 @@ func colorize(color: Color):
 	
 func seed_noise(s: int):
 	noise.seed = s
+	
+func get_shot_angle() -> float:
+	return body.rotation
 
 func _process(delta):
 	var direction = Vector2(cos(body.rotation), sin(body.rotation))
