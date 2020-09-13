@@ -14,12 +14,13 @@ var position: Vector2
 var angle: float
 var speed: float
 var is_enemy := true
-var lifetime := 3.0
+var lifetime := 5.0
 var damage := 1
 var color: Color
 var curve := 0.1
 var type;
 var phase := 0.0
+var straighten := 0.0
 
 func _init(position: Vector2, angle: float, speed: float, color: Color):
 	self.position = position
@@ -31,6 +32,9 @@ func update(delta) -> bool:
 	position += Vector2(cos(angle), sin(angle)) * speed * delta;
 	lifetime -= delta
 	phase += delta * 10
+	
+	if straighten > 0 && phase * 0.1 > straighten:
+		type = Type.NORMAL
 	
 	if(type == Type.CURVE_LEFT):
 		angle -= curve;

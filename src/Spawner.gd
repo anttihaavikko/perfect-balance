@@ -19,10 +19,10 @@ var spawns := 0
 var picked := false
 var started := false
 var wave := 1
-var level := 5
+var level := 1
 var boss_encountered := false
 
-const spawn_boss_on_wave = 1
+const spawn_boss_on_wave = 6
 
 func _init() -> void:
 	randomize()
@@ -39,7 +39,7 @@ func spawn():
 		shockwave.boom(position)
 		enemy.seed_noise(noise_seed)
 		enemy.colorize(colors[randi() % colors.size()])
-		enemy.forks = level  + 2
+		enemy.forks = min(level + 2, 10)
 		spawns += 1
 		start_timer.stop()
 		timer.stop()

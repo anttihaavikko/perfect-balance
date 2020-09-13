@@ -3,13 +3,19 @@ class_name Game
 
 signal no_enemies
 
+export(PoolColorArray) var colors = PoolColorArray()
+
 var bullets := []
 var characters := []
 
 onready var bits = preload("res://src/Bits.tscn")
 onready var parts = preload("res://src/Parts.tscn")
+onready var player = $Player
 
 var emitted := false
+
+func get_random_color() -> Color:
+	return colors[randi() % colors.size()]
 
 func add_bullet(bullet: Bullet):
 	bullets.append(bullet)
@@ -30,7 +36,13 @@ func _process(delta):
 	for i in range(bullets.size()):
 		var bullet = bullets[i] as Bullet
 		
-		if !bullet.update(delta):
+		var too_far = false
+		if player:
+			var diff = player.body.position - bullet.position
+			if abs(diff.length()) > 4000:
+				too_far = true
+		
+		if !bullet.update(delta) || too_far:
 			used.push_front(i)
 		else:
 			for k in range(characters.size()):

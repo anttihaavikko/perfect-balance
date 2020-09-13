@@ -9,7 +9,7 @@ func _init(bursts, step = 0.0) -> void:
 	self.step = step
 	
 	for b in bursts:
-		b._init(b.type, b.curve, b.shots, b.lifetime, b.spin)
+		b._init(b.type, b.curve, b.shots, b.lifetime, b.spin, b.straighten)
 		b.prepare_next()
 		
 func _update(game: Node2D, enemy, delta: float):

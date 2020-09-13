@@ -8,6 +8,9 @@ var shot_count := 0
 var curve := 0.0
 var spin := 0.0
 var lifetime_max := 0
+var straighten := 0.0
+
+var color: Color
 
 func _init() -> void:
 	prepare_next()
@@ -31,6 +34,8 @@ func _update(game: Node2D, enemy, delta: float):
 func prepare_bullet(b: Bullet):
 	b.type = self.type
 	b.curve = self.curve
+	b.straighten = self.straighten
+	b.color = self.color
 		
 func is_done() -> bool:
 	return lifetime <= 0

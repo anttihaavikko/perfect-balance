@@ -5,6 +5,9 @@ var cached_angle = 0.0
 
 func pick_attack() -> Attack:
 	var spins = randi() % 3
+	var delay = rand_range(0.5, 1.5)
+	var mod = 1.0 if randi() % 2 == 0 else -1.0
+	
 	var attacks = [
 		Burst.new(Bullet.Type.CURVE_LEFT, 0.015, 25, 3.0, 2 * PI),
 		Burst.new(Bullet.Type.CURVE_RIGHT, 0.015, 25, 3.0, 2 * PI),
@@ -34,7 +37,16 @@ func pick_attack() -> Attack:
 			Burst.new(Bullet.Type.NORMAL, 0.0, 20, 5.0, spins * PI),
 			Burst.new(Bullet.Type.NORMAL, 0.0, 20, 5.0, spins * PI),
 			Burst.new(Bullet.Type.NORMAL, 0.0, 10, 4.0, spins * PI)
-		], 0.6),		
+		], 0.6),	
+		Spread.new([
+			Burst.new(Bullet.Type.NORMAL, 0.0, 25, 3.0, (spins + 1) * -PI),
+			Burst.new(Bullet.Type.NORMAL, 0.0, 25, 3.0, (spins + 1) * PI)
+		], 0.4),	
+		Spread.new([
+			Burst.new(Bullet.Type.CURVE_LEFT, mod * 0.1, 25, 3.0, 0.5 * PI, delay),
+			Burst.new(Bullet.Type.CURVE_LEFT, mod * 0.1, 25, 3.0, 1.0 * PI, delay),
+			Burst.new(Bullet.Type.CURVE_LEFT, mod * 0.1, 25, 3.0, 1.5 * PI, delay)
+		], 0.4),	
 	]
 	
 	calculate_angle()
