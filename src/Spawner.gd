@@ -11,8 +11,6 @@ onready var timer = $Timer
 onready var wave_timer = $WaveTimer
 onready var appearer := $Appearer
 
-export(PoolColorArray) var colors = PoolColorArray()
-
 var noise_seed := 0
 var angle := 0.0
 var spawns := 0
@@ -38,7 +36,6 @@ func spawn():
 		enemy.body.position = position
 		shockwave.boom(position)
 		enemy.seed_noise(noise_seed)
-		enemy.colorize(colors[randi() % colors.size()])
 		enemy.forks = min(level + 2, 10)
 		spawns += 1
 		start_timer.stop()
@@ -54,7 +51,6 @@ func spawn():
 		shockwave.boom(position)
 		enemy.seed_noise(noise_seed)
 		enemy.body.rotation = angle
-		enemy.colorize(colors[randi() % colors.size()])
 		enemy.forks = level
 		spawns += 1
 	else:

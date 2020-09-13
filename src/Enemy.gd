@@ -2,7 +2,6 @@ extends Character
 class_name Enemy
 
 var noise: OpenSimplexNoise
-var color: Color
 var attack: Attack
 var forks := 1
 
@@ -27,10 +26,6 @@ func pick_attack() -> Attack:
 	]
 	
 	return attacks[randi() % attacks.size()]
-	
-func colorize(color: Color):
-	self.color = color
-	#modulate = color
 	
 func seed_noise(s: int):
 	noise.seed = s

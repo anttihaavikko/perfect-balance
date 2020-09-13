@@ -119,7 +119,6 @@ is_enemy = false
 [node name="Spawner" type="Node2D" parent="."]
 position = Vector2( 1386.99, -0.355652 )
 script = ExtResource( 9 )
-colors = PoolColorArray( 0.976471, 0.905882, 0.517647, 1, 0.898039, 0.560784, 0.396078, 1, 0.815686, 0.32549, 0.32549, 1 )
 
 [node name="StartTimer" type="Timer" parent="Spawner"]
 autostart = true
@@ -171,6 +170,10 @@ speed = 1.0
 material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 2.78857
+margin_top = 2.78864
+margin_right = 2.78857
+margin_bottom = 2.78864
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false

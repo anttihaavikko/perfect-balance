@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/pulse-circle.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/wing.png" type="Texture" id=3]
 [ext_resource path="res://src/Trail.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/shaders/Blobify.shader" type="Shader" id=5]
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 5 )
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 122.104
@@ -50,13 +54,14 @@ collision_mask = 5
 gravity_scale = 0.0
 
 [node name="Sprite" type="Sprite" parent="Torso"]
+material = SubResource( 3 )
 position = Vector2( -2.18433, 0 )
 rotation = 1.5708
 texture = ExtResource( 2 )
 
 [node name="Wing Right" type="Node2D" parent="Torso/Sprite"]
 position = Vector2( 100.099, -58.2207 )
-rotation = 0.150411
+rotation = 0.0830427
 
 [node name="Sprite" type="Sprite" parent="Torso/Sprite/Wing Right"]
 position = Vector2( 63.5601, -57.1549 )
@@ -64,7 +69,7 @@ texture = ExtResource( 3 )
 
 [node name="Wing Left" type="Node2D" parent="Torso/Sprite"]
 position = Vector2( -98.2394, -58.2207 )
-rotation = -0.150411
+rotation = -0.0830427
 
 [node name="Sprite" type="Sprite" parent="Torso/Sprite/Wing Left"]
 position = Vector2( -63.3459, -57.1549 )
