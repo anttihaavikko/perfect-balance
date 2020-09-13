@@ -1,7 +1,26 @@
 extends Enemy
 class_name Boss
 
+onready var face = $Torso/Face
+
 var cached_angle = 0.0
+var mid: Vector2
+var face_tween: Tween
+
+func _ready() -> void:
+	face_tween = Tween.new()
+	add_child(face_tween)
+	
+	if face:
+		mid = face.position
+		move_face(get_face_pos())
+
+func get_face_pos() -> Vector2:
+	if !player:
+		return Vector2()
+		
+	var angle = body.position.angle_to_point(player.body.position) + PI
+	return Vector2(cos(angle), sin(angle)) * 120
 
 func pick_attack() -> Attack:
 	var spins = randi() % 3
@@ -61,9 +80,17 @@ func calculate_angle():
 		return
 		
 	cached_angle = body.position.angle_to_point(player.body.position) + PI
+	
+func move_face(pos: Vector2):
+	if face:
+		face_tween.stop_all()
+		face_tween.interpolate_property(face, "position", face.position, pos, 0.2, Tween.TRANS_BOUNCE)
+		face_tween.start()
 
 func _process(delta: float) -> void:
 	if attack:
 		if attack.is_done():
+			move_face(mid)
 			yield(get_tree().create_timer(1.0), "timeout")
+			move_face(get_face_pos())
 			attack = pick_attack()
