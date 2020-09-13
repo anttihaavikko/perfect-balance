@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/Dude.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/ScreenShake.gd" type="Script" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://assets/sprites/pentagra-inner.png" type="Texture" id=11]
 [ext_resource path="res://assets/sprites/pentagram-dots.png" type="Texture" id=12]
 [ext_resource path="res://assets/sprites/pentagram.png" type="Texture" id=13]
+[ext_resource path="res://src/Rotator.gd" type="Script" id=14]
+[ext_resource path="res://src/Pulsate.gd" type="Script" id=15]
 
 [sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 6 )
@@ -116,20 +118,35 @@ script = ExtResource( 9 )
 wait_time = 0.4
 autostart = true
 
-[node name="pentagra-inner" type="Sprite" parent="Spawner"]
-self_modulate = Color( 1, 1, 1, 0.239216 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 11 )
+[node name="Sprites" type="Node2D" parent="Spawner"]
+script = ExtResource( 15 )
+speed = 1.5
+amount = 0.2
 
-[node name="pentagram-dots" type="Sprite" parent="Spawner"]
+[node name="pentagram-dots" type="Sprite" parent="Spawner/Sprites"]
 self_modulate = Color( 1, 1, 1, 0.239216 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 12 )
+script = ExtResource( 14 )
+speed = -0.5
 
-[node name="pentagram" type="Sprite" parent="Spawner"]
+[node name="pentagram" type="Sprite" parent="Spawner/Sprites"]
 self_modulate = Color( 1, 1, 1, 0.239216 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 13 )
+script = ExtResource( 14 )
+
+[node name="Node2D" type="Node2D" parent="Spawner/Sprites"]
+script = ExtResource( 15 )
+speed = 0.5
+amount = -0.2
+
+[node name="pentagra-inner" type="Sprite" parent="Spawner/Sprites/Node2D"]
+self_modulate = Color( 1, 1, 1, 0.239216 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 11 )
+script = ExtResource( 14 )
+speed = 1.0
 
 [node name="Canvas" type="CanvasLayer" parent="."]
 
