@@ -13,7 +13,8 @@ func _draw():
 	if game:
 		for b in game.bullets:
 			
-			var pos = b.position / 5 + 0.5 * get_viewport().size + cam.offset - cam.position / 5.0
+			var res = Vector2(1024, 600)
+			var pos = b.position / 5 + 0.5 * res + cam.offset - cam.position / 5.0
 			
 			if b.is_enemy:
 				draw_circle(pos, 10, color)

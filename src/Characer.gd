@@ -33,6 +33,7 @@ func _move(delta):
 	body.angular_velocity = angle * 30000 * delta
 	
 func _process(delta):
+	
 	if(shot_cooldown > 0):
 		shot_cooldown -= delta
 		

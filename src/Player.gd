@@ -17,7 +17,8 @@ func _process(delta):
 	
 	velocity = direction * max_speed * speed_mod
 	
-	var mouse = get_viewport().get_mouse_position() * 5 - 2.5 * get_viewport().size
+	var res = Vector2(1024, 600)
+	var mouse = get_viewport().get_mouse_position() * 5 - 2.5 * res
 	var pos = body.position - cam.position
 	var angle_to_mouse = pos.angle_to_point(mouse) - PI * 0.5
 	var distance_to_mouse = min(body.position.distance_to(mouse), 100.0)
