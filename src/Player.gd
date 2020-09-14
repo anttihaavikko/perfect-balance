@@ -8,6 +8,14 @@ onready var hp_bar: ColorRect = get_node("../Canvas/HpBar/Border/Bg/Bar")
 onready var hp_percent: Label = get_node("../Canvas/HpBar/Label")
 onready var hp_tween: Tween = get_node("../Canvas/HpBar/Tween")
 
+onready var head: RigidBody2D = get_node("Head")
+onready var calf1: RigidBody2D = get_node("Limb Upper")
+onready var calf2: RigidBody2D = get_node("Limb Upper2")
+onready var limb1: RigidBody2D = get_node("Limb Lower")
+onready var limb2: RigidBody2D = get_node("Limb Lower2")
+onready var limb3: RigidBody2D = get_node("Limb Lower3")
+onready var limb4: RigidBody2D = get_node("Limb Lower4")
+
 var noise: OpenSimplexNoise
 var noise_offset := 0
 
@@ -75,6 +83,14 @@ func shoot(angle):
 	b.damage = stats.damage
 	b.is_enemy = false
 	game.add_bullet(b)
+	var dir = Vector2(cos(angle), sin(angle))
+	head.apply_central_impulse(dir * 2000.0)
+	limb4.apply_central_impulse(-dir * 1000.0)
+	limb3.apply_central_impulse(-dir * 1000.0)
+	limb2.apply_central_impulse(-dir * 1000.0)
+	limb1.apply_central_impulse(-dir * 1000.0)
+	calf1.apply_torque_impulse(60000.0)
+	calf2.apply_torque_impulse(-60000.0)
 	recoil()
 	
 func _update_hp():
