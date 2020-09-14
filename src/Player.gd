@@ -16,6 +16,9 @@ onready var limb2: RigidBody2D = get_node("Limb Lower2")
 onready var limb3: RigidBody2D = get_node("Limb Lower3")
 onready var limb4: RigidBody2D = get_node("Limb Lower4")
 
+onready var shot_particles = get_node("Torso/ShootPoint/ShotParticles")
+onready var muzzle_flash = get_node("Torso/ShootPoint/MuzzleFlash")
+
 var noise: OpenSimplexNoise
 var noise_offset := 0
 
@@ -78,6 +81,9 @@ func _process(delta):
 	cam.position += repos_velo
 
 func shoot(angle):
+	shockwave.boom(muzzle_flash.position)
+	shot_particles.emitting = true
+	muzzle_flash.emitting = true
 	shot_cooldown = shot_cooldown_max
 	var b = Bullet.new(shoot_point.get_global_transform().get_origin(), angle, 6000 * stats.shot_speed, Color.white)
 	b.damage = stats.damage

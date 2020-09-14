@@ -10,6 +10,7 @@ onready var body: RigidBody2D = $Torso
 onready var cam := get_node("../Camera")
 onready var game: Game = get_node("..")
 onready var shaker = get_node("../Camera/ScreenShake")
+onready var shockwave = get_node("../Canvas/Shockwave")
 
 var velocity := Vector2()
 var angle := 0.0
@@ -66,7 +67,7 @@ func is_alive() -> bool:
 func die():
 	stats.hp = 0
 	_update_hp()
-	get_node("../Canvas/Shockwave").boom(body.position)
+	shockwave.boom(body.position)
 	shaker.start(0.4, 20, 15)
 	queue_free()
 
