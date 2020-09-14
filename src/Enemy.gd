@@ -41,11 +41,10 @@ func get_shot_angle() -> float:
 	return body.rotation
 
 func _process(delta):
-	if !boss:
-		var direction = Vector2(cos(body.rotation), sin(body.rotation))
-		velocity = max_speed * direction
-		angle = noise.get_noise_2d(body.position.x, body.position.y) * 0.015
-		_move(delta)
+	var direction = Vector2(cos(body.rotation), sin(body.rotation))
+	velocity = max_speed * direction
+	angle = noise.get_noise_2d(body.position.x, body.position.y) * 0.015
+	_move(delta)
 	
 	if player && body:
 		var diff = player.body.position - body.position

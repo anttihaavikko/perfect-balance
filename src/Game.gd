@@ -88,8 +88,9 @@ func parts(pos: Vector2):
 func show_bonuses():
 	bonuses.show_bonuses()
 	
-func pick_bonus(index: int):
-	print("Picked bonus => ", index)
+func pick_bonus(bonus: Dictionary):
+	player.stats.apply(bonus)
+	player._update_hp()
 	bonuses.hide_bonuses()
 	player.picking_bonus = false
 	spawner.next_level()

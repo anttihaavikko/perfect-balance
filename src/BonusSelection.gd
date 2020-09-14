@@ -16,6 +16,7 @@ func show_bonuses():
 			var bonus = tile.instance()
 			bonus.modulate.a = 0;
 			add_child(bonus)
+			bonus.setup(get_bonus())
 			bonuses.append(bonus)
 			bonus.slide(index * 0.15)
 
@@ -26,3 +27,51 @@ func hide_bonuses():
 		delay += 0.15
 		
 	bonuses.clear()
+	
+func get_bonus():
+	var bonuses = [
+		{
+			"title": "MAX HP",
+			"desc": "{value}",
+			"key": "hp_max",
+			"type": "add",
+			"value": 1 + randi() % 4
+		},
+		{
+			"title": "DAMAGE",
+			"desc": "{value}",
+			"key": "damage",
+			"type": "add",
+			"value": 1
+		},
+		{
+			"title": "SPEED",
+			"desc": "{value}",
+			"key": "speed",
+			"type": "multiply",
+			"value": rand_range(1.05, 1.5)
+		},
+		{
+			"title": "RANGE",
+			"desc": "{value}",
+			"key": "shot_range",
+			"type": "multiply",
+			"value": rand_range(1.05, 1.5)
+		},
+		{
+			"title": "FIRE RATE",
+			"desc": "{value}",
+			"key": "fire_rate",
+			"type": "multiply",
+			"value": rand_range(1.05, 1.5)
+		},
+		{
+			"title": "BULLETS",
+			"desc": "{value}",
+			"key": "shot_speed",
+			"type": "multiply",
+			"value": rand_range(1.05, 1.5)
+		}
+	]
+	
+	return bonuses[randi() % bonuses.size()]

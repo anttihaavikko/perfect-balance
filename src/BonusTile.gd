@@ -1,9 +1,12 @@
 extends ColorRect
 
 onready var game = get_node("../../../..");
-onready var tween = $Tween
+onready var tween: Tween = $Tween
+onready var title: Label = $ColorRect/Title
+onready var desc: Label = $ColorRect/Desc
 
 var picked := false
+var bonus: Dictionary
 
 func _on_Button_mouse_entered() -> void:
 	color = game.colors[0]
@@ -18,7 +21,7 @@ func _on_Button_mouse_exited() -> void:
 
 func _on_Button_pressed() -> void:
 	if !picked:
-		game.pick_bonus(0)
+		game.pick_bonus(bonus)
 	
 func slide(delay: float):
 	yield(get_tree().create_timer(delay), "timeout")
@@ -33,3 +36,16 @@ func slide_and_free(delay: float):
 	tween.start()
 	yield(get_tree().create_timer(5), "timeout")
 	queue_free()
+	
+func setup(bonus: Dictionary):
+	self.bonus = bonus
+	title.text = bonus.title
+	
+	if bonus.type == "add":
+		desc.text = get_prefix(bonus) + bonus.value as String
+		
+	if bonus.type == "multiply":
+		desc.text = get_prefix(bonus) + round((bonus.value - 1) * 100) as String + " %"
+	
+func get_prefix(bonus: Dictionary) -> String:
+	return "+" if bonus.value >= 0 else "-"

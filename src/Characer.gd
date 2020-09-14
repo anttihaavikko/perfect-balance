@@ -24,10 +24,13 @@ var stats: Stats;
 var picking_bonus := false
 
 func _init() -> void:
-	stats = Stats.new()
+	self.stats = Stats.new()
+	calculate_hp()
+	
+func calculate_hp():
+	stats.hp = stats.hp_max * 15 if boss else stats.hp_max
 
 func _ready() -> void:
-	stats.hp = stats.hp_max * 15 if boss else stats.hp_max
 	tween = Tween.new()
 	add_child(tween)
 	base_color = modulate

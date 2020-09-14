@@ -72,6 +72,7 @@ func _process(delta):
 func shoot(angle):
 	shot_cooldown = shot_cooldown_max
 	var b = Bullet.new(shoot_point.get_global_transform().get_origin(), angle, 6000 * stats.shot_speed, Color.white)
+	b.damage = stats.damage
 	b.is_enemy = false
 	game.add_bullet(b)
 	recoil()

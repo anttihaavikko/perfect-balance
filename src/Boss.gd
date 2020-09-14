@@ -100,9 +100,11 @@ func _process(delta: float) -> void:
 		else:
 			velocity = Vector2()
 		_move(delta)
+		if face:
+			face.rotation = -body.rotation
 	if attack:
 		if attack.is_done():
 			move_face(mid)
-			yield(get_tree().create_timer(1.0), "timeout")
+			yield(get_tree().create_timer(0.5 / stats.speed), "timeout")
 			move_face(get_face_pos())
 			attack = pick_attack()

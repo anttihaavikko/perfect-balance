@@ -6,10 +6,10 @@
 [ext_resource path="res://assets/shaders/Blobify.shader" type="Shader" id=4]
 [ext_resource path="res://src/Face.tscn" type="PackedScene" id=5]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 radius = 365.09
 
 [node name="SlimeBoss" type="Node2D"]
@@ -24,13 +24,13 @@ collision_mask = 7
 mass = 100.0
 
 [node name="Sprite" type="Sprite" parent="Torso"]
-material = SubResource( 2 )
+material = SubResource( 1 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Torso"]
 visible = false
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="icon" type="Sprite" parent="Torso"]
 visible = false

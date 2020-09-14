@@ -21,9 +21,12 @@ var wave := 1
 var level := 1
 var boss_encountered := false
 
+var stats: Stats
+
 const spawn_boss_on_wave = 2
 
 func _init() -> void:
+	stats = Stats.new()
 	randomize()
 	noise_seed = randi()
 	angle = randf() * 2 * PI;
@@ -34,6 +37,8 @@ func spawn():
 	if wave == spawn_boss_on_wave:
 		var enemy = slime.instance()
 		root.add_child(enemy)
+		enemy.stats = Stats.new(stats)
+		enemy.calculate_hp()
 		enemy.body.position = position
 		shockwave.boom(position)
 		enemy.seed_noise(noise_seed)
@@ -48,6 +53,8 @@ func spawn():
 	elif spawns < clamp(2 + wave, 3, 10):
 		var enemy = bat.instance()
 		root.add_child(enemy)
+		enemy.stats = Stats.new(stats)
+		enemy.calculate_hp()
 		enemy.body.position = position
 		shockwave.boom(position)
 		enemy.seed_noise(noise_seed)
@@ -63,6 +70,7 @@ func spawn():
 func _on_StartTimer_timeout() -> void:
 	if started:
 		start_timer.stop()
+		timer.wait_time = 0.5 / stats.speed
 		timer.start()
 		started = false
 	else:
@@ -102,5 +110,6 @@ func next_level():
 	spawns = 0
 	boss_encountered = false
 	started = false
+	stats.hp_max += 1
 	start_timer.start()
 		
