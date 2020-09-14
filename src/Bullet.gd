@@ -11,6 +11,7 @@ enum Type {
 }
 
 var position: Vector2
+var prev_pos: Vector2
 var angle: float
 var speed: float
 var is_enemy := true
@@ -24,11 +25,13 @@ var straighten := 0.0
 
 func _init(position: Vector2, angle: float, speed: float, color: Color):
 	self.position = position
+	self.prev_pos = position
 	self.angle = angle
 	self.speed = speed
 	self.color = color
 
 func update(delta) -> bool:
+	prev_pos = position
 	position += Vector2(cos(angle), sin(angle)) * speed * delta;
 	lifetime -= delta
 	phase += delta * 10
