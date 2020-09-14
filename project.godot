@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Bullet.gd"
 }, {
+"base": "Reference",
+"class": "BulletData",
+"language": "GDScript",
+"path": "res://BulletData.gd"
+}, {
 "base": "CanvasItem",
 "class": "Bullets",
 "language": "GDScript",
@@ -54,11 +59,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Player.gd"
 }, {
-"base": "Reference",
-"class": "QuickTween",
-"language": "GDScript",
-"path": "res://QuickTween.gd"
-}, {
 "base": "Node2D",
 "class": "Spawner",
 "language": "GDScript",
@@ -72,19 +72,19 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Stats",
 "language": "GDScript",
-"path": "res://Stats.gd"
+"path": "res://src/Stats.gd"
 } ]
 _global_script_class_icons={
 "Attack": "",
 "Boss": "",
 "Bullet": "",
+"BulletData": "",
 "Bullets": "",
 "Burst": "",
 "Character": "",
 "Enemy": "",
 "Game": "",
 "Player": "",
-"QuickTween": "",
 "Spawner": "",
 "Spread": "",
 "Stats": ""
@@ -98,10 +98,15 @@ config/icon="res://assets/sprites/icon.png"
 
 [display]
 
+window/size/resizable=false
 window/size/fullscreen=true
 mouse_cursor/custom_image="res://assets/sprites/reticule.png"
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[gdnative]
+
+singletons=[  ]
 
 [input]
 
@@ -155,5 +160,5 @@ restart={
 
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
-quality/filters/anisotropic_filter_level=2
+quality/filters/anisotropic_filter_level=1
 environment/default_environment="res://default_env.tres"

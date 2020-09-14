@@ -1,0 +1,7 @@
+[gd_resource type="GDNativeLibrary" format=2]
+
+[resource]
+entry/OSX.64 = "res://nativebullets/osx/libnativebullets.dylib"
+entry/OSX.32 = "res://nativebullets/osx/libnativebullets.dylib"
+dependency/OSX.64 = [  ]
+dependency/OSX.32 = [  ]

@@ -1,0 +1,6 @@
+/Users/anttih/godot/Shmup/.mono/temp/bin/ExportDebug/Shmup.dll
+/Users/anttih/godot/Shmup/.mono/temp/bin/ExportDebug/Shmup.pdb
+/Users/anttih/godot/Shmup/.mono/temp/obj/ExportDebug/Shmup.csprojAssemblyReference.cache
+/Users/anttih/godot/Shmup/.mono/temp/obj/ExportDebug/Shmup.csproj.CoreCompileInputs.cache
+/Users/anttih/godot/Shmup/.mono/temp/obj/ExportDebug/Shmup.dll
+/Users/anttih/godot/Shmup/.mono/temp/obj/ExportDebug/Shmup.pdb

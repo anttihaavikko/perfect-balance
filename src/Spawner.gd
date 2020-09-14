@@ -23,7 +23,7 @@ var boss_encountered := false
 
 var stats: Stats
 
-const spawn_boss_on_wave = 2
+const spawn_boss_on_wave = 6
 
 func _init() -> void:
 	stats = Stats.new()
