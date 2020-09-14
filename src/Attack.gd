@@ -7,7 +7,7 @@ var next := 0.0
 var shot_count := 0
 var curve := 0.0
 var spin := 0.0
-var lifetime_max := 0
+var lifetime_max := 0.0
 var straighten := 0.0
 
 var color: Color

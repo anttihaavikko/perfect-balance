@@ -68,6 +68,11 @@ _global_script_classes=[ {
 "class": "Spread",
 "language": "GDScript",
 "path": "res://src/Spread.gd"
+}, {
+"base": "Reference",
+"class": "Stats",
+"language": "GDScript",
+"path": "res://Stats.gd"
 } ]
 _global_script_class_icons={
 "Attack": "",
@@ -81,7 +86,8 @@ _global_script_class_icons={
 "Player": "",
 "QuickTween": "",
 "Spawner": "",
-"Spread": ""
+"Spread": "",
+"Stats": ""
 }
 
 [application]

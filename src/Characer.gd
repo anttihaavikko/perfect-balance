@@ -18,13 +18,16 @@ var shot_cooldown_max := 0.3
 var tween: Tween
 var base_color: Color
 var color_reset: Timer
-var hp_max = 2
-var hp
+
+var stats: Stats;
 
 var picking_bonus := false
 
+func _init() -> void:
+	stats = Stats.new()
+
 func _ready() -> void:
-	hp = hp_max * 15 if boss else hp_max
+	stats.hp = stats.hp_max * 15 if boss else stats.hp_max
 	tween = Tween.new()
 	add_child(tween)
 	base_color = modulate
@@ -32,13 +35,13 @@ func _ready() -> void:
 	game.add_character(self)
 	
 func _move(delta):
-	body.linear_velocity = velocity * 300 * delta
-	body.angular_velocity = angle * 30000 * delta
+	body.linear_velocity = velocity * 300 * delta * stats.speed
+	body.angular_velocity = angle * 30000 * delta * stats.speed
 	
 func _process(delta):
 	
 	if(shot_cooldown > 0):
-		shot_cooldown -= delta
+		shot_cooldown -= delta * stats.fire_rate
 		
 func recoil():
 	shaker.start(0.1, 20, 3)
@@ -48,16 +51,16 @@ func _update_hp():
 	
 func take_hit(bullet: Bullet):
 	if !picking_bonus:
-		hp -= bullet.damage
+		stats.hp -= bullet.damage
 		_update_hp()
 		
 	flash()
 	
 func is_alive() -> bool:
-	return hp > 0
+	return stats.hp > 0
 	
 func die():
-	hp = 0
+	stats.hp = 0
 	_update_hp()
 	get_node("../Canvas/Shockwave").boom(body.position)
 	shaker.start(0.4, 20, 15)

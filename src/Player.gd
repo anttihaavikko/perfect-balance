@@ -12,8 +12,8 @@ var noise: OpenSimplexNoise
 var noise_offset := 0
 
 func _init() -> void:
-	self.hp_max = 3
-	self.hp = 3
+	self.stats.hp_max = 3
+	self.stats.hp = 3
 	noise = OpenSimplexNoise.new()
 	noise.seed = 123
 	noise.octaves = 5
@@ -71,13 +71,13 @@ func _process(delta):
 
 func shoot(angle):
 	shot_cooldown = shot_cooldown_max
-	var b = Bullet.new(shoot_point.get_global_transform().get_origin(), angle, 5000, Color.white)
+	var b = Bullet.new(shoot_point.get_global_transform().get_origin(), angle, 6000 * stats.shot_speed, Color.white)
 	b.is_enemy = false
 	game.add_bullet(b)
 	recoil()
 	
 func _update_hp():
-	var percent = max(0, hp / (hp_max * 1.0))
+	var percent = max(0, stats.hp / (stats.hp_max * 1.0))
 	hp_percent.text = round(percent * 100) as String + " %"
 	hp_tween.stop(hp_bar)
 	hp_tween.interpolate_property(hp_bar, "rect_scale", Vector2(hp_bar.rect_scale.x, 1), Vector2(percent, 1), 0.15, Tween.TRANS_BOUNCE, Tween.EASE_OUT)

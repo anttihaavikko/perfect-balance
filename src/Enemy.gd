@@ -25,7 +25,14 @@ func pick_attack() -> Attack:
 		Burst.new(Bullet.Type.SNAKE_WIDE, rand_range(-0.1, 0.1), 10, 3.0)
 	]
 	
-	return attacks[randi() % attacks.size()]
+	var attack = attacks[randi() % attacks.size()] as Attack
+	apply_stats_to(attack)
+	
+	return attack
+	
+func apply_stats_to(attack: Attack):
+	attack.lifetime /= stats.fire_rate
+	attack.lifetime_max /= stats.fire_rate
 	
 func seed_noise(s: int):
 	noise.seed = s
@@ -43,7 +50,7 @@ func _process(delta):
 	if player && body:
 		var diff = player.body.position - body.position
 		if !boss && abs(diff.length()) > 4000:
-			hp = 0
+			stats.hp = 0
 			
 	if attack:
 		attack._update(game, self, delta)

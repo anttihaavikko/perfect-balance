@@ -68,9 +68,12 @@ func pick_attack() -> Attack:
 		], 0.4),	
 	]
 	
-	calculate_angle()
+	var attack = attacks[randi() % attacks.size()] as Attack
 	
-	return attacks[randi() % attacks.size()]
+	calculate_angle()
+	apply_stats_to(attack)
+	
+	return attack
 	
 func get_shot_angle() -> float:
 	return cached_angle
