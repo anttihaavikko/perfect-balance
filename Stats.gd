@@ -24,8 +24,11 @@ func _init(stats = null) -> void:
 		luck = stats.luck
 
 func apply(bonus: Dictionary):
-	if self[bonus.key]:
+	if get(bonus.key):
 		if bonus.type == "add":
 			self[bonus.key] += bonus.value
 		if bonus.type == "multiply":
 			self[bonus.key] *= bonus.value
+			
+	if bonus.type == "custom" && bonus.key:
+		hp = hp_max

@@ -12,14 +12,14 @@ font_data = ExtResource( 1 )
 default_font = SubResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 60
+size = 50
 font_data = ExtResource( 1 )
 
 [sub_resource type="Theme" id=4]
 default_font = SubResource( 3 )
 
 [sub_resource type="DynamicFont" id=5]
-size = 40
+size = 35
 font_data = ExtResource( 1 )
 
 [sub_resource type="Theme" id=6]
@@ -53,8 +53,8 @@ __meta__ = {
 anchor_top = 0.054
 anchor_right = 1.0
 anchor_bottom = 0.074
-margin_right = 6.10352e-05
-margin_bottom = 14.206
+margin_top = 4.9296
+margin_bottom = 70.9776
 theme = SubResource( 4 )
 text = "TILE TEST"
 align = 1
@@ -63,7 +63,8 @@ align = 1
 anchor_top = 0.9
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -65.0
+margin_top = -60.84
+margin_bottom = -0.600006
 theme = SubResource( 6 )
 text = "TILE TEST"
 align = 1

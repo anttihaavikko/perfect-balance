@@ -46,6 +46,9 @@ func setup(bonus: Dictionary):
 		
 	if bonus.type == "multiply":
 		desc.text = get_prefix(bonus) + round((bonus.value - 1) * 100) as String + " %"
+		
+	if bonus.type == "custom":
+		desc.text = bonus.desc
 	
 func get_prefix(bonus: Dictionary) -> String:
 	return "+" if bonus.value >= 0 else "-"

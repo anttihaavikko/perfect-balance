@@ -28,7 +28,7 @@ func _init() -> void:
 	calculate_hp()
 	
 func calculate_hp():
-	stats.hp = stats.hp_max * 15 if boss else stats.hp_max
+	stats.hp = stats.hp_max * 10 if boss else stats.hp_max
 
 func _ready() -> void:
 	tween = Tween.new()
@@ -38,8 +38,9 @@ func _ready() -> void:
 	game.add_character(self)
 	
 func _move(delta):
-	body.linear_velocity = velocity * 300 * delta * stats.speed
-	body.angular_velocity = angle * 30000 * delta * stats.speed
+	var mod = 0.2 if boss else 1.0
+	body.linear_velocity = velocity * 300 * delta * stats.speed * mod
+	body.angular_velocity = angle * 30000 * delta * stats.speed * mod
 	
 func _process(delta):
 	

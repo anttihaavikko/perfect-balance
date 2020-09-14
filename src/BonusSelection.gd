@@ -66,11 +66,18 @@ func get_bonus():
 			"value": rand_range(1.05, 1.5)
 		},
 		{
-			"title": "BULLETS",
+			"title": "SHOT SPEED",
 			"desc": "{value}",
 			"key": "shot_speed",
 			"type": "multiply",
 			"value": rand_range(1.05, 1.5)
+		},
+		{
+			"title": "FULL HEAL",
+			"desc": "Patched up!",
+			"key": "heal",
+			"type": "custom",
+			"value": 0
 		}
 	]
 	
