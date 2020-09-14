@@ -76,7 +76,7 @@ func shoot(angle):
 	game.add_bullet(b)
 	recoil()
 	
-func _damaged():
+func _update_hp():
 	var percent = max(0, hp / (hp_max * 1.0))
 	hp_percent.text = round(percent * 100) as String + " %"
 	hp_tween.stop(hp_bar)
