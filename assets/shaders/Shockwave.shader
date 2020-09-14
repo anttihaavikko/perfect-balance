@@ -16,7 +16,7 @@ void fragment() {
 	float inner = smoothstep(size - feather - thickness, size - thickness, length(scaledUV - scaledOrigin));
 	float mask = outer * inner;
 	vec2 disp = normalize(scaledUV - scaledOrigin) * amount * mask;
-	float shift = 0.001;
+	float shift = 0.002;
 	COLOR.r = texture(SCREEN_TEXTURE, scaledUV + vec2(shift, 0) * mask - disp).r;
 	COLOR.g = texture(SCREEN_TEXTURE, scaledUV - disp).g;
 	COLOR.b = texture(SCREEN_TEXTURE, scaledUV - vec2(shift, 0) * mask - disp).b;
