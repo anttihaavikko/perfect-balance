@@ -6,6 +6,9 @@ onready var player = get_node("../../../Player");
 var bonuses = []
 
 func show_bonuses():
+	if !player:
+		return
+	
 	yield(get_tree().create_timer(1.5), "timeout")
 	player.picking_bonus = true
 	yield(get_tree().create_timer(1.5), "timeout")

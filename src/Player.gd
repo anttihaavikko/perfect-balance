@@ -4,6 +4,9 @@ class_name Player
 onready var reticule: Node2D = $Reticule
 onready var shoot_point: Node2D = $Torso/ShootPoint
 onready var trail: Particles2D = $Torso/Trail
+onready var hp_bar: ColorRect = get_node("../Canvas/HpBar/Border/Bg/Bar")
+onready var hp_percent: Label = get_node("../Canvas/HpBar/Label")
+onready var hp_tween: Tween = get_node("../Canvas/HpBar/Tween")
 
 var noise: OpenSimplexNoise
 var noise_offset := 0
@@ -72,3 +75,11 @@ func shoot(angle):
 	b.is_enemy = false
 	game.add_bullet(b)
 	recoil()
+	
+func _damaged():
+	var percent = max(0, hp / (hp_max * 1.0))
+	hp_percent.text = round(percent * 100) as String + " %"
+	hp_tween.stop(hp_bar)
+	print("damaged ", percent)
+	hp_tween.interpolate_property(hp_bar, "rect_scale", Vector2(hp_bar.rect_scale.x, 1), Vector2(percent, 1), 0.15, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
+	hp_tween.start()

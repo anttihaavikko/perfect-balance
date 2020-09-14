@@ -43,9 +43,13 @@ func _process(delta):
 func recoil():
 	shaker.start(0.1, 20, 3)
 	
+func _damaged():
+	pass
+	
 func take_hit(bullet: Bullet):
 	if !picking_bonus:
 		hp -= bullet.damage
+		_damaged()
 		
 	flash()
 	
@@ -54,6 +58,7 @@ func is_alive() -> bool:
 	
 func die():
 	hp = 0
+	_damaged()
 	get_node("../Canvas/Shockwave").boom(body.position)
 	shaker.start(0.4, 20, 15)
 	queue_free()
