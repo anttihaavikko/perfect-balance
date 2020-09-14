@@ -80,6 +80,5 @@ func _update_hp():
 	var percent = max(0, hp / (hp_max * 1.0))
 	hp_percent.text = round(percent * 100) as String + " %"
 	hp_tween.stop(hp_bar)
-	print("damaged ", percent)
 	hp_tween.interpolate_property(hp_bar, "rect_scale", Vector2(hp_bar.rect_scale.x, 1), Vector2(percent, 1), 0.15, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
 	hp_tween.start()
