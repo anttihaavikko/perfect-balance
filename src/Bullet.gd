@@ -15,7 +15,7 @@ var prev_pos: Vector2
 var angle: float
 var speed: float
 var is_enemy := true
-var lifetime := 5.0
+var lifetime := 3.0
 var damage := 1
 var color: Color
 var curve := 0.1

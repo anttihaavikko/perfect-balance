@@ -19,6 +19,7 @@ func _shoot(game: Node2D, enemy, angle: float, delta: float):
 	var rot = enemy.get_shot_angle()
 	var offset = Vector2(cos(rot + angle + spin), sin(rot + angle + spin))
 	var b = Bullet.new(enemy.body.position + offset * enemy.hitbox_radius, rot + angle + spin, 2000 * enemy.stats.shot_speed, color)
+	b.lifetime *= enemy.stats.shot_range * 2.0
 	b.damage = enemy.stats.damage
 	prepare_bullet(b)
 	game.add_bullet(b)

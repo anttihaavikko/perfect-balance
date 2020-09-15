@@ -17,7 +17,7 @@ func _draw():
 	if game:
 		
 #		var no_lines = previous_count > 150;
-		var no_fills = previous_count > 300;
+		var no_fills = previous_count > 500;
 		
 #		print(previous_count)
 		
@@ -31,6 +31,8 @@ func _draw():
 			
 			if pos.x < 0 || pos.y < 0 || pos.x > res.x || pos.y > res.x:
 				continue
+				
+#			var ratio = 1.0 if b.lifetime > 0.2 else sin((b.lifetime * 0.2 * PI) / 2)
 				
 			previous_count += 1
 			
