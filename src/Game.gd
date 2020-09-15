@@ -23,6 +23,9 @@ onready var spawner = $Spawner
 
 var emitted := false
 
+func _ready() -> void:
+	OS.low_processor_usage_mode = true
+
 func get_random_color() -> Color:
 	return colors[randi() % colors.size()]
 

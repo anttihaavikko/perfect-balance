@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://src/Dude.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/ScreenShake.gd" type="Script" id=2]
@@ -44,16 +44,16 @@ shader_param/offset = null
 shader_param/alpha = 1.0
 shader_param/seed = 100.0
 
-[sub_resource type="CanvasItemMaterial" id=11]
+[sub_resource type="CanvasItemMaterial" id=4]
 blend_mode = 1
 
-[sub_resource type="Curve" id=9]
+[sub_resource type="Curve" id=5]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.51341, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=10]
-curve = SubResource( 9 )
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id=7]
 lifetime_randomness = 1.0
 emission_shape = 2
 emission_box_extents = Vector3( 1500, 1500, 1 )
@@ -75,10 +75,10 @@ angle = 167.0
 angle_random = 1.0
 scale = 5.0
 scale_random = 1.0
-scale_curve = SubResource( 10 )
+scale_curve = SubResource( 6 )
 color = Color( 1, 1, 1, 0.00784314 )
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=8]
 shader = ExtResource( 7 )
 shader_param/origin = Vector2( 0.5, 0.5 )
 shader_param/amount = 0.0
@@ -86,23 +86,29 @@ shader_param/size = 0.0
 shader_param/feather = 0.05
 shader_param/thickness = 0.03
 
-[sub_resource type="ShaderMaterial" id=5]
+[sub_resource type="ShaderMaterial" id=9]
 shader = ExtResource( 17 )
 
-[sub_resource type="Theme" id=6]
+[sub_resource type="DynamicFont" id=10]
+size = 70
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 18 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="Theme" id=11]
+
+[sub_resource type="DynamicFont" id=12]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 18 )
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=13]
 size = 20
 
-[sub_resource type="Theme" id=13]
-default_font = SubResource( 12 )
+[sub_resource type="Theme" id=14]
+default_font = SubResource( 13 )
 
-[sub_resource type="DynamicFont" id=14]
+[sub_resource type="DynamicFont" id=15]
 size = 25
 font_data = ExtResource( 18 )
 
@@ -184,14 +190,14 @@ script = ExtResource( 3 )
 is_enemy = false
 
 [node name="Floaty Bits" type="Particles2D" parent="Player"]
-material = SubResource( 11 )
+material = SubResource( 4 )
 position = Vector2( 0.365295, 0 )
 amount = 100
 lifetime = 5.0
 preprocess = 30.0
 randomness = 0.43
 local_coords = false
-process_material = SubResource( 8 )
+process_material = SubResource( 7 )
 texture = ExtResource( 22 )
 
 [node name="Spawner" type="Node2D" parent="."]
@@ -244,7 +250,7 @@ script = ExtResource( 14 )
 [node name="Canvas" type="CanvasLayer" parent="."]
 
 [node name="Shockwave" type="ColorRect" parent="Canvas"]
-material = SubResource( 4 )
+material = SubResource( 8 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 2.78857
@@ -262,7 +268,7 @@ copy_mode = 2
 rect = Rect2( 0, 0, 1024, 600 )
 
 [node name="Bloom" type="ColorRect" parent="Canvas/BackBufferCopy"]
-material = SubResource( 5 )
+material = SubResource( 9 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -278,11 +284,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="BonusTitle" type="Label" parent="Canvas/BonusView"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -486.0
+margin_bottom = -410.0
+rect_scale = Vector2( 1e-05, 1e-05 )
+rect_pivot_offset = Vector2( 512, 30 )
+custom_fonts/font = SubResource( 10 )
+text = "Pick a bonus!"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="BonusSelection" type="HBoxContainer" parent="Canvas/BonusView"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 50.0
-margin_right = -50.0
+margin_left = 54.0
+margin_right = -46.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_rotation = -0.0685914
@@ -293,6 +315,8 @@ script = ExtResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Tween" type="Tween" parent="Canvas/BonusView"]
 
 [node name="HpBar" type="ColorRect" parent="Canvas"]
 margin_left = 10.0
@@ -342,8 +366,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 7.0
 margin_bottom = -7.0
-theme = SubResource( 6 )
-custom_fonts/font = SubResource( 7 )
+theme = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 text = "100 %"
 align = 1
 __meta__ = {
@@ -357,8 +381,8 @@ margin_left = 14.0323
 margin_top = 44.6109
 margin_right = 76.0323
 margin_bottom = 71.6109
-theme = SubResource( 13 )
-custom_fonts/font = SubResource( 14 )
+theme = SubResource( 14 )
+custom_fonts/font = SubResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

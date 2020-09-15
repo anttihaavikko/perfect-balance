@@ -1,9 +1,19 @@
 extends HBoxContainer
 
 onready var tile = preload("res://src/BonusTile.tscn")
-onready var player = get_node("../../../Player");
+onready var player = get_node("../../../Player")
+onready var tween: Tween = get_node("../Tween")
+onready var title: Label = get_node("../BonusTitle")
 
 var bonuses = []
+
+func show_title():
+	tween.interpolate_property(title, "rect_scale", Vector2.ZERO, Vector2.ONE, 0.3, Tween.TRANS_BOUNCE)
+	tween.start()
+	
+func hide_title():
+	tween.interpolate_property(title, "rect_scale", Vector2.ONE, Vector2.ZERO, 0.3, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	tween.start()
 
 func show_bonuses():
 	yield(get_tree().create_timer(1.5), "timeout")
@@ -11,6 +21,8 @@ func show_bonuses():
 	if player:
 		player.picking_bonus = true
 		yield(get_tree().create_timer(1.5), "timeout")
+		
+		show_title()
 	
 		for index in range(5):
 			var bonus = tile.instance()
@@ -21,6 +33,7 @@ func show_bonuses():
 			bonus.slide(index * 0.15)
 
 func hide_bonuses():
+	hide_title()
 	var delay = 0.0
 	for bonus in bonuses:
 		bonus.slide_and_free(delay)
