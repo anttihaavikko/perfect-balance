@@ -369,6 +369,7 @@ zoom = Vector2( 5, 5 )
 smoothing_enabled = true
 
 [node name="ScreenShake" type="Node2D" parent="Camera"]
+position = Vector2( 367.771, 138.108 )
 script = ExtResource( 2 )
 [connection signal="no_enemies" from="." to="Spawner" method="_on_Game_no_enemies"]
 [connection signal="timeout" from="Spawner/StartTimer" to="Spawner" method="_on_StartTimer_timeout"]

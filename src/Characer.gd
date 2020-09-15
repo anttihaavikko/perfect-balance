@@ -67,13 +67,18 @@ func is_alive() -> bool:
 func die():
 	stats.hp = 0
 	_update_hp()
-	shockwave.boom(body.position)
+	boom(body.position)
 	shaker.start(0.4, 20, 15)
+	game.spawn_pickup_on(body.position)
 	queue_free()
+	
+func boom(pos: Vector2, amount: float = 1.0, duration: float = 1.2):
+	shockwave.boom(pos, amount, duration)
+	game.pulse(pos)
 
-func flash():
+func flash(color: int = 0):
 	shaker.start(0.15, 20, 3 if is_enemy else 10)
-	modulate = game.colors[0]
+	modulate = game.colors[color]
 	yield(get_tree().create_timer(0.1), "timeout")
 	modulate = base_color
 	#tween.interpolate_property(self, "modulate", Color.white, base_color, 0.5, Tween.TRANS_BOUNCE, Tween.EASE_OUT)

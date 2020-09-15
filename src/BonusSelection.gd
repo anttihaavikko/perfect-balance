@@ -78,6 +78,13 @@ func get_bonus():
 			"key": "heal",
 			"type": "custom",
 			"value": 0
+		},
+		{
+			"title": "LUCKY",
+			"desc": "More HP drops",
+			"key": "luck",
+			"type": "add",
+			"value": 0.1
 		}
 	]
 	

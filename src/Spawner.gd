@@ -108,7 +108,7 @@ func get_wave_name() -> String:
 	if is_boss_wave():
 		return "Boss"
 		
-	return "Wave " + wave as String + " / " + wave_count() as String
+	return "Wave " + wave as String + " / " + (wave_count() - 1) as String
 
 func _on_Game_no_enemies() -> void:
 	if timer.is_stopped() && start_timer.is_stopped():

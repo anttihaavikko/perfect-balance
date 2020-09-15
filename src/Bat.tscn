@@ -7,14 +7,13 @@
 [ext_resource path="res://assets/shaders/Blobify.shader" type="Shader" id=5]
 [ext_resource path="res://src/Face.tscn" type="PackedScene" id=6]
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 5 )
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=5]
 radius = 122.104
 
-[sub_resource type="Animation" id=2]
-resource_name = "Bat"
+[sub_resource type="Animation" id=3]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -44,6 +43,7 @@ tracks/1/keys = {
 
 [node name="Bat" type="Node2D"]
 position = Vector2( -4.3689, 0 )
+z_index = 1
 script = ExtResource( 1 )
 max_speed = 100.0
 hitbox_radius = 150
@@ -54,7 +54,7 @@ collision_mask = 7
 gravity_scale = 0.0
 
 [node name="Sprite" type="Sprite" parent="Torso"]
-material = SubResource( 3 )
+material = SubResource( 4 )
 position = Vector2( -2.18433, 0 )
 rotation = 1.5708
 texture = ExtResource( 2 )
@@ -83,7 +83,7 @@ scale = Vector2( 0.489438, 0.489438 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Torso"]
 visible = false
 position = Vector2( 8.96921, -9.71666 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="Trail" parent="Torso" instance=ExtResource( 4 )]
 visible = false
@@ -92,4 +92,4 @@ position = Vector2( 0, 0 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Torso")
 autoplay = "Bat"
-anims/Bat = SubResource( 2 )
+anims/Bat = SubResource( 3 )

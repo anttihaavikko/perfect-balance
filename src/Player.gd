@@ -105,3 +105,8 @@ func _update_hp():
 	hp_tween.stop(hp_bar)
 	hp_tween.interpolate_property(hp_bar, "rect_scale", Vector2(hp_bar.rect_scale.x, 1), Vector2(percent, 1), 0.15, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
 	hp_tween.start()
+
+func heal():
+	stats.hp = min(stats.hp_max, stats.hp + 1)
+	_update_hp()
+	flash(1)

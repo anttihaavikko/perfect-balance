@@ -42,10 +42,10 @@ func setup(bonus: Dictionary):
 	title.text = bonus.title
 	
 	if bonus.type == "add":
-		desc.text = get_prefix(bonus) + bonus.value as String
+		desc.text = bonus.desc.replace("{value}", get_prefix(bonus) + bonus.value as String)
 		
 	if bonus.type == "multiply":
-		desc.text = get_prefix(bonus) + round((bonus.value - 1) * 100) as String + " %"
+		desc.text = bonus.desc.replace("{value}", get_prefix(bonus) + round((bonus.value - 1) * 100) as String + " %")
 		
 	if bonus.type == "custom":
 		desc.text = bonus.desc

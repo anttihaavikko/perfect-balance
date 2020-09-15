@@ -15,6 +15,8 @@ onready var cam = $Camera
 
 onready var bits = preload("res://src/Bits.tscn")
 onready var parts = preload("res://src/Parts.tscn")
+onready var pulse = preload("res://src/Pulse.tscn")
+onready var pickup = preload("res://src/Pickup.tscn")
 onready var player = $Player
 onready var bonuses = get_node("Canvas/BonusView/BonusSelection")
 onready var spawner = $Spawner
@@ -110,6 +112,17 @@ func pick_bonus(bonus: Dictionary):
 	bonuses.hide_bonuses()
 	player.picking_bonus = false
 	spawner.next_level()
+	
+func spawn_pickup_on(pos: Vector2):
+	if randf() < player.stats.luck:
+		var eff = pickup.instance()
+		add_child(eff)
+		eff.position = pos
+	
+func pulse(pos: Vector2):
+	var eff = pulse.instance()
+	add_child(eff)
+	eff.position = pos
 	
 func update_bullets(i, bullet):
 	bullet_positions[i] = bullet.position
