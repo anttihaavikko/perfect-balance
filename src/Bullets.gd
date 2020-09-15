@@ -16,7 +16,7 @@ var previous_count = 0
 func _draw():
 	if game:
 		
-		var no_lines = previous_count > 150;
+#		var no_lines = previous_count > 150;
 		var no_fills = previous_count > 300;
 		
 #		print(previous_count)
@@ -35,14 +35,14 @@ func _draw():
 			previous_count += 1
 			
 			if b.is_enemy:
-				if !no_lines:
-					draw_line(prev, pos, dim(b.color), 12, true)
+#				if !no_lines:
+#					draw_line(prev, pos, dim(b.color), 12, true)
 					
 				if !no_fills:
 					draw_circle(pos, 10, b.color)
 				
-			if !no_lines && !b.is_enemy:
-				draw_line(prev, pos, dim(Color.white), 9, true)
+#			if !no_lines && !b.is_enemy:
+#				draw_line(prev, pos, dim(Color.white), 9, true)
 				
 			var color = b.color if no_fills else Color.white
 			draw_circle(pos, 7, color)

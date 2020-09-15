@@ -24,6 +24,7 @@ var boss_encountered := false
 var stats: Stats
 
 const spawn_boss_on_wave = 6
+const waves = [4, 4, 5, 5, 6]
 
 func _init() -> void:
 	stats = Stats.new()
@@ -34,7 +35,7 @@ func _init() -> void:
 func spawn():
 	if spawns == 0:
 		pick_angle()
-	if wave == spawn_boss_on_wave:
+	if wave == waves[min(level - 1, waves.size() - 1)]:
 		var enemy = slime.instance()
 		root.add_child(enemy)
 		enemy.stats = Stats.new(stats)
