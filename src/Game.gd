@@ -121,7 +121,7 @@ func pick_bonus(bonus: Dictionary, index: int):
 	
 	if bonus_picks >= allowed_picks:
 		bonus_picks = 0
-		yield(get_tree().create_timer(3.5), "timeout")
+		yield(get_tree().create_timer(2.5), "timeout")
 		bonuses.hide_bonuses()
 		player.picking_bonus = false
 		spawner.next_level()
