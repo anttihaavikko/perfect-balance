@@ -55,5 +55,5 @@ func dim(color: Color) -> Color:
 	return Color(color.r, color.g, color.b, 0.2)
 	
 func _process(delta):
-#	update()
+	update()
 	pass

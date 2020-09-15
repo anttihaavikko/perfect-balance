@@ -81,7 +81,7 @@ func _process(delta):
 			characters[i].die()
 			characters.remove(i)
 			
-	nb.update_bullets(bullet_positions, bullet_colors, cam.offset - cam.position / 5.0)
+#	nb.update_bullets(bullet_positions, bullet_colors, cam.offset - cam.position / 5.0)
 			
 	if Input.get_action_strength("restart"):
 		get_tree().reload_current_scene()
