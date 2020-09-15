@@ -11,6 +11,7 @@ onready var timer = $Timer
 onready var wave_timer = $WaveTimer
 onready var appearer := $Appearer
 onready var game = get_node("..")
+onready var wave_info: Label = get_node("../Canvas/LevelInfo")
 
 var noise_seed := 0
 var angle := 0.0
@@ -31,11 +32,17 @@ func _init() -> void:
 	randomize()
 	noise_seed = randi()
 	angle = randf() * 2 * PI;
+	
+func wave_count() -> int:
+	return waves[min(level - 1, waves.size() - 1)]
+	
+func is_boss_wave() -> bool:
+	return wave == wave_count()
 
 func spawn():
 	if spawns == 0:
 		pick_angle()
-	if wave == waves[min(level - 1, waves.size() - 1)]:
+	if is_boss_wave():
 		var enemy = slime.instance()
 		root.add_child(enemy)
 		enemy.stats = Stats.new(stats)
@@ -95,6 +102,13 @@ func reposition():
 	if plr:
 		position = plr.body.get_global_transform().get_origin() + 1500 * Vector2(cos(dir), sin(dir)).normalized()
 		appearer.appear()
+		wave_info.text = "Level " + level as String + "    ::    " + get_wave_name()
+		
+func get_wave_name() -> String:
+	if is_boss_wave():
+		return "Boss"
+		
+	return "Wave " + wave as String + " / " + wave_count() as String
 
 func _on_Game_no_enemies() -> void:
 	if timer.is_stopped() && start_timer.is_stopped():
@@ -104,6 +118,9 @@ func _on_Game_no_enemies() -> void:
 			start_timer.start()
 		else:
 			game.show_bonuses()
+			
+func boss_killed():
+	wave_info.text = "Level " + level as String + "    ::    End"
 			
 func next_level():
 	level += 1

@@ -101,6 +101,7 @@ func parts(pos: Vector2):
 	eff.position = pos
 	
 func show_bonuses():
+	spawner.boss_killed()
 	bonuses.show_bonuses()
 	
 func pick_bonus(bonus: Dictionary):
