@@ -8,7 +8,7 @@ onready var title: Label = get_node("../BonusTitle")
 var bonuses = []
 
 func show_title():
-	tween.interpolate_property(title, "rect_scale", Vector2.ZERO, Vector2.ONE, 0.3, Tween.TRANS_BOUNCE)
+	tween.interpolate_property(title, "rect_scale", Vector2.ZERO, Vector2.ONE, 0.3, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
 	tween.start()
 	
 func hide_title():
@@ -28,7 +28,7 @@ func show_bonuses():
 			var bonus = tile.instance()
 			bonus.modulate.a = 0;
 			add_child(bonus)
-			bonus.setup(get_bonus())
+			bonus.setup(get_bonus(), index)
 			bonuses.append(bonus)
 			bonus.slide(index * 0.15)
 
@@ -41,6 +41,12 @@ func hide_bonuses():
 		
 	bonuses.clear()
 	
+func add_enemy_bonuses(index: int):
+	yield(get_tree().create_timer(0.5), "timeout")
+	bonuses[index - 1].add_stamp(false)
+	yield(get_tree().create_timer(0.3), "timeout")
+	bonuses[(index + 1) % bonuses.size()].add_stamp(false)
+	
 func get_bonus():
 	var bonuses = [
 		{
@@ -51,11 +57,25 @@ func get_bonus():
 			"value": 1 + randi() % 4
 		},
 		{
+			"title": "MAX HP",
+			"desc": "{value}",
+			"key": "hp_max",
+			"type": "multiply",
+			"value": rand_range(1.05, 1.5)
+		},
+		{
 			"title": "DAMAGE",
 			"desc": "{value}",
 			"key": "damage",
 			"type": "add",
 			"value": 1
+		},
+		{
+			"title": "DAMAGE",
+			"desc": "{value}",
+			"key": "damage",
+			"type": "multiply",
+			"value": rand_range(1.05, 1.5)
 		},
 		{
 			"title": "SPEED",

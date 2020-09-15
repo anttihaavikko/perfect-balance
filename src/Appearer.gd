@@ -7,7 +7,7 @@ func _init() -> void:
 	add_child(tween)
 	
 func appear():
-	tween.interpolate_property(self, "scale", Vector2(), Vector2.ONE, 0.3, Tween.TRANS_BOUNCE)
+	tween.interpolate_property(self, "scale", Vector2(), Vector2.ONE, 0.3, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
 	tween.start()
 	
 func disappear():

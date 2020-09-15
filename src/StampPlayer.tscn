@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/misc/OutlineMaterial.tres" type="Material" id=1]
+[ext_resource path="res://assets/shaders/Outline.shader" type="Shader" id=2]
+[ext_resource path="res://assets/sprites/stamp_ring.png" type="Texture" id=3]
+[ext_resource path="res://assets/misc/Amatic-Bold.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 2 )
+shader_param/outline_width = 7.0
+shader_param/outline_color = Color( 0, 0, 0, 0.501961 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 50
+outline_color = Color( 0, 0, 0, 0.501961 )
+font_data = ExtResource( 4 )
+
+[node name="StampPlayer" type="Node2D"]
+modulate = Color( 0.827451, 0.972549, 0.886275, 1 )
+position = Vector2( 425.208, 153.797 )
+
+[node name="Ring" type="Sprite" parent="."]
+material = SubResource( 8 )
+scale = Vector2( 0.213574, 0.213574 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="."]
+material = ExtResource( 1 )
+margin_left = -20.3379
+margin_top = -32.48
+margin_right = 19.6621
+margin_bottom = 21.52
+custom_fonts/font = SubResource( 7 )
+text = "ME"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}

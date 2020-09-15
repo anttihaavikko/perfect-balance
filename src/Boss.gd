@@ -87,7 +87,7 @@ func calculate_angle():
 func move_face(pos: Vector2):
 	if face:
 		face_tween.stop_all()
-		face_tween.interpolate_property(face, "position", face.position, pos, 0.2, Tween.TRANS_BOUNCE)
+		face_tween.interpolate_property(face, "position", face.position, pos, 0.2, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
 		face_tween.start()
 
 func _process(delta: float) -> void:

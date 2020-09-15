@@ -88,11 +88,18 @@ __meta__ = {
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 0.671997
+margin_top = -1.34402
+margin_right = 0.671997
+margin_bottom = -1.34402
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="StampSpot" type="Node2D" parent="."]
+position = Vector2( 459.59, 168.724 )
 [connection signal="gui_input" from="." to="." method="_on_BonusTile_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_BonusTile_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_BonusTile_mouse_exited"]

@@ -9,7 +9,7 @@ var damage := 1
 var fire_rate := 0.5
 var shot_speed := 0.5
 var homing := 0.0
-var luck := 0.2
+var luck := 0.1
 
 func _init(stats = null) -> void:
 	if stats:
