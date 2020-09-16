@@ -51,7 +51,7 @@ func spawn():
 		enemy.body.position = position
 		shockwave.boom(position)
 		enemy.seed_noise(noise_seed)
-		enemy.forks = min(level + 2 + stats.drone, 12)
+		enemy.forks = min(level / 2 + 2 + stats.drone, 12)
 		spawns += 1
 		start_timer.stop()
 		timer.stop()
