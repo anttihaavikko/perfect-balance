@@ -23,7 +23,7 @@ texture = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="Inner" type="Sprite" parent="."]
-scale = Vector2( 0.457379, 0.457379 )
+scale = Vector2( 0.348603, 0.348603 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 amount = -0.1

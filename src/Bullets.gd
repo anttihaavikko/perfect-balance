@@ -47,7 +47,7 @@ func _draw():
 #				draw_line(prev, pos, dim(Color.white), 9, true)
 				
 			var color = b.color if no_fills else Color.white
-			draw_circle(pos, 7, color)
+			draw_circle(pos, 5, color)
 			
 func adjust_point(pos: Vector2) -> Vector2:
 	var res = Vector2(1024, 600)

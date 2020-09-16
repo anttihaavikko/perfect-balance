@@ -10,6 +10,7 @@ var fire_rate := 0.5
 var shot_speed := 0.5
 var homing := 0.0
 var luck := 0.1
+var picks := 1
 
 func _init(stats = null) -> void:
 	if stats:
@@ -22,6 +23,7 @@ func _init(stats = null) -> void:
 		shot_speed = stats.shot_speed
 		homing = stats.homing
 		luck = stats.luck
+		picks = stats.picks
 
 func apply(bonus: Dictionary):
 	if get(bonus.key):

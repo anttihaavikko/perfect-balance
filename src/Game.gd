@@ -23,8 +23,8 @@ onready var spawner = $Spawner
 
 var emitted := false
 
-var allowed_picks := 2
 var bonus_picks := 0
+var allowed_picks = 1
 
 func _ready() -> void:
 	OS.low_processor_usage_mode = true
@@ -115,8 +115,9 @@ func parts(pos: Vector2):
 	eff.position = pos
 	
 func show_bonuses():
+	allowed_picks = player.stats.picks
 	spawner.boss_killed()
-	bonuses.show_bonuses()
+	bonuses.show_bonuses(bonus_picks, allowed_picks)
 	
 func pick_bonus(bonus: Dictionary, index: int):
 	player.stats.apply(bonus)
@@ -134,10 +135,12 @@ func pick_bonus(bonus: Dictionary, index: int):
 	
 	if bonus_picks >= allowed_picks:
 		bonus_picks = 0
-		yield(get_tree().create_timer(2.5), "timeout")
+		yield(get_tree().create_timer(2.2), "timeout")
 		bonuses.hide_bonuses()
 		player.picking_bonus = false
 		spawner.next_level()
+	else:
+		bonuses.update_title(bonus_picks, allowed_picks)
 	
 func spawn_pickup_on(pos: Vector2):
 	if randf() < player.stats.luck:

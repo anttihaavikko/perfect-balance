@@ -14,14 +14,27 @@ func show_title():
 func hide_title():
 	tween.interpolate_property(title, "rect_scale", Vector2.ONE, Vector2.ZERO, 0.3, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	tween.start()
+	
+func update_title(num: int, amount: int):
+	if amount == 1:
+		title.text = "Pick a bonus!"
+		
+	if num == amount - 1 && amount > 1:
+		title.text = "Pick one final bonus!"
+		
+	if 0 - 1 && amount > 1:
+		title.text = "Pick " + (amount - num) as String + " bonuses!"
+	elif num < amount - 1 && amount > 1:
+		title.text = "Pick " + (amount - num) as String + " more bonuses!"
 
-func show_bonuses():
+func show_bonuses(num: int, amount: int):
 	yield(get_tree().create_timer(1.5), "timeout")
 	
 	if player:
 		player.picking_bonus = true
 		yield(get_tree().create_timer(1.5), "timeout")
 		
+		update_title(num, amount)
 		show_title()
 	
 		for index in range(5):
@@ -125,6 +138,13 @@ func get_bonus():
 			"key": "drone",
 			"type": "custom",
 			"value": 0
+		},
+		{
+			"title": "PATIENCE",
+			"desc": "+1 Picks",
+			"key": "picks",
+			"type": "add",
+			"value": 1
 		}
 	]
 	
