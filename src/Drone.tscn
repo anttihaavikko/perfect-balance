@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/sprites/pulse-circle.png" type="Texture" id=1]
+[ext_resource path="res://src/Pulsate.gd" type="Script" id=2]
+[ext_resource path="res://src/Drone.gd" type="Script" id=3]
+
+[node name="Drone" type="Node2D"]
+position = Vector2( 231.101, 9.17264 )
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.158248, 0.158248 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Glow" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0.364706 )
+scale = Vector2( 0.198912, 0.198912 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+amount = 0.5

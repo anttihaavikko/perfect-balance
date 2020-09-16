@@ -19,8 +19,11 @@ onready var limb4: RigidBody2D = get_node("Limb Lower4")
 onready var shot_particles = get_node("Torso/ShootPoint/ShotParticles")
 onready var muzzle_flash = get_node("Torso/ShootPoint/MuzzleFlash")
 
+onready var drone = preload("res://src/Drone.tscn")
+
 var noise: OpenSimplexNoise
 var noise_offset := 0
+var drones = []
 
 func _init() -> void:
 	self.stats.hp_max = 3
@@ -34,6 +37,10 @@ func _init() -> void:
 func _process(delta):	
 	var shooting = Input.get_action_strength("shoot") > 0.5 && !picking_bonus
 	var speed_mod = 0.5 if shooting else 1.0
+	
+	for d in drones:
+		var mod = 1.5 if picking_bonus else 1.0
+		d.follow(stats.speed * speed_mod * mod, delta)
 	
 	var x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	var y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
@@ -85,11 +92,12 @@ func shoot(angle):
 	shot_particles.emitting = true
 	muzzle_flash.emitting = true
 	shot_cooldown = shot_cooldown_max
-	var b = Bullet.new(shoot_point.get_global_transform().get_origin(), angle, 6000 * stats.shot_speed, Color.white)
-	b.lifetime *= stats.shot_range * 0.15
-	b.damage = stats.damage
-	b.is_enemy = false
-	game.add_bullet(b)
+	
+	add_bullet(shoot_point.get_global_transform().get_origin(), angle)
+	
+	for d in drones:
+		add_bullet(d.position, angle)
+		
 	var dir = Vector2(cos(angle), sin(angle))
 	head.apply_central_impulse(dir * 2000.0)
 	limb4.apply_central_impulse(-dir * 1000.0)
@@ -99,6 +107,13 @@ func shoot(angle):
 	calf1.apply_torque_impulse(60000.0)
 	calf2.apply_torque_impulse(-60000.0)
 	recoil()
+
+func add_bullet(pos: Vector2, angle: float):
+	var b = Bullet.new(pos, angle, 6000 * stats.shot_speed, Color.white)
+	b.lifetime *= stats.shot_range * 0.15
+	b.damage = stats.damage
+	b.is_enemy = false
+	game.add_bullet(b)
 	
 func _update_hp():
 	var percent = max(0, stats.hp / (stats.hp_max * 1.0))
@@ -111,3 +126,9 @@ func heal():
 	stats.hp = min(stats.hp_max, stats.hp + 1)
 	_update_hp()
 	flash(1)
+	
+func add_drone():
+	var d = drone.instance()
+	game.add_child(d)
+	d.position = body.position
+	drones.append(d)

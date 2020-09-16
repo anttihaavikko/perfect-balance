@@ -118,6 +118,13 @@ func get_bonus():
 			"key": "luck",
 			"type": "add",
 			"value": 0.1
+		},
+		{
+			"title": "HELPER",
+			"desc": "+1 Shooter",
+			"key": "drone",
+			"type": "custom",
+			"value": 0
 		}
 	]
 	

@@ -29,6 +29,3 @@ func apply(bonus: Dictionary):
 			self[bonus.key] += bonus.value
 		if bonus.type == "multiply":
 			self[bonus.key] *= bonus.value
-			
-	if bonus.type == "custom" && bonus.key:
-		hp = hp_max

@@ -114,8 +114,15 @@ func show_bonuses():
 	
 func pick_bonus(bonus: Dictionary, index: int):
 	player.stats.apply(bonus)
-	player._update_hp()
 	bonus_picks += 1
+	
+	if bonus.key == "heal":
+		player.stats.hp = player.stats.hp_max
+		
+	if bonus.key == "drone":
+		player.add_drone()
+		
+	player._update_hp()
 	
 	bonuses.add_enemy_bonuses(index)
 	
