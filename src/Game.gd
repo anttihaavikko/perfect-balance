@@ -91,9 +91,14 @@ func _process(delta):
 				characters.remove(i)
 			
 #	nb.update_bullets(bullet_positions, bullet_colors, cam.offset - cam.position / 5.0)
+	
+	# debug only stuffs
+	if OS.is_debug_build():
+		if Input.is_action_just_pressed("restart"):
+			get_tree().reload_current_scene()
 			
-	if Input.get_action_strength("restart"):
-		get_tree().reload_current_scene()
+		if Input.is_action_just_pressed("drone"):
+			player.add_drone()
 
 func add_character(character):
 	characters.append(character)

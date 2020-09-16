@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var player = get_node("../Player")
+onready var trail = $Trail
 
 var angle := 0
 var speed := 1.5
@@ -26,5 +27,7 @@ func follow(speed_mod: float, delta: float) -> void:
 		var diff = Vector2(noise.get_noise_1d(life), noise.get_noise_1d(-life))
 		var target = player.body.position + offset
 		var dir = target - position
-		position += dir * speed * speed_mod * delta
-		position += diff * 500.0 * delta
+		var next = position;
+		next += dir * speed * speed_mod * delta
+		next += diff * 50.0 * delta
+		position = next

@@ -93,6 +93,7 @@ process_material = SubResource( 4 )
 
 [node name="Trail" parent="Torso" instance=ExtResource( 7 )]
 material = SubResource( 5 )
+lifetime = 0.02
 
 [node name="Heart" type="Sprite" parent="Torso"]
 self_modulate = Color( 0.964706, 0.580392, 0.756863, 1 )
