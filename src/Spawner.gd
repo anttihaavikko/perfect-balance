@@ -59,7 +59,7 @@ func spawn():
 		appearer.disappear()
 		wave += 1
 		boss_encountered = true
-	elif spawns < clamp(2 + wave, 3, 10):
+	elif wave_has_more():
 		var enemy = bat.instance()
 		root.add_child(enemy)
 		enemy.stats = Stats.new(stats)
@@ -70,11 +70,20 @@ func spawn():
 		enemy.forks = level
 		enemy.angle_offset = angle
 		spawns += 1
+		if !wave_has_more():
+			yield(get_tree().create_timer(0.75), "timeout")
+			next_wave()
 	else:
-		wave += 1
-		wave_timer.start()
-		timer.stop()
-		appearer.disappear()
+		next_wave()
+		
+func wave_has_more() -> bool:
+	return spawns < clamp(2 + wave, 3, 10)
+		
+func next_wave():
+	wave += 1
+	wave_timer.start()
+	timer.stop()
+	appearer.disappear()
 			
 func _on_StartTimer_timeout() -> void:
 	if started:
@@ -113,7 +122,7 @@ func get_wave_name() -> String:
 	return "Wave " + wave as String + " / " + (wave_count() - 1) as String
 
 func _on_Game_no_enemies() -> void:
-	if timer.is_stopped() && start_timer.is_stopped():
+	if (timer.is_stopped() || !wave_has_more()) && start_timer.is_stopped():
 		if !boss_encountered:
 			spawns = 0
 			started = false
@@ -130,7 +139,7 @@ func next_level():
 	spawns = 0
 	boss_encountered = false
 	started = false
-#	stats.hp_max += 1
+	stats.hp_max += 1
 #	stats.damage += 1
 	start_timer.start()
 		
