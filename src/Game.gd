@@ -20,6 +20,7 @@ onready var pickup = preload("res://src/Pickup.tscn")
 onready var player = $Player
 onready var bonuses = get_node("Canvas/BonusView/BonusSelection")
 onready var spawner = $Spawner
+onready var score = $Canvas/Score
 
 var emitted := false
 

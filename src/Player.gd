@@ -33,6 +33,7 @@ func _init() -> void:
 	noise.octaves = 5
 	noise.period = 30000.0
 	noise.persistence = 0.5
+	scores = false
 
 func _process(delta):	
 	var shooting = Input.get_action_strength("shoot") > 0.5 && !picking_bonus
@@ -132,3 +133,6 @@ func add_drone():
 	game.add_child(d)
 	d.position = body.position
 	drones.append(d)
+	
+func _took_damage():
+	game.score.reset_multi()

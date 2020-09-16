@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://src/Dude.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/ScreenShake.gd" type="Script" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://nativebullets/script.gdns" type="Script" id=20]
 [ext_resource path="res://assets/sprites/heart.png" type="Texture" id=21]
 [ext_resource path="res://assets/sprites/pelvis.png" type="Texture" id=22]
+[ext_resource path="res://src/Score.gd" type="Script" id=23]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 6 )
@@ -194,6 +195,24 @@ default_font = SubResource( 13 )
 
 [sub_resource type="DynamicFont" id=15]
 size = 25
+font_data = ExtResource( 18 )
+
+[sub_resource type="DynamicFont" id=18]
+size = 50
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 18 )
+
+[sub_resource type="DynamicFont" id=19]
+size = 30
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 18 )
+
+[sub_resource type="DynamicFont" id=20]
+size = 40
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 18 )
 
 [node name="Game" type="Node2D"]
@@ -483,6 +502,72 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Score" type="ColorRect" parent="Canvas"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 1, 1, 1, 0 )
+script = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Total" type="Label" parent="Canvas/Score"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 417.615
+margin_top = -624.916
+margin_right = -6.38507
+margin_bottom = -548.916
+rect_pivot_offset = Vector2( 512, 30 )
+custom_fonts/font = SubResource( 18 )
+text = "0"
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Multiplier" type="Label" parent="Canvas/Score"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 418.517
+margin_top = -594.827
+margin_right = -5.48267
+margin_bottom = -518.827
+rect_pivot_offset = Vector2( 512, 30 )
+custom_fonts/font = SubResource( 19 )
+text = "x1"
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Latest" type="Label" parent="Canvas/Score"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 417.704
+margin_top = -555.306
+margin_right = -6.29602
+margin_bottom = -479.306
+rect_pivot_offset = Vector2( 512, 30 )
+custom_fonts/font = SubResource( 20 )
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Canvas/Score"]
+
+[node name="Timer" type="Timer" parent="Canvas/Score"]
+wait_time = 2.0
+one_shot = true
+
 [node name="Camera" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 5, 5 )
@@ -495,3 +580,4 @@ script = ExtResource( 2 )
 [connection signal="timeout" from="Spawner/StartTimer" to="Spawner" method="_on_StartTimer_timeout"]
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_Timer_timeout"]
 [connection signal="timeout" from="Spawner/WaveTimer" to="Spawner" method="_on_WaveTimer_timeout"]
+[connection signal="timeout" from="Canvas/Score/Timer" to="Canvas/Score" method="_on_Timer_timeout"]

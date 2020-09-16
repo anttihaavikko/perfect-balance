@@ -67,6 +67,8 @@ func _process(delta):
 		var diff = player.body.position - body.position
 		if !boss && abs(diff.length()) > 4000:
 			stats.hp = 0
+			scores = false
+			game.score.reset_multi()
 			
 	if attack:
 		attack._update(game, self, delta)

@@ -9,6 +9,7 @@ func _ready() -> void:
 
 func _on_Pickup_body_entered(body: Node) -> void:
 	if !used:
+		player.game.score.add(25 if player.stats.hp < player.stats.hp_max else 500)
 		used = true
 		player.heal()
 		player.boom(position, 0.5, 0.8)

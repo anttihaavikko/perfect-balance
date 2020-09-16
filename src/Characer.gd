@@ -24,6 +24,8 @@ var stats: Stats;
 
 var picking_bonus := false
 
+var scores := true
+
 func _init() -> void:
 	self.stats = Stats.new()
 	calculate_hp()
@@ -54,10 +56,14 @@ func recoil():
 func _update_hp():
 	pass
 	
+func _took_damage():
+	pass
+	
 func take_hit(bullet: Bullet):
 	if !picking_bonus:
 		stats.hp -= bullet.damage
 		_update_hp()
+		_took_damage()
 		
 	flash()
 	
@@ -65,6 +71,11 @@ func is_alive() -> bool:
 	return stats.hp > 0
 	
 func die():
+	if scores:
+		var amt = 100 if !boss else game.spawner.level * 1000
+		game.score.add(amt)
+		game.score.add_multi()
+		
 	stats.hp = 0
 	_update_hp()
 	boom(body.position)
