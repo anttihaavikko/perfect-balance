@@ -35,7 +35,7 @@ func _init() -> void:
 	angle = randf() * 2 * PI;
 	
 func wave_count() -> int:
-	return waves[min(level - 1, waves.size() - 1)]
+	return waves[min(level - 1, waves.size() - 1)] - 1 + stats.picks
 	
 func is_boss_wave() -> bool:
 	return wave == wave_count()
@@ -51,7 +51,7 @@ func spawn():
 		enemy.body.position = position
 		shockwave.boom(position)
 		enemy.seed_noise(noise_seed)
-		enemy.forks = min(level + 2, 10)
+		enemy.forks = min(level + 2 + stats.drone, 12)
 		spawns += 1
 		start_timer.stop()
 		timer.stop()
@@ -131,5 +131,6 @@ func next_level():
 	boss_encountered = false
 	started = false
 	stats.hp_max += 1
+	stats.damage += 1
 	start_timer.start()
 		

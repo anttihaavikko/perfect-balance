@@ -99,6 +99,9 @@ func _process(delta):
 			
 		if Input.is_action_just_pressed("drone"):
 			player.add_drone()
+			
+		if Input.is_action_just_pressed("fullscreen"):
+			OS.window_fullscreen = !OS.window_fullscreen
 
 func add_character(character):
 	characters.append(character)
@@ -119,6 +122,16 @@ func show_bonuses():
 	spawner.boss_killed()
 	bonuses.show_bonuses(bonus_picks, allowed_picks)
 	
+func enemy_pick(bonus: Dictionary):
+	spawner.stats.apply(bonus)
+	
+	if bonus.key == "fire_rate":
+		spawner.timer.wait_time /= bonus.value
+		spawner.wave_timer.wait_time /= bonus.value
+		
+	if bonus.key == "heal":
+		spawner.stats.hp_max *= 1.25
+	
 func pick_bonus(bonus: Dictionary, index: int):
 	player.stats.apply(bonus)
 	bonus_picks += 1
@@ -128,9 +141,6 @@ func pick_bonus(bonus: Dictionary, index: int):
 		
 	if bonus.key == "drone":
 		player.add_drone()
-		
-	if bonus.key == "fullscreen":
-		OS.window_fullscreen = !OS.window_fullscreen
 		
 	player._update_hp()
 	
@@ -146,10 +156,11 @@ func pick_bonus(bonus: Dictionary, index: int):
 		bonuses.update_title(bonus_picks, allowed_picks)
 	
 func spawn_pickup_on(pos: Vector2):
-	if randf() < player.stats.luck:
-		var eff = pickup.instance()
-		add_child(eff)
-		eff.position = pos
+	if player:
+		if randf() < 0.1 + player.stats.luck - spawner.stats.lucks:
+			var eff = pickup.instance()
+			add_child(eff)
+			eff.position = pos
 	
 func pulse(pos: Vector2):
 	var eff = pulse.instance()

@@ -58,7 +58,6 @@ func _process(delta):
 		angle_offset = angle
 		angle = tmp
 	
-	print(nv, " => ", angle, " -> ", angle_offset)
 	var direction = Vector2(cos(angle), sin(angle))
 	velocity = max_speed * direction * 2 * stats.speed
 	sprite.rotation = angle + 0.5 * PI

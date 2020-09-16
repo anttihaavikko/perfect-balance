@@ -4,6 +4,7 @@ onready var tile = preload("res://src/BonusTile.tscn")
 onready var player = get_node("../../../Player")
 onready var tween: Tween = get_node("../Tween")
 onready var title: Label = get_node("../BonusTitle")
+onready var game = get_node("../../..")
 
 var bonuses = []
 
@@ -56,9 +57,13 @@ func hide_bonuses():
 	
 func add_enemy_bonuses(index: int):
 	yield(get_tree().create_timer(0.5), "timeout")
-	bonuses[index - 1].add_stamp(false)
+	var b1 = bonuses[index - 1]
+	b1.add_stamp(false)
+	game.enemy_pick(b1.bonus)
 	yield(get_tree().create_timer(0.3), "timeout")
-	bonuses[(index + 1) % bonuses.size()].add_stamp(false)
+	var b2 = bonuses[(index + 1) % bonuses.size()]
+	b2.add_stamp(false)
+	game.enemy_pick(b2.bonus)
 	
 func get_bonus():
 	var bonuses = [
