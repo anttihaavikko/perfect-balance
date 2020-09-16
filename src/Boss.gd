@@ -99,7 +99,6 @@ func _process(delta: float) -> void:
 			velocity = max_speed * direction
 		else:
 			velocity = Vector2()
-		_move(delta)
 		if face:
 			face.rotation = -body.rotation
 	if attack:
