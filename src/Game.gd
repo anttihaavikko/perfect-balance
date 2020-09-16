@@ -157,7 +157,7 @@ func pick_bonus(bonus: Dictionary, index: int):
 	
 func spawn_pickup_on(pos: Vector2):
 	if player:
-		if randf() < 0.1 + player.stats.luck - spawner.stats.lucks:
+		if randf() < 0.1 + player.stats.luck - spawner.stats.luck:
 			var eff = pickup.instance()
 			add_child(eff)
 			eff.position = pos

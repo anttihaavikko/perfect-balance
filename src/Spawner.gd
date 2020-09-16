@@ -130,7 +130,7 @@ func next_level():
 	spawns = 0
 	boss_encountered = false
 	started = false
-	stats.hp_max += 1
-	stats.damage += 1
+#	stats.hp_max += 1
+#	stats.damage += 1
 	start_timer.start()
 		
