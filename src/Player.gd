@@ -26,8 +26,8 @@ var noise_offset := 0
 var drones = []
 
 func _init() -> void:
-	self.stats.hp_max = 3
-	self.stats.hp = 3
+	self.stats.hp_max = 5
+	self.stats.hp = 5
 	noise = OpenSimplexNoise.new()
 	noise.seed = 123
 	noise.octaves = 5

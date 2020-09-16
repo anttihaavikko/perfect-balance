@@ -86,8 +86,9 @@ func _process(delta):
 			
 	if dead.size() > 0:
 		for i in dead:
-			characters[i].die()
-			characters.remove(i)
+			if characters[i]:
+				characters[i].die()
+				characters.remove(i)
 			
 #	nb.update_bullets(bullet_positions, bullet_colors, cam.offset - cam.position / 5.0)
 			
