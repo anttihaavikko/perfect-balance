@@ -88,6 +88,9 @@ shader_param/thickness = 0.03
 
 [sub_resource type="ShaderMaterial" id=9]
 shader = ExtResource( 17 )
+shader_param/hdr_threshold = 0.7
+shader_param/amount = 7.0
+shader_param/speed = 2.0
 
 [sub_resource type="DynamicFont" id=10]
 size = 70
@@ -262,12 +265,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BackBufferCopy" type="BackBufferCopy" parent="Canvas"]
-visible = false
+[node name="Bloom" type="BackBufferCopy" parent="Canvas"]
 copy_mode = 2
 rect = Rect2( 0, 0, 1024, 600 )
 
-[node name="Bloom" type="ColorRect" parent="Canvas/BackBufferCopy"]
+[node name="BloomEffect" type="ColorRect" parent="Canvas/Bloom"]
 material = SubResource( 9 )
 anchor_right = 1.0
 anchor_bottom = 1.0
