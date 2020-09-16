@@ -7,10 +7,10 @@
 [ext_resource path="res://assets/shaders/Blobify.shader" type="Shader" id=5]
 [ext_resource path="res://src/Face.tscn" type="PackedScene" id=6]
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=2]
 radius = 122.104
 
 [sub_resource type="Animation" id=3]
@@ -54,7 +54,7 @@ collision_mask = 7
 gravity_scale = 0.0
 
 [node name="Sprite" type="Sprite" parent="Torso"]
-material = SubResource( 4 )
+material = SubResource( 1 )
 position = Vector2( -2.18433, 0 )
 rotation = 1.5708
 texture = ExtResource( 2 )
@@ -83,7 +83,7 @@ scale = Vector2( 0.489438, 0.489438 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Torso"]
 visible = false
 position = Vector2( 8.96921, -9.71666 )
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 
 [node name="Trail" parent="Torso" instance=ExtResource( 4 )]
 visible = false

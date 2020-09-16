@@ -21,6 +21,7 @@ var started := false
 var wave := 1
 var level := 1
 var boss_encountered := false
+var wave_angle := 0
 
 var stats: Stats
 
@@ -66,8 +67,8 @@ func spawn():
 		enemy.body.position = position
 		shockwave.boom(position)
 		enemy.seed_noise(noise_seed)
-		enemy.body.rotation = angle
 		enemy.forks = level
+		enemy.angle_offset = angle
 		spawns += 1
 	else:
 		wave += 1
@@ -100,6 +101,7 @@ func pick_angle():
 func reposition():
 	var dir = randf() * 2 * PI;
 	if plr:
+		noise_seed = randi()
 		position = plr.body.get_global_transform().get_origin() + 1500 * Vector2(cos(dir), sin(dir)).normalized()
 		appearer.appear()
 		wave_info.text = "Level " + level as String + "    ::    " + get_wave_name()

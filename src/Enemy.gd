@@ -4,15 +4,20 @@ class_name Enemy
 var noise: OpenSimplexNoise
 var attack: Attack
 var forks := 1
+var lifetime := 0.0
 
+var angle_offset := 0.0
+var offset_calculated := false
+
+onready var sprite = body.get_node("Sprite")
 onready var player = get_node("../Player")
 
 func _init() -> void:
 	noise = OpenSimplexNoise.new()
 	noise.seed = 123
 	noise.octaves = 5
-	noise.period = 30000.0
-	noise.persistence = 0.5
+	noise.period = 50.0
+	noise.persistence = 1.0
 	attack = pick_attack()
 	
 func pick_attack() -> Attack:
@@ -38,13 +43,26 @@ func seed_noise(s: int):
 	noise.seed = s
 	
 func get_shot_angle() -> float:
-	return body.rotation
+	return angle
 
 func _process(delta):
-	var direction = Vector2(cos(body.rotation), sin(body.rotation))
+	lifetime += delta
+	var nv = noise.get_noise_1d(lifetime * 1.5 * stats.speed)
+	angle = (nv + 1.0) * PI
+	var tmp = angle
+	angle += angle_offset
+	
+	if !offset_calculated:
+		offset_calculated = true
+		tmp = angle_offset
+		angle_offset = angle
+		angle = tmp
+	
+	print(nv, " => ", angle, " -> ", angle_offset)
+	var direction = Vector2(cos(angle), sin(angle))
 	velocity = max_speed * direction * 2 * stats.speed
-	angle = noise.get_noise_2d(body.position.x, body.position.y) * 0.03 * stats.speed
-	_move(delta)
+	sprite.rotation = angle + 0.5 * PI
+	body.linear_velocity = velocity * 300 * delta * stats.speed
 	
 	if player && body:
 		var diff = player.body.position - body.position

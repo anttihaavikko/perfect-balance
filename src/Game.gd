@@ -129,6 +129,9 @@ func pick_bonus(bonus: Dictionary, index: int):
 	if bonus.key == "drone":
 		player.add_drone()
 		
+	if bonus.key == "fullscreen":
+		OS.window_fullscreen = !OS.window_fullscreen
+		
 	player._update_hp()
 	
 	bonuses.add_enemy_bonuses(index)
