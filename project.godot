@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "BulletData",
 "language": "GDScript",
-"path": "res://BulletData.gd"
+"path": "res://src/BulletData.gd"
 }, {
 "base": "CanvasItem",
 "class": "Bullets",
@@ -95,6 +95,10 @@ _global_script_class_icons={
 config/name="Shmup"
 run/main_scene="res://src/Game.tscn"
 config/icon="res://assets/sprites/icon.png"
+
+[autoload]
+
+Quick="*res://src/Quick.gd"
 
 [debug]
 
