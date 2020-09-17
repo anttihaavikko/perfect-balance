@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://src/Dude.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/ScreenShake.gd" type="Script" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://src/BonusSelection.gd" type="Script" id=19]
 [ext_resource path="res://nativebullets/script.gdns" type="Script" id=20]
 [ext_resource path="res://assets/sprites/heart.png" type="Texture" id=21]
+[ext_resource path="res://assets/sounds/godot.wav" type="AudioStream" id=22]
 [ext_resource path="res://src/Score.gd" type="Script" id=23]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -554,6 +555,10 @@ smoothing_enabled = true
 [node name="ScreenShake" type="Node2D" parent="Camera"]
 position = Vector2( 367.771, 138.108 )
 script = ExtResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 22 )
+autoplay = true
 [connection signal="no_enemies" from="." to="Spawner" method="_on_Game_no_enemies"]
 [connection signal="timeout" from="Spawner/StartTimer" to="Spawner" method="_on_StartTimer_timeout"]
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_Timer_timeout"]
