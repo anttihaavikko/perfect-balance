@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://src/Dude.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/ScreenShake.gd" type="Script" id=2]
@@ -176,6 +176,12 @@ font_data = ExtResource( 18 )
 
 [sub_resource type="DynamicFont" id=20]
 size = 40
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 18 )
+
+[sub_resource type="DynamicFont" id=21]
+size = 20
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 18 )
@@ -517,6 +523,7 @@ __meta__ = {
 }
 
 [node name="FPS" type="Label" parent="Canvas/Score"]
+self_modulate = Color( 1, 1, 1, 0.25098 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -525,7 +532,7 @@ margin_top = -88.8998
 margin_right = -9.54852
 margin_bottom = -12.8998
 rect_pivot_offset = Vector2( 512, 30 )
-custom_fonts/font = SubResource( 20 )
+custom_fonts/font = SubResource( 21 )
 text = "0"
 align = 2
 valign = 2

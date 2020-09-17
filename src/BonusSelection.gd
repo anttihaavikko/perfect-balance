@@ -150,6 +150,20 @@ func get_bonus():
 			"key": "picks",
 			"type": "add",
 			"value": 1
+		},
+		{
+			"title": "POINTS",
+			"desc": "+{value}",
+			"key": "points",
+			"type": "custom",
+			"value": (1 + randi() % 10) * 1000
+		},
+		{
+			"title": "MULTIPLIER",
+			"desc": "x{value}",
+			"key": "multiplier",
+			"type": "custom",
+			"value": 2 + randi() % 4
 		}
 	]
 	

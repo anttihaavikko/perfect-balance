@@ -58,7 +58,7 @@ func setup(bonus: Dictionary, index: int):
 		desc.text = bonus.desc.replace("{value}", get_prefix(bonus) + round((bonus.value - 1) * 100) as String + " %")
 		
 	if bonus.type == "custom":
-		desc.text = bonus.desc
+		desc.text = bonus.desc.replace("{value}", bonus.value)
 	
 func get_prefix(bonus: Dictionary) -> String:
 	return "+" if bonus.value >= 0 else "-"

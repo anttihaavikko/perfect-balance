@@ -132,6 +132,12 @@ func enemy_pick(bonus: Dictionary):
 		
 	if bonus.key == "heal":
 		spawner.stats.hp_max *= 1.25
+		
+	if bonus.key == "points":
+		score.add(-bonus.value * 0.5)
+		
+	if bonus.key == "multiplier":
+		score.reset_multi()
 	
 func pick_bonus(bonus: Dictionary, index: int):
 	player.stats.apply(bonus)
@@ -143,13 +149,18 @@ func pick_bonus(bonus: Dictionary, index: int):
 	if bonus.key == "drone":
 		player.add_drone()
 		
+	if bonus.key == "points":
+		score.add(bonus.value)
+		
+	if bonus.key == "multiplier":
+		score.multi_multi(bonus.value)
+		
 	player._update_hp()
 	
 	bonuses.add_enemy_bonuses(index)
 	
 	if bonus_picks >= allowed_picks:
 		bonus_picks = 0
-		Quick.timer(2.2)
 		yield(get_tree().create_timer(2.2), "timeout")
 		bonuses.hide_bonuses()
 		player.picking_bonus = false

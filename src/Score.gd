@@ -11,16 +11,22 @@ var score := 0
 var multi := 1
 
 func add(amount: int):
-	latest.text = "+" + amount as String
+	var pre = "+" if amount > 0 else "-"
+	latest.text = pre + amount as String
 	timer.stop()
 	timer.start()
 	tween.stop(self, "score")
-	tween.interpolate_property(self, "score", score, score + amount * multi, 1.5, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	var target = max(0, score + amount * multi)
+	tween.interpolate_property(self, "score", score, target, 1.5, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	tween.start()
-	score += amount * multi
+	score = target
 	
 func add_multi(amount: int = 1):
 	multi += amount
+	update_multi()
+	
+func multi_multi(amount):
+	multi *= amount
 	update_multi()
 	
 func reset_multi():
