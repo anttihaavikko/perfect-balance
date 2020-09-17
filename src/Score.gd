@@ -5,6 +5,7 @@ onready var multiplier: Label = $Multiplier
 onready var latest: Label = $Latest
 onready var tween: Tween = $Tween
 onready var timer: Timer = $Timer
+onready var fps: Label = $FPS
 
 var score := 0
 var multi := 1
@@ -31,6 +32,7 @@ func update_multi():
 	
 func _process(delta: float) -> void:
 	total.text = score as String
+	fps.text = Engine.get_frames_per_second() as String
 
 func _on_Timer_timeout() -> void:
 	latest.text = ""
