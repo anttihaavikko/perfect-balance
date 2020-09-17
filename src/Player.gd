@@ -118,7 +118,7 @@ func add_bullet(pos: Vector2, angle: float):
 	
 func _update_hp():
 	var percent = max(0, stats.hp / (stats.hp_max * 1.0))
-	hp_percent.text = round(percent * 100) as String + " %"
+	hp_percent.text = "%d / %d" % [stats.hp, stats.hp_max]
 	hp_tween.stop(hp_bar)
 	hp_tween.interpolate_property(hp_bar, "rect_scale", Vector2(hp_bar.rect_scale.x, 1), Vector2(percent, 1), 0.15, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
 	hp_tween.start()

@@ -443,7 +443,7 @@ margin_top = 7.0
 margin_bottom = -7.0
 theme = SubResource( 11 )
 custom_fonts/font = SubResource( 12 )
-text = "100 %"
+text = "5 / 5"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
