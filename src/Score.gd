@@ -11,7 +11,7 @@ var score := 0
 var multi := 1
 
 func add(amount: int):
-	var pre = "+" if amount > 0 else "-"
+	var pre = "+" if amount > 0 else ""
 	latest.text = pre + amount as String
 	timer.stop()
 	timer.start()
