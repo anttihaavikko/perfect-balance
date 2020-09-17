@@ -13,4 +13,10 @@ func tween(object, property: String, from, to, duration: float, easing := Tween.
 	elif ease_in:
 		Tween.EASE_IN
 	tweener.interpolate_property(object, property, from, to, duration, easing, ease_dir)
+	tweener.start()
 	
+func tween_show(object, duration: float = 0.5):
+	tween(object, "scale", Vector2.ZERO, Vector2.ONE, duration)
+	
+func tween_hide(object, duration: float = 0.5):
+	tween(object, "scale", Vector2.ONE, Vector2.ZERO, duration, Tween.TRANS_CUBIC, true, true)
