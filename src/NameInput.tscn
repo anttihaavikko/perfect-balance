@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/Clouds.gd" type="Script" id=1]
 [ext_resource path="res://src/Shockwave.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://assets/shaders/Bloom.shader" type="Shader" id=4]
 [ext_resource path="res://assets/shaders/Clouds.shader" type="Shader" id=5]
 [ext_resource path="res://assets/misc/Amatic-Bold.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://src/Button.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/NameInput.gd" type="Script" id=8]
 
 [sub_resource type="ShaderMaterial" id=6]
 shader = ExtResource( 5 )
@@ -144,6 +146,7 @@ size = 100
 font_data = ExtResource( 6 )
 
 [node name="NameInput" type="Node2D"]
+script = ExtResource( 8 )
 
 [node name="BgCanvas" type="CanvasLayer" parent="."]
 layer = -1
@@ -263,9 +266,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -250.0
-margin_top = -5.35107
+margin_top = -43.7524
 margin_right = 250.0
-margin_bottom = 94.6489
+margin_bottom = 56.2476
 rect_pivot_offset = Vector2( 250, 50 )
 theme = SubResource( 11 )
 custom_styles/focus = SubResource( 12 )
@@ -282,8 +285,8 @@ __meta__ = {
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = -117.319
-margin_bottom = 19.6813
+margin_top = -155.72
+margin_bottom = -18.7201
 custom_fonts/font = SubResource( 14 )
 text = "Enter your name"
 align = 1
@@ -291,5 +294,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Go" parent="MainCanvas" instance=ExtResource( 7 )]
+margin_left = -110.0
+margin_top = 82.2429
+margin_right = 110.0
+margin_bottom = 182.243
+rect_pivot_offset = Vector2( 110, 50 )
+text = "Go"
+scene_to_load = "Game"
+
 [node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2( 5, 5 )
+[connection signal="text_changed" from="MainCanvas/LineEdit" to="." method="_on_LineEdit_text_changed"]
+[connection signal="text_entered" from="MainCanvas/LineEdit" to="." method="_on_LineEdit_text_entered"]
+[connection signal="clicked" from="MainCanvas/Go" to="." method="_on_Go_clicked"]

@@ -6,6 +6,8 @@ var base_url := "https://games.sahaqiel.com"
 var game_name := "miz"
 var per_page := 9
 
+var player_name: String
+
 signal scores_loaded(data);
 	
 func load_scores(page: int):
