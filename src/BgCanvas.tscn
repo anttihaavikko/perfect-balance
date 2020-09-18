@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/Bullets.gd" type="Script" id=1]
+[ext_resource path="res://nativebullets/script.gdns" type="Script" id=2]
+[ext_resource path="res://assets/shaders/Clouds.shader" type="Shader" id=3]
+[ext_resource path="res://src/Clouds.gd" type="Script" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 3 )
+shader_param/color = Color( 0.129412, 0.129412, 0.129412, 1 )
+shader_param/offset = null
+shader_param/alpha = 1.0
+shader_param/seed = -100.0
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 3 )
+shader_param/color = Color( 0.113725, 0.113725, 0.113725, 1 )
+shader_param/offset = null
+shader_param/alpha = 1.0
+shader_param/seed = 200.0
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 3 )
+shader_param/color = Color( 0.384314, 0.384314, 0.384314, 1 )
+shader_param/offset = null
+shader_param/alpha = 1.0
+shader_param/seed = 100.0
+
+[node name="BgCanvas" type="CanvasLayer"]
+layer = -1
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Clouds3" type="ColorRect" parent="."]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.680298
+margin_top = -0.777771
+margin_right = -0.680298
+margin_bottom = -0.777771
+color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Clouds2" type="ColorRect" parent="."]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.618774
+margin_top = -2.07666
+margin_right = 0.618774
+margin_bottom = -2.07666
+color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Clouds1" type="ColorRect" parent="."]
+visible = false
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -0.777771
+margin_bottom = -0.777771
+color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bullets" type="Node2D" parent="."]
+script = ExtResource( 1 )
+camera = NodePath("../../Camera")
+gamePath = NodePath("../..")
+color = Color( 0.815686, 0.32549, 0.32549, 1 )
+
+[node name="NativeBullets" type="Node2D" parent="."]
+script = ExtResource( 2 )
+outer = 8.0
+inner = 6.0

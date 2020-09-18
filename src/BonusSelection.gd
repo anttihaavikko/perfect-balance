@@ -70,6 +70,7 @@ func get_bonus():
 		{
 			"title": "MAX HP",
 			"desc": "{value}",
+			"texture": "hp",
 			"key": "hp_max",
 			"type": "add",
 			"value": 1 + randi() % 4
@@ -77,6 +78,7 @@ func get_bonus():
 		{
 			"title": "MAX HP",
 			"desc": "{value}",
+			"texture": "hp",
 			"key": "hp_max",
 			"type": "multiply",
 			"value": rand_range(1.05, 1.5)
@@ -84,20 +86,23 @@ func get_bonus():
 		{
 			"title": "DAMAGE",
 			"desc": "{value}",
+			"texture": "damage",
 			"key": "damage",
 			"type": "add",
-			"value": 1
+			"value": 1 + randi() % 3
 		},
 		{
 			"title": "DAMAGE",
 			"desc": "{value}",
+			"texture": "damage",
 			"key": "damage",
 			"type": "multiply",
-			"value": rand_range(1.05, 1.5)
+			"value": rand_range(1.1, 1.9)
 		},
 		{
 			"title": "SPEED",
 			"desc": "{value}",
+			"texture": "speed",
 			"key": "speed",
 			"type": "multiply",
 			"value": rand_range(1.05, 1.5)
@@ -105,6 +110,7 @@ func get_bonus():
 		{
 			"title": "RANGE",
 			"desc": "{value}",
+			"texture": "range",
 			"key": "shot_range",
 			"type": "multiply",
 			"value": rand_range(1.05, 1.5)
@@ -112,13 +118,15 @@ func get_bonus():
 		{
 			"title": "FIRE RATE",
 			"desc": "{value}",
+			"texture": "firerate",
 			"key": "fire_rate",
 			"type": "multiply",
-			"value": rand_range(1.05, 1.5)
+			"value": rand_range(1.1, 1.75)
 		},
 		{
 			"title": "SHOT SPEED",
 			"desc": "{value}",
+			"texture": "shotspeed",
 			"key": "shot_speed",
 			"type": "multiply",
 			"value": rand_range(1.05, 1.5)
@@ -126,6 +134,7 @@ func get_bonus():
 		{
 			"title": "FULL HEAL",
 			"desc": "Patched up!",
+			"texture": "heal",
 			"key": "heal",
 			"type": "custom",
 			"value": 0
@@ -133,6 +142,7 @@ func get_bonus():
 		{
 			"title": "LUCKY",
 			"desc": "More HP drops",
+			"texture": "luck",
 			"key": "luck",
 			"type": "add",
 			"value": 0.1
@@ -140,6 +150,7 @@ func get_bonus():
 		{
 			"title": "HELPER",
 			"desc": "+1 Shooter",
+			"texture": "helper",
 			"key": "drone",
 			"type": "custom",
 			"value": 0
@@ -147,6 +158,7 @@ func get_bonus():
 		{
 			"title": "PATIENCE",
 			"desc": "+1 Picks",
+			"texture": "patience",
 			"key": "picks",
 			"type": "add",
 			"value": 1
@@ -154,6 +166,7 @@ func get_bonus():
 		{
 			"title": "POINTS",
 			"desc": "+{value}",
+			"texture": "points",
 			"key": "points",
 			"type": "custom",
 			"value": (1 + randi() % 10) * 1000
@@ -161,6 +174,7 @@ func get_bonus():
 		{
 			"title": "MULTIPLIER",
 			"desc": "x{value}",
+			"texture": "points",
 			"key": "multiplier",
 			"type": "custom",
 			"value": 2 + randi() % 4

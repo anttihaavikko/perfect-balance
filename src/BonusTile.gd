@@ -4,6 +4,7 @@ onready var game = get_node("../../../..");
 onready var tween: Tween = $Tween
 onready var title: Label = $ColorRect/Title
 onready var desc: Label = $ColorRect/Desc
+onready var icon: TextureRect = $ColorRect/Icon
 onready var stamp_pos = $StampSpot
 onready var stamp_player = preload("res://src/StampPlayer.tscn")
 onready var stamp_enemy = preload("res://src/StampEnemy.tscn")
@@ -50,6 +51,8 @@ func setup(bonus: Dictionary, index: int):
 	self.index = index
 	self.bonus = bonus
 	title.text = bonus.title
+	
+	icon.texture = load("res://assets/sprites/bonuses/%s.png" % bonus.texture)
 	
 	if bonus.type == "add":
 		desc.text = bonus.desc.replace("{value}", get_prefix(bonus) + bonus.value as String)
