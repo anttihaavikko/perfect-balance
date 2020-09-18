@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/shaders/Shockwave.shader" type="Shader" id=2]
@@ -9,6 +9,9 @@
 [ext_resource path="res://assets/misc/Amatic-Bold.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://src/Shockwave.gd" type="Script" id=8]
 [ext_resource path="res://src/PulsateCanvasItem.gd" type="Script" id=9]
+[ext_resource path="res://src/ScoreManager.gd" type="Script" id=10]
+[ext_resource path="res://assets/sprites/bonuses/helper.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/bonuses/luck.png" type="Texture" id=12]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -126,6 +129,12 @@ shader_param/scan_size = 2.0
 shader_param/scanline_alpha = 1.0
 shader_param/lines_velocity = 30.0
 
+[sub_resource type="DynamicFont" id=10]
+size = 50
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 7 )
+
 [sub_resource type="DynamicFont" id=8]
 size = 80
 outline_size = 1
@@ -138,11 +147,14 @@ outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=10]
-size = 50
+[sub_resource type="DynamicFont" id=11]
+size = 25
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 7 )
+
+[sub_resource type="CanvasItemMaterial" id=12]
+blend_mode = 1
 
 [node name="Menu" type="Node2D"]
 script = ExtResource( 1 )
@@ -248,45 +260,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" type="Label" parent="MainCanvas"]
-margin_left = 210.944
-margin_top = 13.4088
-margin_right = 810.944
-margin_bottom = 100.409
-rect_pivot_offset = Vector2( 300, 30 )
-custom_fonts/font = SubResource( 8 )
-text = "Godot Shmup"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Line" type="ColorRect" parent="MainCanvas"]
-margin_left = 361.092
-margin_top = 103.112
-margin_right = 661.092
-margin_bottom = 107.112
-rect_pivot_offset = Vector2( 150, 2 )
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-speed = 0.5
-freeze_y = true
-
-[node name="Author" type="Label" parent="MainCanvas"]
-margin_left = 211.013
-margin_top = 104.888
-margin_right = 811.013
-margin_bottom = 162.888
-rect_pivot_offset = Vector2( 300, 30 )
-custom_fonts/font = SubResource( 9 )
-text = "by Antti Haavikko"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Button" type="ColorRect" parent="MainCanvas"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -337,7 +310,157 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Title" type="Label" parent="MainCanvas"]
+margin_left = 210.944
+margin_top = 13.4088
+margin_right = 810.944
+margin_bottom = 100.409
+rect_pivot_offset = Vector2( 300, 30 )
+custom_fonts/font = SubResource( 8 )
+text = "Godot Shmup"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Line" type="ColorRect" parent="MainCanvas"]
+margin_left = 361.092
+margin_top = 103.112
+margin_right = 661.092
+margin_bottom = 107.112
+rect_pivot_offset = Vector2( 150, 2 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+speed = 0.5
+freeze_y = true
+
+[node name="Author" type="Label" parent="MainCanvas"]
+margin_left = 211.013
+margin_top = 104.888
+margin_right = 811.013
+margin_bottom = 162.888
+rect_pivot_offset = Vector2( 300, 30 )
+custom_fonts/font = SubResource( 9 )
+text = "by Antti Haavikko"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Names" type="Label" parent="MainCanvas"]
+margin_left = 335.725
+margin_top = 166.886
+margin_right = 735.725
+margin_bottom = 433.886
+rect_pivot_offset = Vector2( 300, 30 )
+custom_fonts/font = SubResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Scores" type="Label" parent="MainCanvas"]
+margin_left = 313.285
+margin_top = 167.097
+margin_right = 713.285
+margin_bottom = 434.097
+rect_pivot_offset = Vector2( 300, 30 )
+custom_fonts/font = SubResource( 11 )
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Flags" type="ColorRect" parent="MainCanvas"]
+margin_left = 286.48
+margin_top = 163.0
+margin_right = 326.48
+margin_bottom = 436.0
+color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Flag1" type="TextureRect" parent="MainCanvas/Flags"]
+margin_top = 3.0
+margin_right = 32.0
+margin_bottom = 35.0
+
+[node name="Flag2" type="TextureRect" parent="MainCanvas/Flags"]
+margin_top = 33.6256
+margin_right = 32.0
+margin_bottom = 65.6256
+
+[node name="Flag3" type="TextureRect" parent="MainCanvas/Flags"]
+margin_top = 64.3072
+margin_right = 32.0
+margin_bottom = 96.3072
+
+[node name="Flag4" type="TextureRect" parent="MainCanvas/Flags"]
+margin_top = 93.6149
+margin_right = 32.0
+margin_bottom = 125.615
+
+[node name="Flag5" type="TextureRect" parent="MainCanvas/Flags"]
+margin_top = 122.524
+margin_right = 32.0
+margin_bottom = 154.524
+
+[node name="Flag6" type="TextureRect" parent="MainCanvas/Flags"]
+margin_top = 153.778
+margin_right = 32.0
+margin_bottom = 185.778
+
+[node name="Flag7" type="TextureRect" parent="MainCanvas/Flags"]
+margin_top = 183.23
+margin_right = 32.0
+margin_bottom = 215.23
+
+[node name="Flag8" type="TextureRect" parent="MainCanvas/Flags"]
+margin_top = 212.826
+margin_right = 32.0
+margin_bottom = 244.826
+
+[node name="Flag9" type="TextureRect" parent="MainCanvas/Flags"]
+margin_left = 0.343353
+margin_top = 242.02
+margin_right = 32.3434
+margin_bottom = 274.02
+
+[node name="TextureRect" type="TextureRect" parent="MainCanvas"]
+visible = false
+material = SubResource( 12 )
+margin_left = 732.546
+margin_top = 291.404
+margin_right = 2400.55
+margin_bottom = 2515.4
+rect_scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="MainCanvas"]
+visible = false
+material = SubResource( 12 )
+margin_left = 286.345
+margin_top = 295.719
+margin_right = 1954.35
+margin_bottom = 2519.72
+rect_scale = Vector2( -0.2, 0.2 )
+texture = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Camera" type="Camera2D" parent="."]
+
+[node name="ScoreManager" type="Node" parent="."]
+script = ExtResource( 10 )
+
+[node name="HTTPRequest" type="HTTPRequest" parent="ScoreManager"]
 [connection signal="mouse_entered" from="MainCanvas/Button/ClickArea" to="MainCanvas/Button" method="_on_ClickArea_mouse_entered"]
 [connection signal="mouse_exited" from="MainCanvas/Button/ClickArea" to="MainCanvas/Button" method="_on_ClickArea_mouse_exited"]
 [connection signal="pressed" from="MainCanvas/Button/ClickArea" to="MainCanvas/Button" method="_on_ClickArea_pressed"]
+[connection signal="scores_loaded" from="ScoreManager" to="." method="_on_ScoreManager_scores_loaded"]
