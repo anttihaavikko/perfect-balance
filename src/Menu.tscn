@@ -1,11 +1,11 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/shaders/Shockwave.shader" type="Shader" id=2]
 [ext_resource path="res://assets/shaders/Bloom.shader" type="Shader" id=3]
 [ext_resource path="res://assets/shaders/Clouds.shader" type="Shader" id=4]
 [ext_resource path="res://src/Clouds.gd" type="Script" id=5]
-[ext_resource path="res://src/Button.gd" type="Script" id=6]
+[ext_resource path="res://src/Button.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/misc/Amatic-Bold.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://src/Shockwave.gd" type="Script" id=8]
 [ext_resource path="res://src/PulsateCanvasItem.gd" type="Script" id=9]
@@ -128,12 +128,6 @@ shader_param/scan_size = 2.0
 shader_param/scanline_alpha = 1.0
 shader_param/lines_velocity = 30.0
 
-[sub_resource type="DynamicFont" id=10]
-size = 50
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 7 )
-
 [sub_resource type="DynamicFont" id=8]
 size = 80
 outline_size = 1
@@ -250,55 +244,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="ColorRect" parent="MainCanvas"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -150.0
-margin_top = 156.578
-margin_right = 150.0
-margin_bottom = 256.578
-rect_pivot_offset = Vector2( 150, 50 )
-script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Fill" type="ColorRect" parent="MainCanvas/Button"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 9.32263
-margin_top = 10.0
-margin_right = -10.6774
-margin_bottom = -10.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Name" type="Label" parent="MainCanvas/Button"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 9.01477
-margin_top = 18.314
-margin_right = 9.01477
-margin_bottom = 18.314
-rect_pivot_offset = Vector2( 300, 30 )
-custom_fonts/font = SubResource( 10 )
+[node name="StartButton" parent="MainCanvas" instance=ExtResource( 6 )]
 text = "Start"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ClickArea" type="Button" parent="MainCanvas/Button"]
-self_modulate = Color( 1, 1, 1, 0 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+scene_to_load = "NameInput"
 
 [node name="Title" type="Label" parent="MainCanvas"]
 margin_left = 210.944
@@ -340,9 +288,9 @@ __meta__ = {
 }
 
 [node name="Names" type="Label" parent="MainCanvas"]
-margin_left = 335.725
+margin_left = 352.542
 margin_top = 166.886
-margin_right = 735.725
+margin_right = 752.542
 margin_bottom = 433.886
 rect_pivot_offset = Vector2( 300, 30 )
 custom_fonts/font = SubResource( 11 )
@@ -351,9 +299,9 @@ __meta__ = {
 }
 
 [node name="Scores" type="Label" parent="MainCanvas"]
-margin_left = 313.285
+margin_left = 316.302
 margin_top = 167.097
-margin_right = 713.285
+margin_right = 716.302
 margin_bottom = 434.097
 rect_pivot_offset = Vector2( 300, 30 )
 custom_fonts/font = SubResource( 11 )
@@ -363,9 +311,9 @@ __meta__ = {
 }
 
 [node name="Flags" type="ColorRect" parent="MainCanvas"]
-margin_left = 286.48
+margin_left = 299.302
 margin_top = 163.0
-margin_right = 326.48
+margin_right = 339.302
 margin_bottom = 436.0
 color = Color( 1, 1, 1, 0 )
 __meta__ = {
@@ -444,7 +392,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="NextPage" parent="MainCanvas" instance=ExtResource( 6 )]
+margin_left = 253.244
+margin_top = -53.1004
+margin_right = 350.0
+margin_bottom = 46.8996
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 50, 50 )
+text = ">"
+
+[node name="PrevPage" parent="MainCanvas" instance=ExtResource( 6 )]
+margin_left = -350.0
+margin_top = -53.1004
+margin_right = -260.948
+margin_bottom = 46.8996
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 50, 50 )
+text = "<"
+
 [node name="Camera" type="Camera2D" parent="."]
-[connection signal="mouse_entered" from="MainCanvas/Button/ClickArea" to="MainCanvas/Button" method="_on_ClickArea_mouse_entered"]
-[connection signal="mouse_exited" from="MainCanvas/Button/ClickArea" to="MainCanvas/Button" method="_on_ClickArea_mouse_exited"]
-[connection signal="pressed" from="MainCanvas/Button/ClickArea" to="MainCanvas/Button" method="_on_ClickArea_pressed"]
+[connection signal="clicked" from="MainCanvas/NextPage" to="." method="_on_NextPage_clicked"]
+[connection signal="clicked" from="MainCanvas/PrevPage" to="." method="_on_PrevPage_clicked"]

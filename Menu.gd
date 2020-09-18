@@ -7,20 +7,37 @@ onready var flag_texture: Texture
 
 onready var score_manager := $"/root/ScoreManager"
 
+onready var next := $MainCanvas/NextPage
+onready var prev := $MainCanvas/PrevPage
+
 var flags = []
+var page = 0
 
 func _ready() -> void:
+	next.hide()
+	prev.hide()
 	score_manager.connect("scores_loaded", self, "_on_ScoreManager_scores_loaded")
-	score_manager.load_scores()
+	score_manager.load_scores(page)
 	
 	flag_texture = load("res://assets/sprites/flags.png")
 	
 	for i in range(9):
 		flags.append(get_node("MainCanvas/Flags/Flag%d" % (i + 1)))
+		
+func _on_NextPage_clicked() -> void:
+	page += 1
+	score_manager.load_scores(page)
+
+func _on_PrevPage_clicked() -> void:
+	page -= 1
+	score_manager.load_scores(page)
 
 func _on_ScoreManager_scores_loaded(scores) -> void:
 	leaderboard_names.text = ""
 	leaderboard_scores.text = ""
+	
+	for flag in flags:
+		flag.hide()
 	
 	for entry in scores:
 		leaderboard_names.text += "%d. %s\n" % [entry.position, entry.name]
@@ -29,7 +46,19 @@ func _on_ScoreManager_scores_loaded(scores) -> void:
 		at.set_atlas(flag_texture)
 		var off = get_flag_pos(entry.locale)
 		at.region = Rect2(off.x,off.y, 32, 32)
-		flags[entry.position - 1].texture = at;
+		var flag = flags[entry.position - 1 - page * 9]
+		flag.texture = at;
+		flag.show()
+		
+	if scores.size() >= 9:
+		next.show()
+	else:
+		next.hide()
+		
+	if page == 0:
+		prev.hide()
+	else:
+		prev.show()
 		
 static func get_flag_pos(country: String) -> Vector2:
 	if country == "bj":

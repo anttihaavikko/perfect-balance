@@ -4,12 +4,11 @@ onready var request = $HTTPRequest
 
 var base_url := "https://games.sahaqiel.com"
 var game_name := "miz"
-var page := 0
 var per_page := 9
 
 signal scores_loaded(data);
 	
-func load_scores():
+func load_scores(page: int):
 	var url = "%s/leaderboards/load-scores.php?amt=%d&p=%d&game=%s" % [base_url, per_page, page, game_name]
 	request.connect("request_completed", self, "_got_scores")
 	request.request(url)
