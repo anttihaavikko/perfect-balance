@@ -5,9 +5,14 @@ onready var leaderboard_scores = $MainCanvas/Scores
 
 onready var flag_texture: Texture
 
+onready var score_manager := $"/root/ScoreManager"
+
 var flags = []
 
 func _ready() -> void:
+	score_manager.connect("scores_loaded", self, "_on_ScoreManager_scores_loaded")
+	score_manager.load_scores()
+	
 	flag_texture = load("res://assets/sprites/flags.png")
 	
 	for i in range(9):

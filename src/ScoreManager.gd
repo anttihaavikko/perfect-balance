@@ -8,9 +8,6 @@ var page := 0
 var per_page := 9
 
 signal scores_loaded(data);
-
-func _ready() -> void:
-	load_scores()
 	
 func load_scores():
 	var url = "%s/leaderboards/load-scores.php?amt=%d&p=%d&game=%s" % [base_url, per_page, page, game_name]

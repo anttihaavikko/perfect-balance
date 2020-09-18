@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/shaders/Shockwave.shader" type="Shader" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://assets/misc/Amatic-Bold.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://src/Shockwave.gd" type="Script" id=8]
 [ext_resource path="res://src/PulsateCanvasItem.gd" type="Script" id=9]
-[ext_resource path="res://src/ScoreManager.gd" type="Script" id=10]
 [ext_resource path="res://assets/sprites/bonuses/helper.png" type="Texture" id=11]
 [ext_resource path="res://assets/sprites/bonuses/luck.png" type="Texture" id=12]
 
@@ -455,12 +454,6 @@ __meta__ = {
 }
 
 [node name="Camera" type="Camera2D" parent="."]
-
-[node name="ScoreManager" type="Node" parent="."]
-script = ExtResource( 10 )
-
-[node name="HTTPRequest" type="HTTPRequest" parent="ScoreManager"]
 [connection signal="mouse_entered" from="MainCanvas/Button/ClickArea" to="MainCanvas/Button" method="_on_ClickArea_mouse_entered"]
 [connection signal="mouse_exited" from="MainCanvas/Button/ClickArea" to="MainCanvas/Button" method="_on_ClickArea_mouse_exited"]
 [connection signal="pressed" from="MainCanvas/Button/ClickArea" to="MainCanvas/Button" method="_on_ClickArea_pressed"]
-[connection signal="scores_loaded" from="ScoreManager" to="." method="_on_ScoreManager_scores_loaded"]

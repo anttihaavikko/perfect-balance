@@ -101,6 +101,7 @@ config/icon="res://assets/sprites/icon.png"
 Quick="*res://src/Quick.gd"
 Music="*res://src/Music.tscn"
 Stuff="*res://src/Stuff.tscn"
+ScoreManager="*res://src/ScoreManager.tscn"
 
 [debug]
 
