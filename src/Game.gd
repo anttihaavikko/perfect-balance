@@ -184,3 +184,6 @@ func update_bullets(i, bullet):
 	bullet_positions[i] = bullet.position
 	var a = 0 if bullet.is_enemy else 1
 	bullet_colors[i] = Color(bullet.color.r, bullet.color.g, bullet.color.b, a)
+	
+func send_score():
+	ScoreManager.submit(score.score, spawner.wave)

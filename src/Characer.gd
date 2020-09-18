@@ -81,7 +81,11 @@ func die():
 	boom(body.position)
 	shaker.start(0.4, 20, 15)
 	game.spawn_pickup_on(body.position)
+	_died()
 	queue_free()
+	
+func _died():
+	pass
 	
 func boom(pos: Vector2, amount: float = 1.0, duration: float = 1.2):
 	shockwave.boom(pos, amount, duration)
