@@ -2,6 +2,9 @@ extends Enemy
 class_name Boss
 
 onready var face = $Torso/Face
+onready var enrage_timer = $Timer
+onready var teleport_marker = $TeleportMarker
+onready var boss_body = $Torso
 
 var cached_angle = 0.0
 var mid: Vector2
@@ -10,6 +13,8 @@ var face_tween: Tween
 func _ready() -> void:
 	face_tween = Tween.new()
 	add_child(face_tween)
+	
+	teleport_marker.scale = Vector2.ZERO
 	
 	if face:
 		mid = face.position
@@ -107,3 +112,22 @@ func _process(delta: float) -> void:
 			yield(get_tree().create_timer(0.5 / stats.speed), "timeout")
 			move_face(get_face_pos())
 			attack = pick_attack()
+	if player && body:
+		var diff = player.body.position - body.position
+		if abs(diff.length()) > 3000:
+			if enrage_timer.is_stopped():
+				enrage_timer.wait_time = 0.5 / stats.fire_rate
+				enrage_timer.start()
+				var tele_max_dist = 300
+				var off = Vector2(rand_range(-tele_max_dist, tele_max_dist), rand_range(-tele_max_dist, tele_max_dist))
+				teleport_marker.position = player.body.position + off
+				Quick.tween_show(teleport_marker)
+		else:
+			if !enrage_timer.is_stopped():
+				enrage_timer.stop()
+				Quick.tween_hide(teleport_marker)
+
+func enraged() -> void:
+	if player:
+		boss_body.teleport(teleport_marker.position)
+		player.shockwave.boom(teleport_marker.position, 2, 1)

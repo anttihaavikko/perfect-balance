@@ -412,11 +412,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -457.444
+margin_left = -487.0
 margin_top = -265.587
 margin_right = -157.444
 margin_bottom = -165.587
-rect_pivot_offset = Vector2( 150, 50 )
 text = "Again?"
 
 [node name="MenuButton" parent="." instance=ExtResource( 7 )]
@@ -426,7 +425,7 @@ anchor_right = 0.0
 anchor_bottom = 1.0
 margin_left = 157.0
 margin_top = -264.718
-margin_right = 457.0
+margin_right = 487.0
 margin_bottom = -164.718
 text = "Menu"
 scene_to_load = "Menu"

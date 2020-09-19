@@ -190,10 +190,8 @@ func update_bullets(i, bullet):
 	var a = 0 if bullet.is_enemy else 1
 	bullet_colors[i] = Color(bullet.color.r, bullet.color.g, bullet.color.b, a)
 	
-func send_score():
-	ScoreManager.submit(score.score, spawner.wave)
-	
 func game_over():
+	ScoreManager.submit(score.score, spawner.wave)
 	yield(get_tree().create_timer(1.5), "timeout")
 	Quick.tween_show($Canvas/GameOver)
 	yield(get_tree().create_timer(0.5), "timeout")

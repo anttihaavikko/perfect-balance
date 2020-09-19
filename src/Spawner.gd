@@ -113,7 +113,7 @@ func reposition():
 		noise_seed = randi()
 		position = plr.body.get_global_transform().get_origin() + 1500 * Vector2(cos(dir), sin(dir)).normalized()
 		appearer.appear()
-		wave_info.text = "Levelsd " + level as String + "    ::    " + get_wave_name()
+		wave_info.text = "Level " + level as String + "    ::    " + get_wave_name()
 		
 func get_wave_name() -> String:
 	if is_boss_wave():
