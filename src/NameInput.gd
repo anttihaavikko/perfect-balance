@@ -23,7 +23,8 @@ func _on_Go_clicked() -> void:
 	start_game()
 
 func start_game():
+	print("name is %s" % input.text)
+	ScoreManager.player_name = input.text;
 	TransitionScreen.close()
 	yield(get_tree().create_timer(TransitionScreen.transition_time), "timeout")
-	ScoreManager.player_name = input.text;
 	get_tree().change_scene("res://src/Game.tscn")
