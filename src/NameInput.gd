@@ -4,6 +4,7 @@ onready var go = $MainCanvas/Go
 onready var input = $MainCanvas/LineEdit
 
 func _ready() -> void:
+	OS.low_processor_usage_mode = true
 	go.hide()
 	input.grab_focus()
 

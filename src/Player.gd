@@ -138,4 +138,4 @@ func _took_damage():
 	game.score.reset_multi()
 	
 func _died():
-	game.send_score()
+	game.game_over()

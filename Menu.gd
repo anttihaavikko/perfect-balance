@@ -14,6 +14,7 @@ var flags = []
 var page = 0
 
 func _ready() -> void:
+	OS.low_processor_usage_mode = true
 	next.hide()
 	prev.hide()
 	score_manager.connect("scores_loaded", self, "_on_ScoreManager_scores_loaded")

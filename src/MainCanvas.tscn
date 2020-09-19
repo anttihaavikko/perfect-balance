@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/shaders/Shockwave.shader" type="Shader" id=1]
 [ext_resource path="res://assets/shaders/Bloom.shader" type="Shader" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/BonusSelection.gd" type="Script" id=4]
 [ext_resource path="res://assets/misc/Amatic-Bold.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://src/Shockwave.gd" type="Script" id=6]
+[ext_resource path="res://src/Button.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
@@ -147,6 +148,12 @@ font_data = ExtResource( 5 )
 size = 20
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 120
+outline_size = 4
+outline_color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
 font_data = ExtResource( 5 )
 
 [node name="MainCanvas" type="CanvasLayer"]
@@ -384,4 +391,43 @@ __meta__ = {
 [node name="Timer" type="Timer" parent="Score"]
 wait_time = 2.0
 one_shot = true
+
+[node name="GameOver" type="Label" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -138.199
+margin_bottom = 124.801
+rect_pivot_offset = Vector2( 512, 80 )
+custom_fonts/font = SubResource( 15 )
+text = "Game Over
+"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AgainButton" parent="." instance=ExtResource( 7 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -457.444
+margin_top = -265.587
+margin_right = -157.444
+margin_bottom = -165.587
+rect_pivot_offset = Vector2( 150, 50 )
+text = "Again?"
+
+[node name="MenuButton" parent="." instance=ExtResource( 7 )]
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+margin_left = 157.0
+margin_top = -264.718
+margin_right = 457.0
+margin_bottom = -164.718
+text = "Menu"
+scene_to_load = "Menu"
 [connection signal="timeout" from="Score/Timer" to="Score" method="_on_Timer_timeout"]

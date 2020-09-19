@@ -17,6 +17,8 @@ func tween(object, property: String, from, to, duration: float, easing := Tween.
 	
 func tween_show(object, duration: float = 0.5):
 	tween(object, "scale", Vector2.ZERO, Vector2.ONE, duration)
+	tween(object, "rect_scale", Vector2.ZERO, Vector2.ONE, duration)
 	
 func tween_hide(object, duration: float = 0.5):
 	tween(object, "scale", Vector2.ONE, Vector2.ZERO, duration, Tween.TRANS_CUBIC, true, true)
+	tween(object, "rect_scale", Vector2.ONE, Vector2.ZERO, duration, Tween.TRANS_CUBIC, true, true)

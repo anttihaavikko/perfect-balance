@@ -29,6 +29,11 @@ var allowed_picks = 1
 
 func _ready() -> void:
 	OS.low_processor_usage_mode = true
+	$Canvas/AgainButton.connect("clicked", self, "restart")
+	
+	$Canvas/GameOver.rect_scale = Vector2.ZERO
+	$Canvas/AgainButton.rect_scale = Vector2.ZERO
+	$Canvas/MenuButton.rect_scale = Vector2.ZERO
 
 func get_random_color() -> Color:
 	return colors[randi() % colors.size()]
@@ -187,3 +192,14 @@ func update_bullets(i, bullet):
 	
 func send_score():
 	ScoreManager.submit(score.score, spawner.wave)
+	
+func game_over():
+	yield(get_tree().create_timer(1.5), "timeout")
+	Quick.tween_show($Canvas/GameOver)
+	yield(get_tree().create_timer(0.5), "timeout")
+	Quick.tween_show($Canvas/AgainButton)
+	yield(get_tree().create_timer(0.25), "timeout")
+	Quick.tween_show($Canvas/MenuButton)
+	
+func restart():
+	get_tree().reload_current_scene()	
