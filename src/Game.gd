@@ -28,6 +28,7 @@ var bonus_picks := 0
 var allowed_picks = 1
 
 func _ready() -> void:
+	TransitionScreen.open()
 	OS.low_processor_usage_mode = true
 	$Canvas/AgainButton.connect("clicked", self, "restart")
 	
@@ -200,4 +201,6 @@ func game_over():
 	Quick.tween_show($Canvas/MenuButton)
 	
 func restart():
+	TransitionScreen.close()
+	yield(get_tree().create_timer(TransitionScreen.transition_time), "timeout")
 	get_tree().reload_current_scene()	

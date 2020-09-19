@@ -108,6 +108,7 @@ Quick="*res://src/Quick.gd"
 Music="*res://src/Music.tscn"
 Stuff="*res://src/Stuff.tscn"
 ScoreManager="*res://src/ScoreManager.tscn"
+TransitionScreen="*res://src/TransitionScreen.tscn"
 
 [debug]
 

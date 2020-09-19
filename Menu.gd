@@ -14,6 +14,7 @@ var flags = []
 var page = 0
 
 func _ready() -> void:
+	TransitionScreen.open()
 	OS.low_processor_usage_mode = true
 	next.hide()
 	prev.hide()
@@ -32,6 +33,11 @@ func _on_NextPage_clicked() -> void:
 func _on_PrevPage_clicked() -> void:
 	page -= 1
 	score_manager.load_scores(page)
+	
+func _on_Close_clicked() -> void:
+	TransitionScreen.close()
+	yield(get_tree().create_timer(TransitionScreen.transition_time), "timeout")
+	get_tree().quit()
 
 func _on_ScoreManager_scores_loaded(scores) -> void:
 	leaderboard_names.text = ""

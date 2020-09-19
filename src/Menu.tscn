@@ -397,7 +397,7 @@ margin_left = 253.244
 margin_top = -53.1004
 margin_right = 350.0
 margin_bottom = 46.8996
-rect_scale = Vector2( 0.5, 0.5 )
+rect_scale = Vector2( 0.5, 0.422 )
 rect_pivot_offset = Vector2( 50, 50 )
 text = ">"
 
@@ -406,10 +406,20 @@ margin_left = -350.0
 margin_top = -53.1004
 margin_right = -260.948
 margin_bottom = 46.8996
-rect_scale = Vector2( 0.5, 0.5 )
+rect_scale = Vector2( 0.5, 0.422 )
 rect_pivot_offset = Vector2( 50, 50 )
 text = "<"
+
+[node name="Close" parent="MainCanvas" instance=ExtResource( 6 )]
+margin_left = -517.218
+margin_top = -308.065
+margin_right = -428.166
+margin_bottom = -208.065
+rect_scale = Vector2( 0.5, 0.422 )
+rect_pivot_offset = Vector2( 50, 50 )
+text = "X"
 
 [node name="Camera" type="Camera2D" parent="."]
 [connection signal="clicked" from="MainCanvas/NextPage" to="." method="_on_NextPage_clicked"]
 [connection signal="clicked" from="MainCanvas/PrevPage" to="." method="_on_PrevPage_clicked"]
+[connection signal="clicked" from="MainCanvas/Close" to="." method="_on_Close_clicked"]

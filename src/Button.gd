@@ -16,6 +16,8 @@ func _ready() -> void:
 
 func _on_ClickArea_pressed() -> void:
 	if scene_to_load:
+		TransitionScreen.close()
+		yield(get_tree().create_timer(TransitionScreen.transition_time), "timeout")
 		get_tree().change_scene("res://src/%s.tscn" % scene_to_load)
 	else:
 		emit_signal("clicked")

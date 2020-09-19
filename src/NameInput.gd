@@ -4,6 +4,7 @@ onready var go = $MainCanvas/Go
 onready var input = $MainCanvas/LineEdit
 
 func _ready() -> void:
+	TransitionScreen.open()
 	OS.low_processor_usage_mode = true
 	go.hide()
 	input.grab_focus()
@@ -22,5 +23,7 @@ func _on_Go_clicked() -> void:
 	start_game()
 
 func start_game():
+	TransitionScreen.close()
+	yield(get_tree().create_timer(TransitionScreen.transition_time), "timeout")
 	ScoreManager.player_name = input.text;
 	get_tree().change_scene("res://src/Game.tscn")
