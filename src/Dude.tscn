@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/sprites/torso.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/head.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/sprites/heart.png" type="Texture" id=8]
 [ext_resource path="res://src/Pulsate.gd" type="Script" id=9]
 [ext_resource path="res://src/Muzzle.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/PlayerBody.gd" type="Script" id=11]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 43.0255
@@ -64,8 +65,9 @@ hitbox_radius = 50
 
 [node name="Torso" type="RigidBody2D" parent="."]
 collision_layer = 2
-collision_mask = 11
+collision_mask = 15
 gravity_scale = 0.0
+script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Torso"]
 visible = false
@@ -123,6 +125,8 @@ position = Vector2( 0.495575, -92.2172 )
 collision_layer = 2
 collision_mask = 3
 gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
 linear_damp = 10.0
 angular_damp = 10.0
 
@@ -406,3 +410,14 @@ visible = false
 scale = Vector2( 3, 3 )
 z_index = 1
 texture = ExtResource( 6 )
+[connection signal="body_entered" from="Torso" to="." method="_on_Torso_body_entered"]
+[connection signal="body_entered" from="Head" to="." method="_on_Head_body_entered"]
+[connection signal="body_entered" from="Pelvis" to="." method="_on_Pelvis_body_entered"]
+[connection signal="body_entered" from="Limb Upper" to="." method="_on_Limb_Upper_body_entered"]
+[connection signal="body_entered" from="Limb Lower" to="." method="_on_Limb_Lower_body_entered"]
+[connection signal="body_entered" from="Limb Upper2" to="." method="_on_Limb_Upper2_body_entered"]
+[connection signal="body_entered" from="Limb Lower2" to="." method="_on_Limb_Lower2_body_entered"]
+[connection signal="body_entered" from="Limb Upper3" to="." method="_on_Limb_Upper3_body_entered"]
+[connection signal="body_entered" from="Limb Lower3" to="." method="_on_Limb_Lower3_body_entered"]
+[connection signal="body_entered" from="Limb Upper4" to="." method="_on_Limb_Upper4_body_entered"]
+[connection signal="body_entered" from="Limb Lower4" to="." method="_on_Limb_Lower4_body_entered"]

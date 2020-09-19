@@ -22,6 +22,8 @@ var color_reset: Timer
 
 var stats: Stats;
 
+var ignore_collision := 0
+
 var picking_bonus := false
 
 var scores := true
@@ -46,8 +48,10 @@ func _move(delta):
 	body.angular_velocity = angle * 30000 * delta * stats.speed * mod
 	
 func _process(delta):
+	if ignore_collision > 0:
+		ignore_collision -= delta
 	
-	if(shot_cooldown > 0):
+	if shot_cooldown > 0:
 		shot_cooldown -= delta * stats.fire_rate
 		
 func recoil():
@@ -59,13 +63,16 @@ func _update_hp():
 func _took_damage():
 	pass
 	
-func take_hit(bullet: Bullet):
+func damage(amount: int):
 	if !picking_bonus:
-		stats.hp -= bullet.damage
+		stats.hp -= amount
 		_update_hp()
 		_took_damage()
 		
 	flash()
+	
+func take_hit(bullet: Bullet):
+	damage(bullet.damage)
 	
 func is_alive() -> bool:
 	return stats.hp > 0
@@ -96,5 +103,38 @@ func flash(color: int = 0):
 	modulate = game.colors[color]
 	yield(get_tree().create_timer(0.1), "timeout")
 	modulate = base_color
-	#tween.interpolate_property(self, "modulate", Color.white, base_color, 0.5, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
-	#tween.start()
+	
+func collided(other):
+	if ignore_collision <= 0 && other.get_node("..").is_enemy:
+		ignore_collision = 0.5
+		damage(game.spawner.stats.damage)
+
+func _on_Head_body_entered(body: Node) -> void:
+	collided(body)
+	
+func _on_Pelvis_body_entered(body: Node) -> void:
+	collided(body)
+
+func _on_Limb_Upper_body_entered(body: Node) -> void:
+	collided(body)
+
+func _on_Limb_Lower_body_entered(body: Node) -> void:
+	collided(body)
+
+func _on_Limb_Upper2_body_entered(body: Node) -> void:
+	collided(body)
+
+func _on_Limb_Lower2_body_entered(body: Node) -> void:
+	collided(body)
+
+func _on_Limb_Upper3_body_entered(body: Node) -> void:
+	collided(body)
+
+func _on_Limb_Lower3_body_entered(body: Node) -> void:
+	collided(body)
+
+func _on_Limb_Upper4_body_entered(body: Node) -> void:
+	collided(body)
+
+func _on_Limb_Lower4_body_entered(body: Node) -> void:
+	collided(body)
