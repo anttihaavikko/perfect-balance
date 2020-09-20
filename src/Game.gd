@@ -171,33 +171,36 @@ func enemy_pick(bonus: Dictionary):
 		spawner.stats.apply(bonuses.get_curse())
 	
 func pick_bonus(bonus: Dictionary, index: int):
-	player.stats.apply(bonus)
+	
+	if bonus_picks < allowed_picks:
+		player.stats.apply(bonus)
+	
+		if bonus.key == "heal":
+			player.stats.hp = player.stats.hp_max
+			
+		if bonus.key == "drone":
+			for i in range(bonus.value):
+				player.add_drone()
+			
+		if bonus.key == "points":
+			score.add(bonus.value)
+			
+		if bonus.key == "multiplier":
+			score.multi_multi(bonus.value)
+			
+		if bonus.key == "fruit":
+			player.immortal = true
+			AudioManager.pitch_shift()
+			Music.pitch_scale = 1.2
+			
+		if bonus.cursed:
+			player.stats.apply(bonuses.get_curse())
+			
+		player._update_hp()
+		
+		bonuses.add_enemy_bonuses(index)
+	
 	bonus_picks += 1
-	
-	if bonus.key == "heal":
-		player.stats.hp = player.stats.hp_max
-		
-	if bonus.key == "drone":
-		for i in range(bonus.value):
-			player.add_drone()
-		
-	if bonus.key == "points":
-		score.add(bonus.value)
-		
-	if bonus.key == "multiplier":
-		score.multi_multi(bonus.value)
-		
-	if bonus.key == "fruit":
-		player.immortal = true
-		AudioManager.pitch_shift()
-		Music.pitch_scale = 1.2
-		
-	if bonus.cursed:
-		player.stats.apply(bonuses.get_curse())
-		
-	player._update_hp()
-	
-	bonuses.add_enemy_bonuses(index)
 	
 	if bonus_picks >= allowed_picks:
 		bonus_picks = 0

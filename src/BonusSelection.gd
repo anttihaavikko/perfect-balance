@@ -76,7 +76,7 @@ func add_enemy_bonuses(index: int):
 func get_curse():
 	var curse = get_bonus()
 	if curse.type == "multiply":
-		curse.value = -1 * (curse.value - 1);
+		curse.value = 1 - curse.value - 1;
 	if curse.type == "add":
 		curse.value *= -1
 	return curse
