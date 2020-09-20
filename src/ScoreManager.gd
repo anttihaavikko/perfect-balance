@@ -28,7 +28,7 @@ func submit(score: int, level: int):
 	request.connect("request_completed", self, "_score_submitted")
 	request.request(url)
 
-func _score_submitted():
+func _score_submitted(result, response_code, headers, body):
 	emit_signal("score_submitted")
 
 func _got_scores(result, response_code, headers, body):
