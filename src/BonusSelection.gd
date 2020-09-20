@@ -184,7 +184,7 @@ func get_bonus():
 		},
 		{
 			"title": "PATIENCE",
-			"desc": "+{value} Picks",
+			"desc": "{value} Picks",
 			"texture": "patience",
 			"key": "picks",
 			"type": "add",
@@ -223,7 +223,7 @@ func get_bonus():
 	var cursed = bonuses[randi() % bonuses.size()];
 	cursed.cursed = true
 	
-	if cursed.type == "add":
+	if cursed.type == "add" || cursed.type == "custom":
 		cursed.value *= 2
 	
 	if cursed.type == "multiply":

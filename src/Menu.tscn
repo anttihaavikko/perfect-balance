@@ -263,7 +263,7 @@ margin_right = 810.944
 margin_bottom = 87.0309
 rect_pivot_offset = Vector2( 300, 30 )
 custom_fonts/font = SubResource( 8 )
-text = "Godot Shmup"
+text = "Perfect Balance"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -271,9 +271,9 @@ __meta__ = {
 
 [node name="Line" type="ColorRect" parent="MainCanvas"]
 margin_left = 361.092
-margin_top = 89.7339
+margin_top = 93.7815
 margin_right = 661.092
-margin_bottom = 93.7339
+margin_bottom = 97.7815
 rect_pivot_offset = Vector2( 150, 2 )
 script = ExtResource( 9 )
 __meta__ = {
