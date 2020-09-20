@@ -16,6 +16,11 @@ onready var go = $Canvas/GameOver
 onready var ab = $Canvas/AgainButton
 onready var mb = $Canvas/MenuButton
 
+onready var tutorial_move = $TutorialMove
+onready var tutorial_aim = $TutorialAim
+onready var tutorial_move_timer = $TutorialMoveTimer
+onready var tutorial_aim_timer = $TutorialAimTimer
+
 onready var bits = preload("res://src/Bits.tscn")
 onready var parts = preload("res://src/Parts.tscn")
 onready var pulse = preload("res://src/Pulse.tscn")
@@ -29,6 +34,8 @@ var emitted := false
 
 var bonus_picks := 0
 var allowed_picks = 1
+
+var can_spawn := false
 
 func _ready() -> void:
 	TransitionScreen.open()
@@ -59,7 +66,7 @@ func _process(delta):
 		if c.is_enemy:
 			alive += 1
 	
-	if alive == 0 && !emitted:
+	if alive == 0 && !emitted && can_spawn:
 		emit_signal("no_enemies")
 		emitted = true
 	
@@ -214,8 +221,22 @@ func appear_sound(pos):
 	AudioManager.add(25, cam.position + pos, 1.000000)
 	AudioManager.add(20, cam.position + pos, 1.000000)
 
-	
 func restart():
 	TransitionScreen.close()
 	yield(get_tree().create_timer(TransitionScreen.transition_time), "timeout")
 	get_tree().reload_current_scene()	
+
+func _on_Timer_timeout() -> void:
+	player.move_shown = true
+	var angle = randf() * 2 * PI
+	tutorial_move.position = player.body.position + Vector2(cos(angle), sin(angle)) * 800
+	Quick.tween_show(tutorial_move)
+
+func _on_TutorialAimTimer_timeout() -> void:
+	player.aim_shown = true
+	var angle = randf() * 2 * PI
+	tutorial_aim.position = player.body.position + Vector2(cos(angle), sin(angle)) * 800
+	Quick.tween_show(tutorial_aim)
+	yield(get_tree().create_timer(1.5), "script_changed")
+	can_spawn = true
+	spawner.start_timer.start()

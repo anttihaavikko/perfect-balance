@@ -25,6 +25,11 @@ var noise: OpenSimplexNoise
 var noise_offset := 0
 var drones = []
 
+var move_shown := false
+var aim_shown := false
+var move_done := false
+var aim_done := false
+
 func _init() -> void:
 	self.stats.hp_max = 5
 	self.stats.hp = 5
@@ -87,12 +92,29 @@ func _process(delta):
 	var repos_velo = repos * 10.0 * delta
 	
 	cam.position += repos_velo
+	
+	if body.position.length() > 500:
+		if !move_done:
+			game.tutorial_move_timer.stop()
+			if move_shown:
+				Quick.tween_hide(game.tutorial_move)
+			if !aim_done:
+				game.tutorial_aim_timer.start()
+		move_done = true
 
 func shoot(angle):
+	
+	if !aim_done:
+		game.can_spawn = true
+		game.spawner.start_timer.start()
+		aim_done = true
+		game.tutorial_aim_timer.stop()
+		if aim_shown:
+			Quick.tween_hide(game.tutorial_aim)
+	
 	AudioManager.add(11, body.position, 0.700000)
 	AudioManager.add(2, body.position, 1.000000)
 	AudioManager.add(28, body.position, 1.2500000)
-
 
 	shockwave.boom(muzzle_flash.position)
 	shot_particles.emitting = true
