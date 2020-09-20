@@ -140,7 +140,7 @@ outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=10]
 size = 20
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -301,7 +301,7 @@ margin_top = 148.973
 margin_right = 811.0
 margin_bottom = 175.973
 rect_pivot_offset = Vector2( 300, 30 )
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 10 )
 text = "Made for Godot Wild Jam #25  -  Keep an eye out for the wildcard \"Forbidden Fruit\""
 align = 1
 __meta__ = {

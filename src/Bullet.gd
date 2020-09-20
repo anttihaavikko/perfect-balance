@@ -30,7 +30,7 @@ func _init(position: Vector2, angle: float, speed: float, color: Color):
 	self.speed = speed
 	self.color = color
 
-func update(delta) -> bool:
+func update(delta, target) -> bool:
 	prev_pos = position
 	position += Vector2(cos(angle), sin(angle)) * speed * delta;
 	lifetime -= delta
@@ -44,6 +44,11 @@ func update(delta) -> bool:
 		
 	if(type == Type.CURVE_RIGHT):
 		angle += curve;
+		
+	if type == Type.HOMING:
+		var diff = position.angle_to_point(target.body.position)
+		var dir = 1 if diff > 0 else -1
+		angle += curve * dir
 		
 	if(type == Type.SNAKE):
 		angle += curve * sign(sin(phase));

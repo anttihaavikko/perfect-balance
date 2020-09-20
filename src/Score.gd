@@ -37,7 +37,7 @@ func update_multi():
 	multiplier.text = "x" + multi as String
 	
 func _process(delta: float) -> void:
-	total.text = score as String
+	total.text = round(score) as String
 	fps.text = Engine.get_frames_per_second() as String
 
 func _on_Timer_timeout() -> void:

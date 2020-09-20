@@ -104,9 +104,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Shmup"
+config/name="Perfect Blance"
 run/main_scene="res://src/Menu.tscn"
-config/icon="res://assets/sprites/icon.png"
+config/icon="res://assets/sprites/pb-icon.png"
 
 [autoload]
 

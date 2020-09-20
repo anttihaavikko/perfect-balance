@@ -79,7 +79,7 @@ func _process(delta):
 			if abs(diff.length()) > 4000:
 				too_far = true
 		
-		if !bullet.update(delta) || too_far:
+		if !bullet.update(delta, player) || too_far:
 			used.push_front(i)
 		else:
 			update_bullets(i, bullet)

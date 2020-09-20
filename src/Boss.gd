@@ -70,7 +70,7 @@ func pick_attack() -> Attack:
 			Burst.new(Bullet.Type.CURVE_LEFT, mod * 0.1, 25, 3.0, 0.5 * PI, delay),
 			Burst.new(Bullet.Type.CURVE_LEFT, mod * 0.1, 25, 3.0, 1.0 * PI, delay),
 			Burst.new(Bullet.Type.CURVE_LEFT, mod * 0.1, 25, 3.0, 1.5 * PI, delay)
-		], 0.4),	
+		], 0.4)
 	]
 	
 	var attack = attacks[randi() % attacks.size()] as Attack
