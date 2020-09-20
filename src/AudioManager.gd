@@ -8,10 +8,10 @@ var pools = []
 func _ready() -> void:
 	for i in range(effects.size()):
 		pools.append([])
-		print("init pool for %d (%s)" % [i, effects[i]])
+#		print("init pool for %d (%s)" % [i, effects[i]])
 
 func add(index: int, pos: Vector2 = Vector2(512, 300), volume: float = 1.0):
-	print("playing effect %d" % index)
+#	print("playing effect %d" % index)
 	var e = create(index)
 	e.index = index
 	e.position = pos
@@ -33,4 +33,4 @@ func create(index: int):
 
 func add_to_pool(e):
 	pools[e.index].append(e)
-	print("adding to pool %d (%d)" % [e.index, pools[e.index].size()])
+#	print("adding to pool %d (%d)" % [e.index, pools[e.index].size()])

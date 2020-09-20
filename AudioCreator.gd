@@ -14,8 +14,10 @@ func _ready() -> void:
 	form.text = AudioManager.effects[preview]
 
 func _on_Button_pressed() -> void:
+	print("------------------------")
 	for i in range(clips.size()):
 		AudioManager.add(clips[i], Vector2(512, 300), volumes[i])
+		print("AudioManager.add(%d, Vector2(512, 300), %f)" % [clips[i], volumes[i]])
 
 func _on_Index_text_changed(new_text: String) -> void:
 	preview = int(new_text)
