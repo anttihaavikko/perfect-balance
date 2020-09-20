@@ -62,6 +62,10 @@ func setup(bonus: Dictionary, index: int):
 	self.bonus = bonus
 	title.text = bonus.title
 	
+	if !bonus.cursed:
+		$ColorRect/Cursed.hide()
+		$CurseParticles.hide()
+	
 	icon.texture = load("res://assets/sprites/bonuses/%s.png" % bonus.texture)
 	
 	if bonus.type == "add":

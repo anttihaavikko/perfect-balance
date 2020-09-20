@@ -89,7 +89,8 @@ func get_bonus():
 			"texture": "hp",
 			"key": "hp_max",
 			"type": "add",
-			"value": 1 + randi() % 4
+			"value": 1 + randi() % 4,
+			"cursed": false
 		},
 		{
 			"title": "MAX HP",
@@ -97,7 +98,8 @@ func get_bonus():
 			"texture": "hp",
 			"key": "hp_max",
 			"type": "multiply",
-			"value": rand_range(1.05, 1.5)
+			"value": rand_range(1.05, 1.5),
+			"cursed": false
 		},
 		{
 			"title": "DAMAGE",
@@ -105,7 +107,8 @@ func get_bonus():
 			"texture": "damage",
 			"key": "damage",
 			"type": "add",
-			"value": 1 + randi() % 3
+			"value": 1 + randi() % 3,
+			"cursed": false
 		},
 		{
 			"title": "DAMAGE",
@@ -113,7 +116,8 @@ func get_bonus():
 			"texture": "damage",
 			"key": "damage",
 			"type": "multiply",
-			"value": rand_range(1.1, 1.9)
+			"value": rand_range(1.1, 1.9),
+			"cursed": false
 		},
 		{
 			"title": "SPEED",
@@ -121,7 +125,8 @@ func get_bonus():
 			"texture": "speed",
 			"key": "speed",
 			"type": "multiply",
-			"value": rand_range(1.05, 1.5)
+			"value": rand_range(1.05, 1.5),
+			"cursed": false
 		},
 		{
 			"title": "RANGE",
@@ -129,7 +134,8 @@ func get_bonus():
 			"texture": "range",
 			"key": "shot_range",
 			"type": "multiply",
-			"value": rand_range(1.05, 1.5)
+			"value": rand_range(1.05, 1.5),
+			"cursed": false
 		},
 		{
 			"title": "FIRE RATE",
@@ -137,7 +143,8 @@ func get_bonus():
 			"texture": "firerate",
 			"key": "fire_rate",
 			"type": "multiply",
-			"value": rand_range(1.1, 1.75)
+			"value": rand_range(1.1, 1.75),
+			"cursed": false
 		},
 		{
 			"title": "SHOT SPEED",
@@ -145,7 +152,8 @@ func get_bonus():
 			"texture": "shotspeed",
 			"key": "shot_speed",
 			"type": "multiply",
-			"value": rand_range(1.05, 1.5)
+			"value": rand_range(1.05, 1.5),
+			"cursed": false
 		},
 		{
 			"title": "FULL HEAL",
@@ -153,7 +161,8 @@ func get_bonus():
 			"texture": "heal",
 			"key": "heal",
 			"type": "custom",
-			"value": 0
+			"value": 0,
+			"cursed": false
 		},
 		{
 			"title": "LUCKY",
@@ -161,23 +170,26 @@ func get_bonus():
 			"texture": "luck",
 			"key": "luck",
 			"type": "add",
-			"value": 0.1
+			"value": 0.1,
+			"cursed": false
 		},
 		{
 			"title": "HELPER",
-			"desc": "+1 Shooter",
+			"desc": "+{value} Shooter",
 			"texture": "helper",
 			"key": "drone",
 			"type": "custom",
-			"value": 0
+			"value": 1,
+			"cursed": false
 		},
 		{
 			"title": "PATIENCE",
-			"desc": "+1 Picks",
+			"desc": "+{value} Picks",
 			"texture": "patience",
 			"key": "picks",
 			"type": "add",
-			"value": 1
+			"value": 1,
+			"cursed": false
 		},
 		{
 			"title": "POINTS",
@@ -185,7 +197,8 @@ func get_bonus():
 			"texture": "points",
 			"key": "points",
 			"type": "custom",
-			"value": (1 + randi() % 10) * 1000
+			"value": (1 + randi() % 10) * 1000,
+			"cursed": false
 		},
 		{
 			"title": "MULTIPLIER",
@@ -193,7 +206,8 @@ func get_bonus():
 			"texture": "points",
 			"key": "multiplier",
 			"type": "custom",
-			"value": 2 + randi() % 4
+			"value": 2 + randi() % 4,
+			"cursed": false
 		},
 		{
 			"title": "THE FRUIT",
@@ -201,8 +215,18 @@ func get_bonus():
 			"texture": "apple",
 			"key": "fruit",
 			"type": "custom",
-			"value": 1
+			"value": 1,
+			"cursed": false
 		}
 	]
+	
+	var cursed = bonuses[randi() % bonuses.size()];
+	cursed.cursed = true
+	
+	if cursed.type == "add":
+		cursed.value *= 2
+	
+	if cursed.type == "multiply":
+		cursed.value = (cursed.value - 1) * 2 + 1;
 	
 	return bonuses[randi() % bonuses.size()]

@@ -28,12 +28,15 @@ func _init(stats = null) -> void:
 		drone = stats.drone
 
 func apply(bonus: Dictionary):
-	print("applying %s for %s" % [bonus.key, bonus.value as String])
+	print("Applying %s for %s" % [bonus.key, bonus.value as String])
 	if get(bonus.key):
 		if bonus.type == "add":
 			self[bonus.key] += bonus.value
 		if bonus.type == "multiply":
 			self[bonus.key] *= bonus.value
 			
-	if hp_max == 0:
+	if hp_max <= 0:
 		hp_max = 1
+	
+	if damage <= 0:
+		damage = 1

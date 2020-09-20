@@ -166,6 +166,9 @@ func enemy_pick(bonus: Dictionary):
 		
 	if bonus.key == "multiplier":
 		score.reset_multi()
+		
+	if bonus.cursed:
+		spawner.stats.apply(bonuses.get_curse())
 	
 func pick_bonus(bonus: Dictionary, index: int):
 	player.stats.apply(bonus)
@@ -175,7 +178,8 @@ func pick_bonus(bonus: Dictionary, index: int):
 		player.stats.hp = player.stats.hp_max
 		
 	if bonus.key == "drone":
-		player.add_drone()
+		for i in range(bonus.value):
+			player.add_drone()
 		
 	if bonus.key == "points":
 		score.add(bonus.value)
@@ -187,6 +191,9 @@ func pick_bonus(bonus: Dictionary, index: int):
 		player.immortal = true
 		AudioManager.pitch_shift()
 		Music.pitch_scale = 1.2
+		
+	if bonus.cursed:
+		player.stats.apply(bonuses.get_curse())
 		
 	player._update_hp()
 	

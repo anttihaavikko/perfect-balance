@@ -1,8 +1,27 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/misc/Amatic-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/sprites/bonuses/helper.png" type="Texture" id=2]
 [ext_resource path="res://src/BonusTile.gd" type="Script" id=3]
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0.00925926, 0.220383 ), 0.0, 0.0, 0, 0, Vector2( 0.212963, 0.896059 ), 0.69498, 0.69498, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+emission_shape = 2
+emission_box_extents = Vector3( 70, 1, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, -98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 360.0
+angle_random = 1.0
+scale = 10.0
+scale_curve = SubResource( 8 )
+color = Color( 0.894118, 0.756863, 0.976471, 1 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -17,6 +36,10 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="Theme" id=4]
 default_font = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 21
+font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 35
@@ -36,6 +59,13 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CurseParticles" type="Particles2D" parent="."]
+position = Vector2( 82.6038, 0.452484 )
+amount = 30
+lifetime = 1.5
+randomness = 0.6
+process_material = SubResource( 9 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -71,9 +101,29 @@ anchor_right = 1.0
 anchor_bottom = 0.074
 margin_top = -7.10284
 margin_bottom = 58.9452
+rect_pivot_offset = Vector2( 10.2317, -116.744 )
 theme = SubResource( 4 )
 text = "TILE TEST"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cursed" type="Label" parent="ColorRect"]
+self_modulate = Color( 0.894118, 0.756863, 0.976471, 1 )
+anchor_top = 0.054
+anchor_right = 1.0
+anchor_bottom = 0.074
+margin_top = 44.6266
+margin_bottom = 79.6746
+rect_pivot_offset = Vector2( 10.2317, -116.744 )
+theme = SubResource( 4 )
+custom_fonts/font = SubResource( 10 )
+text = "CURSED"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Desc" type="Label" parent="ColorRect"]
 anchor_top = 0.9
