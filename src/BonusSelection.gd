@@ -40,6 +40,8 @@ func show_bonuses(num: int, amount: int):
 
 		yield(get_tree().create_timer(1.5), "timeout")
 		
+		AudioManager.lowpass()
+		
 		update_title(num, amount)
 		show_title()
 	
@@ -52,6 +54,7 @@ func show_bonuses(num: int, amount: int):
 			bonus.slide(index * 0.15)
 
 func hide_bonuses():
+	AudioManager.lowpass(false)
 	hide_title()
 	var delay = 0.0
 	for bonus in bonuses:

@@ -8,6 +8,7 @@ func _ready() -> void:
 	OS.low_processor_usage_mode = true
 	go.hide()
 	input.grab_focus()
+	AudioManager.lowpass()
 
 func _on_LineEdit_text_entered(new_text: String) -> void:
 	if new_text.length() > 0:
@@ -27,6 +28,7 @@ func _on_Go_clicked() -> void:
 	start_game()
 
 func start_game():
+	AudioManager.lowpass(false)
 	ScoreManager.player_name = input.text;
 	TransitionScreen.close()
 	yield(get_tree().create_timer(TransitionScreen.transition_time), "timeout")

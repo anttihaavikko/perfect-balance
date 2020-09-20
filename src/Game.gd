@@ -133,7 +133,7 @@ func show_bonuses():
 	bonuses.show_bonuses(bonus_picks, allowed_picks)
 	if player:
 		yield(get_tree().create_timer(0.5), "timeout")
-		AudioManager.add(31, player.body.position, 1.6)
+		AudioManager.add(31, player.body.position, 2)
 	
 func enemy_pick(bonus: Dictionary):
 	spawner.stats.apply(bonus)
