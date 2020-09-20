@@ -19,6 +19,7 @@ var shot_cooldown_max := 0.3
 var tween: Tween
 var base_color: Color
 var color_reset: Timer
+var immortal := false
 
 var stats: Stats;
 
@@ -48,6 +49,9 @@ func _move(delta):
 	body.angular_velocity = angle * 30000 * delta * stats.speed * mod
 	
 func _process(delta):
+	if immortal && randi() % 3 == 0:
+		modulate = Stuff.colors[randi() % 5]
+		
 	if ignore_collision > 0:
 		ignore_collision -= delta
 	
@@ -64,7 +68,7 @@ func _took_damage():
 	pass
 	
 func damage(amount: int):
-	if !picking_bonus:
+	if !picking_bonus && !immortal:
 		stats.hp -= amount
 		_update_hp()
 		_took_damage()
@@ -75,8 +79,9 @@ func damage(amount: int):
 	AudioManager.add(9, body.position, 1.000000 * vol)
 	AudioManager.add(10, body.position, 1.000000 * vol)
 	AudioManager.add(29, body.position, 1.250000)
-		
-	flash()
+	
+	if !immortal:	
+		flash()
 	
 func take_hit(bullet: Bullet):
 	damage(bullet.damage)
@@ -120,9 +125,12 @@ func flash(color: int = 0):
 	modulate = base_color
 	
 func collided(other):
-	if ignore_collision <= 0 && other.get_node("..").is_enemy:
+	var c = other.get_node("..")
+	if ignore_collision <= 0 && c.is_enemy:
 		ignore_collision = 0.5
 		damage(game.spawner.stats.damage)
+		if immortal:
+			c.damage(999)
 
 func _on_Head_body_entered(body: Node) -> void:
 	collided(body)

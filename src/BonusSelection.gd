@@ -73,6 +73,14 @@ func add_enemy_bonuses(index: int):
 	b2.add_stamp(false)
 	game.enemy_pick(b2.bonus)
 	
+func get_curse():
+	var curse = get_bonus()
+	if curse.type == "multiply":
+		curse.value = -1 * (curse.value - 1);
+	if curse.type == "add":
+		curse.value *= -1
+	return curse
+	
 func get_bonus():
 	var bonuses = [
 		{
@@ -186,6 +194,14 @@ func get_bonus():
 			"key": "multiplier",
 			"type": "custom",
 			"value": 2 + randi() % 4
+		},
+		{
+			"title": "THE FRUIT",
+			"desc": "Forbidden",
+			"texture": "apple",
+			"key": "fruit",
+			"type": "custom",
+			"value": 1
 		}
 	]
 	

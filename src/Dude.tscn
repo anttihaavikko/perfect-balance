@@ -123,7 +123,7 @@ stiffness = 64.0
 [node name="Head" type="RigidBody2D" parent="."]
 position = Vector2( 0.495575, -92.2172 )
 collision_layer = 2
-collision_mask = 3
+collision_mask = 15
 gravity_scale = 0.0
 contacts_reported = 1
 contact_monitor = true
@@ -152,7 +152,7 @@ stiffness = 60.0
 [node name="Pelvis" type="RigidBody2D" parent="."]
 position = Vector2( -0.972839, 65.5547 )
 collision_layer = 2
-collision_mask = 3
+collision_mask = 15
 gravity_scale = 0.0
 linear_damp = 10.0
 angular_damp = 10.0
@@ -182,8 +182,10 @@ stiffness = 64.0
 [node name="Limb Upper" type="RigidBody2D" parent="."]
 position = Vector2( -19.7854, 117.308 )
 collision_layer = 2
-collision_mask = 3
+collision_mask = 15
 gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
 linear_damp = 7.0
 angular_damp = 10.0
 
@@ -210,8 +212,10 @@ stiffness = 40.0
 [node name="Limb Lower" type="RigidBody2D" parent="."]
 position = Vector2( -19.7854, 196.516 )
 collision_layer = 2
-collision_mask = 3
+collision_mask = 15
 gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
 linear_damp = 7.0
 angular_damp = 10.0
 
@@ -239,8 +243,10 @@ stiffness = 64.0
 [node name="Limb Upper2" type="RigidBody2D" parent="."]
 position = Vector2( 13.9034, 117.308 )
 collision_layer = 2
-collision_mask = 3
+collision_mask = 15
 gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
 linear_damp = 7.0
 angular_damp = 10.0
 
@@ -267,8 +273,10 @@ stiffness = 40.0
 [node name="Limb Lower2" type="RigidBody2D" parent="."]
 position = Vector2( 14.1156, 197.365 )
 collision_layer = 2
-collision_mask = 3
+collision_mask = 15
 gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
 linear_damp = 7.0
 angular_damp = 10.0
 
@@ -298,8 +306,10 @@ stiffness = 40.0
 position = Vector2( 68.6294, -14.9247 )
 rotation = -1.38421
 collision_layer = 2
-collision_mask = 3
+collision_mask = 15
 gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
 linear_damp = 7.0
 angular_damp = 10.0
 
@@ -329,8 +339,10 @@ stiffness = 40.0
 position = Vector2( 138.343, -2.0493 )
 rotation = -1.38421
 collision_layer = 2
-collision_mask = 3
+collision_mask = 15
 gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
 linear_damp = 7.0
 angular_damp = 10.0
 
@@ -360,8 +372,10 @@ stiffness = 40.0
 position = Vector2( -70.4161, -14.6337 )
 rotation = 1.30198
 collision_layer = 2
-collision_mask = 3
+collision_mask = 15
 gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
 linear_damp = 7.0
 angular_damp = 10.0
 
@@ -391,8 +405,10 @@ stiffness = 40.0
 position = Vector2( -141.784, 4.64117 )
 rotation = 1.30198
 collision_layer = 2
-collision_mask = 3
+collision_mask = 15
 gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
 linear_damp = 7.0
 angular_damp = 10.0
 

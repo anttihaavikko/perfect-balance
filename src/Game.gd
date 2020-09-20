@@ -119,6 +119,10 @@ func _process(delta):
 			
 		if Input.is_action_just_pressed("fullscreen"):
 			OS.window_fullscreen = !OS.window_fullscreen
+			
+		if Input.is_action_just_pressed("immortal"):
+			player.immortal = true
+			AudioManager.pitch_shift()
 
 func add_character(character):
 	characters.append(character)
@@ -141,6 +145,11 @@ func show_bonuses():
 	if player:
 		yield(get_tree().create_timer(0.5), "timeout")
 		AudioManager.add(31, player.body.position, 2)
+		if player.immortal:
+			player.stats.apply(bonuses.get_curse())
+			player.immortal = false
+			player.modulate = Color.white
+			AudioManager.pitch_shift(false)
 	
 func enemy_pick(bonus: Dictionary):
 	spawner.stats.apply(bonus)
@@ -173,6 +182,11 @@ func pick_bonus(bonus: Dictionary, index: int):
 		
 	if bonus.key == "multiplier":
 		score.multi_multi(bonus.value)
+		
+	if bonus.key == "fruit":
+		player.immortal = true
+		AudioManager.pitch_shift()
+		Music.pitch_scale = 1.2
 		
 	player._update_hp()
 	

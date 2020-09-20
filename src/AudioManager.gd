@@ -18,6 +18,11 @@ func highpass(state: bool = true, duration: float = 1.0):
 	var from = 10 if state else 600
 	var to = 600 if state else 10
 	Quick.tween(AudioServer.get_bus_effect(0, 1), "cutoff_hz", from, to, duration)
+	
+func pitch_shift(state: bool = true, duration: float = 1.0):
+	var from = 1 if state else 1.5
+	var to = 1.5 if state else 1
+	Quick.tween(Music, "pitch_scale", from, to, duration)
 
 func add(index: int, pos: Vector2 = Vector2(512, 300), volume: float = 1.0):
 #	print("playing effect %d" % index)
