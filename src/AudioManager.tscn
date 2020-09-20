@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/AudioManager.gd" type="Script" id=1]
+
+[node name="AudioManager" type="Node2D"]
+script = ExtResource( 1 )
+effects = PoolStringArray( "coin-sinish", "coin", "exp-boomy", "exp-echoy", "exp-punchy", "explosion", "heal-upwards", "heal", "hit-noise", "hit1", "hit2", "shot-pitchy", "steps" )

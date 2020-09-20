@@ -112,6 +112,7 @@ func reposition():
 	if plr:
 		noise_seed = randi()
 		position = plr.body.get_global_transform().get_origin() + 1500 * Vector2(cos(dir), sin(dir)).normalized()
+		scale = Vector2.ONE * 1.5 if is_boss_wave() else Vector2.ONE
 		appearer.appear()
 		wave_info.text = "Level " + level as String + "    ::    " + get_wave_name()
 		

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/exp-punchy.wav-375973887413f830481b1e3720d5657f.sample"
+
+[deps]
+
+source_file="res://assets/sounds/exp-punchy.wav"
+dest_files=[ "res://.import/exp-punchy.wav-375973887413f830481b1e3720d5657f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

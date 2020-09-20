@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/coin-sinish.wav-68ee4d11fe5142106d6fa6d77717d21c.sample"
+
+[deps]
+
+source_file="res://assets/sounds/coin-sinish.wav"
+dest_files=[ "res://.import/coin-sinish.wav-68ee4d11fe5142106d6fa6d77717d21c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

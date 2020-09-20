@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/exp-boomy.wav-9b02084a38b7602fd396d8a83b1afebb.sample"
+
+[deps]
+
+source_file="res://assets/sounds/exp-boomy.wav"
+dest_files=[ "res://.import/exp-boomy.wav-9b02084a38b7602fd396d8a83b1afebb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

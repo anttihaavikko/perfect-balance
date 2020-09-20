@@ -86,6 +86,7 @@ func die():
 	stats.hp = 0
 	_update_hp()
 	boom(body.position)
+	AudioManager.add(1, body.position)
 	shaker.start(0.4, 20, 15)
 	game.spawn_pickup_on(body.position)
 	_died()

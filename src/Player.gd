@@ -89,6 +89,7 @@ func _process(delta):
 	cam.position += repos_velo
 
 func shoot(angle):
+	AudioManager.add(0, body.position)
 	shockwave.boom(muzzle_flash.position)
 	shot_particles.emitting = true
 	muzzle_flash.emitting = true
