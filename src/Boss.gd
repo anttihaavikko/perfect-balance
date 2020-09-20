@@ -122,6 +122,10 @@ func _process(delta: float) -> void:
 				var off = Vector2(rand_range(-tele_max_dist, tele_max_dist), rand_range(-tele_max_dist, tele_max_dist))
 				teleport_marker.position = player.body.position + off
 				Quick.tween_show(teleport_marker)
+				AudioManager.add(25, teleport_marker.position, 1.200000)
+				AudioManager.add(21, teleport_marker.position, 0.600000)
+				AudioManager.add(20, teleport_marker.position, 0.500000)
+				AudioManager.add(19, teleport_marker.position, 0.500000)
 		else:
 			if !enrage_timer.is_stopped():
 				enrage_timer.stop()
@@ -131,3 +135,7 @@ func enraged() -> void:
 	if player:
 		boss_body.teleport(teleport_marker.position)
 		player.shockwave.boom(teleport_marker.position, 2, 1)
+		AudioManager.add(3, teleport_marker.position, 0.600000)
+		AudioManager.add(10, teleport_marker.position, 1.200000)
+		AudioManager.add(11, position, 0.700000)
+		AudioManager.add(13, position, 0.800000)
