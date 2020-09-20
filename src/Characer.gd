@@ -28,6 +28,7 @@ var ignore_collision := 0
 var picking_bonus := false
 
 var scores := true
+var is_dead := false
 
 func _init() -> void:
 	self.stats = Stats.new()
@@ -68,6 +69,9 @@ func _took_damage():
 	pass
 	
 func damage(amount: int):
+	if is_dead:
+		return
+		
 	if !picking_bonus && !immortal:
 		stats.hp -= amount
 		_update_hp()
@@ -109,7 +113,12 @@ func die():
 	shaker.start(0.4, 20, 15)
 	game.spawn_pickup_on(body.position)
 	_died()
-	queue_free()
+	
+	if is_enemy:
+		queue_free()
+	else:
+		is_dead = true
+		hide()
 	
 func _died():
 	pass

@@ -79,7 +79,7 @@ func _process(delta):
 			if abs(diff.length()) > 4000:
 				too_far = true
 		
-		if !bullet.update(delta, player) || too_far:
+		if !bullet.update(delta) || too_far:
 			used.push_front(i)
 		else:
 			update_bullets(i, bullet)
@@ -139,10 +139,11 @@ func parts(pos: Vector2):
 	eff.position = pos
 	
 func show_bonuses():
-	allowed_picks = player.stats.picks
-	spawner.boss_killed()
-	bonuses.show_bonuses(bonus_picks, allowed_picks)
 	if player:
+		allowed_picks = player.stats.picks
+		spawner.boss_killed()
+		bonuses.show_bonuses(bonus_picks, allowed_picks)
+		
 		yield(get_tree().create_timer(0.5), "timeout")
 		AudioManager.add(31, player.body.position, 2)
 		if player.immortal:
@@ -229,7 +230,7 @@ func update_bullets(i, bullet):
 	bullet_colors[i] = Color(bullet.color.r, bullet.color.g, bullet.color.b, a)
 	
 func game_over():
-	ScoreManager.submit(score.score, spawner.wave)
+	ScoreManager.submit(round(score.score), spawner.wave)
 	yield(get_tree().create_timer(1.5), "timeout")
 	appear_sound(go.rect_position)
 	Quick.tween_show(go)
@@ -251,16 +252,18 @@ func restart():
 	get_tree().reload_current_scene()	
 
 func _on_Timer_timeout() -> void:
-	player.move_shown = true
-	var angle = randf() * 2 * PI
-	tutorial_move.position = player.body.position + Vector2(cos(angle), sin(angle)) * 800
-	Quick.tween_show(tutorial_move)
+	if player:
+		player.move_shown = true
+		var angle = randf() * 2 * PI
+		tutorial_move.position = player.body.position + Vector2(cos(angle), sin(angle)) * 800
+		Quick.tween_show(tutorial_move)
 
 func _on_TutorialAimTimer_timeout() -> void:
-	player.aim_shown = true
-	var angle = randf() * 2 * PI
-	tutorial_aim.position = player.body.position + Vector2(cos(angle), sin(angle)) * 800
-	Quick.tween_show(tutorial_aim)
-	yield(get_tree().create_timer(1.5), "script_changed")
-	can_spawn = true
-	spawner.start_timer.start()
+	if player:
+		player.aim_shown = true
+		var angle = randf() * 2 * PI
+		tutorial_aim.position = player.body.position + Vector2(cos(angle), sin(angle)) * 800
+		Quick.tween_show(tutorial_aim)
+		yield(get_tree().create_timer(1.5), "script_changed")
+		can_spawn = true
+		spawner.start_timer.start()

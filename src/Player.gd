@@ -40,7 +40,10 @@ func _init() -> void:
 	noise.persistence = 0.5
 	scores = false
 
-func _process(delta):	
+func _process(delta):
+	if is_dead:
+		return
+		
 	var shooting = Input.get_action_strength("shoot") > 0.5 && !picking_bonus
 	var speed_mod = 0.5 if shooting else 1.0
 	
