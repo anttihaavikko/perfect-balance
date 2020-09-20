@@ -15,9 +15,8 @@ func _on_LineEdit_text_entered(new_text: String) -> void:
 
 func _on_LineEdit_text_changed(new_text: String) -> void:
 	
-	AudioManager.add(1, Vector2(512, 300), 0.500000)
-	AudioManager.add(18, Vector2(512, 300), 0.800000)
-	AudioManager.add(17, Vector2(512, 300), 0.700000)
+	AudioManager.add(27, Vector2(512, 300), 1.300000)
+	AudioManager.add(9, Vector2(512, 300), 0.600000)
 
 	if new_text.length() > 0:
 		go.show()

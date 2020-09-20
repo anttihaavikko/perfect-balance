@@ -45,7 +45,7 @@ func spawn():
 		pick_angle()
 	if is_boss_wave():
 		spawn_sound()
-		AudioManager.add(30, position, 1.800000)
+		AudioManager.add(30, position, 2.2)
 		var enemy = slime.instance()
 		root.add_child(enemy)
 		enemy.stats = Stats.new(stats)

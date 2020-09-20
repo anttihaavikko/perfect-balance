@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/jingle.wav-9ee1db1c1aa0ff8765fc911f766fd751.sample"
+
+[deps]
+
+source_file="res://assets/sounds/jingle.wav"
+dest_files=[ "res://.import/jingle.wav-9ee1db1c1aa0ff8765fc911f766fd751.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

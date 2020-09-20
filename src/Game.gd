@@ -12,6 +12,9 @@ var characters := []
 
 onready var nb = get_node("BgCanvas/NativeBullets")
 onready var cam = $Camera
+onready var go = $Canvas/GameOver
+onready var ab = $Canvas/AgainButton
+onready var mb = $Canvas/MenuButton
 
 onready var bits = preload("res://src/Bits.tscn")
 onready var parts = preload("res://src/Parts.tscn")
@@ -128,6 +131,9 @@ func show_bonuses():
 	allowed_picks = player.stats.picks
 	spawner.boss_killed()
 	bonuses.show_bonuses(bonus_picks, allowed_picks)
+	if player:
+		yield(get_tree().create_timer(0.5), "timeout")
+		AudioManager.add(31, player.body.position, 1.6)
 	
 func enemy_pick(bonus: Dictionary):
 	spawner.stats.apply(bonus)
@@ -194,11 +200,20 @@ func update_bullets(i, bullet):
 func game_over():
 	ScoreManager.submit(score.score, spawner.wave)
 	yield(get_tree().create_timer(1.5), "timeout")
-	Quick.tween_show($Canvas/GameOver)
+	appear_sound(go.rect_position)
+	Quick.tween_show(go)
 	yield(get_tree().create_timer(0.5), "timeout")
-	Quick.tween_show($Canvas/AgainButton)
+	appear_sound(ab.rect_position)
+	Quick.tween_show(ab)
 	yield(get_tree().create_timer(0.25), "timeout")
-	Quick.tween_show($Canvas/MenuButton)
+	appear_sound(mb.rect_position)
+	Quick.tween_show(mb)
+	
+func appear_sound(pos):
+	AudioManager.add(29, cam.position + pos, 1.000000)
+	AudioManager.add(25, cam.position + pos, 1.000000)
+	AudioManager.add(20, cam.position + pos, 1.000000)
+
 	
 func restart():
 	TransitionScreen.close()
