@@ -69,6 +69,13 @@ func damage(amount: int):
 		_update_hp()
 		_took_damage()
 		
+	var vol = 1.0 if !is_enemy else 0.5
+	 
+	AudioManager.add(8, body.position, 1.000000 * vol)
+	AudioManager.add(9, body.position, 1.000000 * vol)
+	AudioManager.add(10, body.position, 1.000000 * vol)
+	AudioManager.add(29, body.position, 1.250000)
+		
 	flash()
 	
 func take_hit(bullet: Bullet):
@@ -82,6 +89,13 @@ func die():
 		var amt = 100 if !boss else game.spawner.level * 1000
 		game.score.add(amt)
 		game.score.add_multi()
+		
+	
+	AudioManager.add(2, body.position, 1.300000)
+	AudioManager.add(3, body.position, 1.100000)
+	AudioManager.add(4, body.position, 1.500000)
+	AudioManager.add(5, body.position, 1.000000)
+	AudioManager.add(29, body.position, 1.500000)
 		
 	stats.hp = 0
 	_update_hp()

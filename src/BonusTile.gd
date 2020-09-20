@@ -12,24 +12,34 @@ onready var stamp_enemy = preload("res://src/StampEnemy.tscn")
 var picked := false
 var bonus: Dictionary
 var index: int;
+var cam;
+
+func _ready() -> void:
+	cam = game.get_node("Camera")
 
 func _on_Button_mouse_entered() -> void:
 	if !picked:
 		color = game.colors[0]
 		tween.interpolate_property(self, "margin_top", 0, -50, 0.15, Tween.TRANS_BOUNCE)
 		tween.start()
+		AudioManager.add(18, cam.position + rect_position, 0.500000)
+		AudioManager.add(15, cam.position + rect_position, 0.500000)
 
 func _on_Button_mouse_exited() -> void:
 	if !picked:
 		color = Color.white
 		tween.interpolate_property(self, "margin_top", -50, 0, 0.15, Tween.TRANS_BOUNCE)
 		tween.start()
+		AudioManager.add(18, cam.position + rect_position, 0.500000)
+		AudioManager.add(15, cam.position + rect_position, 0.500000)
 
 func _on_Button_pressed() -> void:
 	if !picked:
 		game.pick_bonus(bonus, index)
 		picked = true
 		color = game.colors[3]
+		AudioManager.add(0, cam.position + rect_position, 1.000000)
+		AudioManager.add(1, cam.position + rect_position, 0.500000)
 		yield(get_tree().create_timer(0.3), "timeout")
 		add_stamp()
 	
@@ -75,3 +85,8 @@ func add_stamp(good: bool = true):
 	tween.interpolate_property(stamp, "scale", Vector2.ZERO, Vector2.ONE, 0.3, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
 	tween.interpolate_property(stamp, "rotation", 0, rand_range(-0.5, 0.5), 0.3, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
 	tween.start()
+	var vol = 1 if good else 0.6
+	AudioManager.add(9, cam.position + rect_position, 1.000000 * vol)
+	AudioManager.add(10, cam.position + rect_position, 1.000000 * vol)
+	AudioManager.add(12, cam.position + rect_position, 1.000000 * vol)
+	AudioManager.add(13, cam.position + rect_position, 0.600000 * vol)

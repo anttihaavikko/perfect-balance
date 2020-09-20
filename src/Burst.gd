@@ -23,3 +23,11 @@ func _shoot(game: Node2D, enemy, angle: float, delta: float):
 	b.damage = enemy.stats.damage
 	prepare_bullet(b)
 	game.add_bullet(b)
+
+	if enemy.sound_cooldown <= 0:
+		AudioManager.add(27, enemy.body.position + offset * enemy.hitbox_radius, 0.600000)
+		AudioManager.add(20, enemy.body.position + offset * enemy.hitbox_radius, 0.600000)
+		AudioManager.add(17, enemy.body.position + offset * enemy.hitbox_radius, 0.500000)
+		AudioManager.add(16, enemy.body.position + offset * enemy.hitbox_radius, 1.000000)
+		enemy.sound_cooldown = 0.1
+

@@ -17,7 +17,7 @@ func _on_Button_pressed() -> void:
 	print("------------------------")
 	for i in range(clips.size()):
 		AudioManager.add(clips[i], Vector2(512, 300), volumes[i])
-		print("AudioManager.add(%d, Vector2(512, 300), %f)" % [clips[i], volumes[i]])
+		print("AudioManager.add(%d, position, %f)" % [clips[i], volumes[i]])
 
 func _on_Index_text_changed(new_text: String) -> void:
 	preview = int(new_text)
@@ -35,7 +35,7 @@ func _on_Add_pressed() -> void:
 	container.add_child(label)
 	var input = LineEdit.new()
 	input.text = "1.0"
-	input.connect("text_changed", self, "volume_changed", [preview])
+	input.connect("text_changed", self, "volume_changed", [clips.size()])
 	container.add_child(input)
 	clips.append(preview)
 	volumes.append(1.0)

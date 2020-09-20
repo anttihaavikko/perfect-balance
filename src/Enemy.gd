@@ -9,6 +9,8 @@ var lifetime := 0.0
 var angle_offset := 0.0
 var offset_calculated := false
 
+var sound_cooldown := 0.0
+
 onready var sprite = body.get_node("Sprite")
 onready var player = get_node("../Player")
 
@@ -51,6 +53,9 @@ func _process(delta):
 	angle = (nv + 1.0) * PI
 	var tmp = angle
 	angle += angle_offset
+	
+	if sound_cooldown > 0:
+		sound_cooldown -= delta
 	
 	if !offset_calculated:
 		offset_calculated = true

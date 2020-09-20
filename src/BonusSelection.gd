@@ -33,6 +33,11 @@ func show_bonuses(num: int, amount: int):
 	
 	if player:
 		player.picking_bonus = true
+		
+		AudioManager.add(24, player.body.position, 1.200000)
+		AudioManager.add(23, player.body.position, 0.500000)
+		AudioManager.add(22, player.body.position, 0.800000)
+
 		yield(get_tree().create_timer(1.5), "timeout")
 		
 		update_title(num, amount)

@@ -89,7 +89,11 @@ func _process(delta):
 	cam.position += repos_velo
 
 func shoot(angle):
-	AudioManager.add(0, body.position)
+	AudioManager.add(11, body.position, 0.700000)
+	AudioManager.add(2, body.position, 1.000000)
+	AudioManager.add(28, body.position, 1.2500000)
+
+
 	shockwave.boom(muzzle_flash.position)
 	shot_particles.emitting = true
 	muzzle_flash.emitting = true
@@ -126,6 +130,11 @@ func _update_hp():
 
 func heal():
 	stats.hp = min(stats.hp_max, stats.hp + 1)
+	
+	AudioManager.add(6, body.position, 1.000000)
+	AudioManager.add(7, body.position, 1.000000)
+	AudioManager.add(12, body.position, 1.000000)
+
 	_update_hp()
 	flash(1)
 	

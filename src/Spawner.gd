@@ -44,6 +44,8 @@ func spawn():
 	if spawns == 0:
 		pick_angle()
 	if is_boss_wave():
+		spawn_sound()
+		AudioManager.add(30, position, 1.800000)
 		var enemy = slime.instance()
 		root.add_child(enemy)
 		enemy.stats = Stats.new(stats)
@@ -60,6 +62,7 @@ func spawn():
 		wave += 1
 		boss_encountered = true
 	elif wave_has_more():
+		spawn_sound()
 		var enemy = bat.instance()
 		root.add_child(enemy)
 		enemy.stats = Stats.new(stats)
@@ -75,6 +78,13 @@ func spawn():
 			next_wave()
 	else:
 		next_wave()
+		
+func spawn_sound():
+	AudioManager.add(3, position, 0.600000)
+	AudioManager.add(10, position, 1.200000)
+	AudioManager.add(11, position, 0.700000)
+	AudioManager.add(13, position, 0.800000)
+
 		
 func wave_has_more() -> bool:
 	return spawns < clamp(2 + wave, 3, 10)
@@ -115,6 +125,10 @@ func reposition():
 		scale = Vector2.ONE * 1.5 if is_boss_wave() else Vector2.ONE
 		appearer.appear()
 		wave_info.text = "Level " + level as String + "    ::    " + get_wave_name()
+		AudioManager.add(25, position, 1.200000)
+		AudioManager.add(21, position, 0.600000)
+		AudioManager.add(20, position, 0.500000)
+		AudioManager.add(19, position, 0.500000)
 		
 func get_wave_name() -> String:
 	if is_boss_wave():

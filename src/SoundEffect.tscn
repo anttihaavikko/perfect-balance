@@ -6,6 +6,7 @@
 script = ExtResource( 1 )
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
+max_distance = 4000.0
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
